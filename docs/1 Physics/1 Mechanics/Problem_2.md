@@ -310,7 +310,7 @@ sol = solve_ivp(pendulum, t_span, y0, args=(gamma, omega0, A, omega_drive), t_ev
 
 ```
 
- ## 2. Time Series Plot (Angular Displacement and Velocity)
+## 2. Time Series Plot (Angular Displacement and Velocity)
 
  ```python
 import matplotlib.pyplot as plt
@@ -326,6 +326,7 @@ plt.grid(True)
 plt.show()
 ```
 ![alt text](image-9.png)
+
 ## 3. Phase Space Diagram (θ vs. ω)
 
 ```python
@@ -358,6 +359,7 @@ plt.grid(True)
 plt.show()
 ```
 ![alt text](image-12.png)
+
 ## 5. Bifurcation Diagram (Varying A)
 
 ```python
@@ -381,6 +383,7 @@ plt.grid(True)
 plt.show()
 ```
 ![alt text](image-13.png)
+
  ## 6. Animation of the Pendulum
 
  ```python
