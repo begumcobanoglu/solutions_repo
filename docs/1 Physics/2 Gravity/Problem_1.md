@@ -240,95 +240,187 @@ This implies that a log-log plot of \( T \) vs \( r \) will be a straight line w
 
 Real-world data strongly supports Kepler's Third Law in both our Solar System and beyond. Small deviations can often point to exciting new physics or unseen objects.
 
-## 4. Computational Model & Simulation.
-Kepler's Third Law Simulation
+## 5. Computational Modeling
+
+In this section, we simulate circular orbital motion using Newtonian mechanics to explore and validate Kepler’s Third Law:  
+$$
+T^2 \propto r^3
+$$
+
+We define clear assumptions, simulate orbital systems, vary key parameters, and visualize the relationship between orbital period and radius.
+
+---
+
+### 5.1 Assumptions and Setup
+
+We assume:
+- A two-body system (massive central body, orbiting satellite)
+- Perfectly circular orbits
+- Newtonian gravity is valid
+- No relativistic effects or perturbations
+
+```python
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 
 # Constants
-G = 6.67430e-11          # Universal gravitational constant [m^3 kg^-1 s^-2]
-M_sun = 1.989e30         # Mass of the Sun [kg]
+G = 6.67430e-11  # gravitational constant (m^3 kg^-1 s^-2)
 
-# Function to compute orbital period
-def orbital_period(radius_m):
-    """
-    Calculates orbital period T [seconds] for a given orbital radius r [meters].
-    Assumes circular orbit around a mass M_sun.
-    """
-    T = 2 * np.pi * np.sqrt(radius_m**3 / (G * M_sun))
-    return T
+# Orbital period calculator for circular orbit
+def orbital_period(r, M):
+    return 2 * np.pi * np.sqrt(r**3 / (G * M))
+```
 
-Earth's Orbital Period
-# Earth's orbit radius
-r_earth = 1.496e11  # meters
+---
 
-# Compute Earth's orbital period
-T_earth = orbital_period(r_earth)
-print(f"Earth's orbital period: {T_earth / (60 * 60 * 24):.2f} days")
+### 5.2 Plot: $T^2$ vs $r^3$ for Fixed Central Mass (Earth)
 
-T² vs r³ Comparison
-# Orbital radii [meters] for selected planets
-planet_data = {
-    "Mercury": 5.79e10,
-    "Venus": 1.08e11,
-    "Earth": 1.496e11,
-    "Mars": 2.28e11,
-    "Jupiter": 7.78e11
-}
+Here, we simulate a range of orbital radii around Earth and calculate the corresponding orbital periods.
 
-# Calculate and store data
-results = []
-for planet, r in planet_data.items():
-    T = orbital_period(r)
-    results.append({
-        "Planet": planet,
-        "Radius (m)": r,
-        "Period (s)": T,
-        "T^2 (s²)": T**2,
-        "r^3 (m³)": r**3
-    })
+```python
+# Central mass: Earth
+M_earth = 5.972e24  # kg
 
-# Create DataFrame
-df = pd.DataFrame(results)
-print(df)
+# Orbital radii (from 7000 km to 50,000 km)
+radii = np.linspace(7e6, 5e7, 100)
+T = orbital_period(radii, M_earth)
 
-Plot: T² vs r³ (Kepler's Law Linearity)
-# Extract data
-r_cubed = df["r^3 (m³)"].values
-T_squared = df["T^2 (s²)"].values
+# Calculate T² and r³
+T_squared = T**2
+r_cubed = radii**3
 
 # Plot T² vs r³
 plt.figure()
-plt.scatter(r_cubed, T_squared)
-plt.xlabel("r³ (m³)")
-plt.ylabel("T² (s²)")
-plt.title("Kepler’s Third Law: T² vs r³")
+plt.plot(r_cubed, T_squared, 'o', markersize=4)
+plt.xlabel('$r^3$ (m³)')
+plt.ylabel('$T^2$ (s²)')
+plt.title('Kepler’s Law Simulation: $T^2$ vs $r^3$ (Fixed Earth Mass)')
 plt.grid(True)
-plt.savefig("kepler_t2_vs_r3.png", dpi=300)
 plt.show()
+```
+![alt text](image.png)
 
- Plot: log(T²) vs log(r³) — Slope ≈ 1
- # Log-log plot
+---
+
+### 5.3 Plot: $T^2$ vs $r^3$ for Varying Central Masses
+
+Now we compare how different central masses affect the slope of the $T^2$ vs $r^3$ relation.
+
+```python
+masses = [5.972e24, 1.989e30]  # Earth, Sun
+labels = ['Earth Mass', 'Sun Mass']
+
 plt.figure()
-plt.plot(np.log10(r_cubed), np.log10(T_squared), 'o-')
-plt.xlabel("log₁₀(r³)")
-plt.ylabel("log₁₀(T²)")
-plt.title("Log-Log Plot: Kepler’s Third Law")
+for M, label in zip(masses, labels):
+    T = orbital_period(radii, M)
+    T_squared = T**2
+    r_cubed = radii**3
+    plt.plot(r_cubed, T_squared, label=label)
+
+plt.xlabel('$r^3$ (m³)')
+plt.ylabel('$T^2$ (s²)')
+plt.title('Effect of Central Mass on $T^2$ vs $r^3$')
+plt.legend()
 plt.grid(True)
-plt.savefig("kepler_loglog_plot.png", dpi=300)
 plt.show()
+```
+![alt text](image-1.png)
 
-Optional: User Input for Radius
-# Optional: dynamic user input
-try:
-    r_input = float(input("Enter orbital radius in meters: "))
-    T_result = orbital_period(r_input)
-    print(f"Orbital period: {T_result / 86400:.2f} days")
-except:
-    print("Invalid input. Please enter a numerical value.")
+---
 
+### 5.4 Plot: Linearity Check with Linear Fit
 
+We verify that the relationship between $T^2$ and $r^3$ is linear by fitting a straight line to the data.
+
+```python
+# Use Earth mass for this check
+T = orbital_period(radii, M_earth)
+T_squared = T**2
+r_cubed = radii**3
+
+# Linear regression
+slope, intercept = np.polyfit(r_cubed, T_squared, 1)
+
+# Print slope and theoretical value
+theory_slope = 4 * np.pi**2 / (G * M_earth)
+print(f"Simulated Slope: {slope:.3e} s²/m³")
+print(f"Theoretical Slope: {theory_slope:.3e} s²/m³")
+
+# Plot with fitted line
+plt.figure()
+plt.plot(r_cubed, T_squared, 'o', label='Simulated Data')
+plt.plot(r_cubed, slope * r_cubed + intercept, 'r--', label='Linear Fit')
+plt.xlabel('$r^3$ (m³)')
+plt.ylabel('$T^2$ (s²)')
+plt.title('Linearity Verification: $T^2$ vs $r^3$ with Fit')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+![alt text](image-2.png)
+---
+
+### 5.4 Simulated Orbit Animation: Earth Orbiting the Sun
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+# Constants
+G = 6.67430e-11  # m^3 kg^-1 s^-2
+M_sun = 1.989e30  # kg
+AU = 1.496e11  # meters
+T_earth = 365.25 * 24 * 3600  # seconds
+
+# Simulation time steps
+num_frames = 200
+times = np.linspace(0, T_earth, num_frames)
+
+# Circular orbit position
+r = AU
+omega = 2 * np.pi / T_earth
+x = r * np.cos(omega * times)
+y = r * np.sin(omega * times)
+
+# Set up figure
+fig, ax = plt.subplots(figsize=(6, 6))
+ax.set_xlim(-1.2 * AU, 1.2 * AU)
+ax.set_ylim(-1.2 * AU, 1.2 * AU)
+ax.set_aspect('equal')
+ax.set_title("Simulated Orbit: Earth Around the Sun")
+ax.set_xlabel("X Position (m)")
+ax.set_ylabel("Y Position (m)")
+
+# Plot objects
+sun, = ax.plot(0, 0, 'yo', markersize=12, label='Sun')
+earth, = ax.plot([], [], 'bo', markersize=6, label='Earth')
+trail, = ax.plot([], [], 'b--', linewidth=0.5)
+
+# Initialization function
+def init():
+    earth.set_data([], [])
+    trail.set_data([], [])
+    return earth, trail
+
+# Update function
+def update(frame):
+    # Corrected: Pass x[frame] and y[frame] as lists
+    earth.set_data([x[frame]], [y[frame]])
+    # Trail should receive sequences (arrays) for multiple points
+    trail.set_data(x[:frame+1], y[:frame+1])
+    return earth, trail
+
+# Create animation
+# Removed interval=50 as it was not in the original code causing the error
+ani = animation.FuncAnimation(fig, update, frames=num_frames,
+                              init_func=init, blit=True) # interval=50 was removed here
+
+# Save as GIF (local or Colab-friendly path)
+ani.save("earth_orbit_simulation.gif", writer='pillow', fps=30)
+```
+
+![alt text](earth_orbit_simulation.gif)
 
 
 
