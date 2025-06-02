@@ -447,7 +447,7 @@ t_eval = np.linspace(*t_span, 10000)
 sol = solve_ivp(pendulum, t_span, y0, args=(gamma, omega0, A, omega_drive), t_eval=t_eval)
 
 </code></pre>
-<p>## 2. Time Series Plot (Angular Displacement and Velocity)</p>
+<h2 id="2-time-series-plot-angular-displacement-and-velocity">2. Time Series Plot (Angular Displacement and Velocity)</h2>
 <p>```python
 import matplotlib.pyplot as plt</p>
 <p>plt.figure()
@@ -460,6 +460,7 @@ plt.legend()
 plt.grid(True)
 plt.show()</p>
 <pre><code>![alt text](image-9.png)
+
 ## 3. Phase Space Diagram (θ vs. ω)
 
 ```python
@@ -508,8 +509,8 @@ plt.title('Bifurcation Diagram')
 plt.grid(True)
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../image-13.png"/>
- ## 6. Animation of the Pendulum</p>
+<p><img alt="alt text" src="../image-13.png"/></p>
+<p>## 6. Animation of the Pendulum</p>
 <p>```python
  import matplotlib.animation as animation</p>
 <p>fig, ax = plt.subplots()
