@@ -448,9 +448,9 @@ sol = solve_ivp(pendulum, t_span, y0, args=(gamma, omega0, A, omega_drive), t_ev
 
 </code></pre>
 <h2 id="2-time-series-plot-angular-displacement-and-velocity">2. Time Series Plot (Angular Displacement and Velocity)</h2>
-<p>```python
-import matplotlib.pyplot as plt</p>
-<p>plt.figure()
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+plt.figure()
 plt.plot(sol.t, sol.y[0], label='θ(t)')
 plt.plot(sol.t, sol.y[1], label='ω(t)', alpha=0.7)
 plt.xlabel('Time')
@@ -458,13 +458,11 @@ plt.ylabel('Amplitude')
 plt.title('Time Series of θ and ω')
 plt.legend()
 plt.grid(True)
-plt.show()</p>
-<pre><code>![alt text](image-9.png)
-
-## 3. Phase Space Diagram (θ vs. ω)
-
-```python
-plt.figure()
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-9.png"/></p>
+<h2 id="3-phase-space-diagram-vs">3. Phase Space Diagram (θ vs. ω)</h2>
+<pre><code class="language-python">plt.figure()
 plt.plot(sol.y[0], sol.y[1], lw=0.5)
 plt.xlabel('θ')
 plt.ylabel('ω')
@@ -510,23 +508,25 @@ plt.grid(True)
 plt.show()
 </code></pre>
 <p><img alt="alt text" src="../image-13.png"/></p>
-<p>## 6. Animation of the Pendulum</p>
-<p>```python
- import matplotlib.animation as animation</p>
-<p>fig, ax = plt.subplots()
+<h2 id="6-animation-of-the-pendulum">6. Animation of the Pendulum</h2>
+<pre><code class="language-python">import matplotlib.animation as animation
+
+fig, ax = plt.subplots()
 ax.set_xlim(-1.2, 1.2)
 ax.set_ylim(-1.2, 1.2)
-line, = ax.plot([], [], 'o-', lw=2)</p>
-<p>def update(i):
+line, = ax.plot([], [], 'o-', lw=2)
+
+def update(i):
     x = np.sin(sol.y[0][i])
     y = -np.cos(sol.y[0][i])
     line.set_data([0, x], [0, y])
-    return line,</p>
-<p>ani = animation.FuncAnimation(fig, update, frames=range(0, len(sol.t), 10), interval=30)
+    return line,
+
+ani = animation.FuncAnimation(fig, update, frames=range(0, len(sol.t), 10), interval=30)
 plt.title('Forced Damped Pendulum Animation')
 plt.show()
-```
-<img alt="alt text" src="../image-14.png"/></p>
+</code></pre>
+<p><img alt="alt text" src="../image-14.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
