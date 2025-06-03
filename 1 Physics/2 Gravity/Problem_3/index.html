@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 3 - Physics and Mathematics</title>
+<title>1. Physical and Theoretical Foundations - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 3";
+        var mkdocs_page_name = "1. Physical and Theoretical Foundations";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_3.md";
         var mkdocs_page_url = null;
       </script>
@@ -58,8 +58,18 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">1. Physical and Theoretical Foundations</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#11-gravitational-model">1.1 Gravitational Model</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#12-types-of-trajectories">1.2 Types of Trajectories</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#13-energy-based-classification">1.3 Energy-Based Classification</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#14-orbital-velocity-conditions">1.4 Orbital Velocity Conditions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#15-summary-table">1.5 Summary Table</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +173,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Problem 3</li>
+<li class="breadcrumb-item active">1. Physical and Theoretical Foundations</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,343 +181,780 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-3">Problem 3</h1>
-<h1 id="1-physical-and-mathematical-modeling">1. Physical and Mathematical Modeling</h1>
-<p>Understanding the motion of a freely released payload near Earth requires a rigorous application of classical mechanics and gravitation theory. This section outlines the foundational physical laws and modeling choices necessary for trajectory analysis.</p>
+<h1 id="1-physical-and-theoretical-foundations">1. Physical and Theoretical Foundations</h1>
+<h2 id="11-gravitational-model">1.1 Gravitational Model</h2>
+<ol>
+<li><strong>Newton’s Law of Universal Gravitation</strong><br/>
+   The gravitational force between Earth and a payload is given by:</li>
+</ol>
+<p>$$
+   F = G \frac{Mm}{r^2}
+   $$</p>
+<p>Where:<br/>
+   - <span class="arithmatex">\(F\)</span>: gravitational force<br/>
+   - <span class="arithmatex">\(G \approx 6.674 \times 10^{-11}\ \text{m}^3\text{kg}^{-1}\text{s}^{-2}\)</span>: gravitational constant<br/>
+   - <span class="arithmatex">\(M\)</span>: mass of Earth<br/>
+   - <span class="arithmatex">\(m\)</span>: mass of the payload<br/>
+   - <span class="arithmatex">\(r\)</span>: distance from Earth's center to the payload</p>
+<ol>
+<li><strong>Gravitational Acceleration</strong><br/>
+   The acceleration due to Earth's gravity becomes:</li>
+</ol>
+<p>$$
+   \vec{a} = - G \frac{M}{r^2} \hat{r}
+   $$</p>
+<ol>
+<li><strong>Model Assumptions</strong></li>
+<li>Point-mass Earth approximation  </li>
+<li>Spherical Earth radius: <span class="arithmatex">\(R_\oplus \approx 6.371 \times 10^6\ \text{m}\)</span> </li>
+<li>Optional extensions:<ul>
+<li>Non-uniform gravity (e.g., J2 perturbation)</li>
+<li>Atmospheric drag (ignored here)</li>
+<li>Earth’s rotation (relevant for surface-based frames)</li>
+</ul>
+</li>
+</ol>
 <hr/>
-<h2 id="governing-physical-laws">Governing Physical Laws</h2>
-<h3 id="newtons-second-law">Newton's Second Law</h3>
-<p>The net force acting on a body is equal to its mass times its acceleration:</p>
-<div class="arithmatex">\[
-\vec{F}_{\text{net}} = m \vec{a}
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(\vec{F}_{\text{net}}\)</span> is the total force vector,
-- <span class="arithmatex">\(m\)</span> is the mass of the payload,
-- <span class="arithmatex">\(\vec{a}\)</span> is the acceleration vector.</p>
-<h3 id="newtons-law-of-universal-gravitation">Newton's Law of Universal Gravitation</h3>
-<p>The gravitational force between Earth and the payload is given by:</p>
-<div class="arithmatex">\[
-\vec{F}_g = -G \frac{M_E m}{r^2} \hat{r}
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(G\)</span> is the gravitational constant (<span class="arithmatex">\(6.67430 \times 10^{-11}\,\text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}\)</span>),
-- <span class="arithmatex">\(M_E\)</span> is the mass of Earth,
-- <span class="arithmatex">\(r\)</span> is the distance from Earth's center to the payload,
-- <span class="arithmatex">\(\hat{r}\)</span> is the unit vector pointing from the payload to the center of Earth.</p>
-<p>By Newton's second law, this gives the equation of motion:</p>
-<div class="arithmatex">\[
-m \vec{a} = -G \frac{M_E m}{r^2} \hat{r}
-\quad \Rightarrow \quad
-\vec{a} = -G \frac{M_E}{r^2} \hat{r}
-\]</div>
+<h2 id="12-types-of-trajectories">1.2 Types of Trajectories</h2>
+<ol>
+<li><strong>Trajectory Categories</strong><br/>
+   Depending on the total energy, possible motion paths include:</li>
+<li><strong>Elliptical Orbit</strong>: <span class="arithmatex">\(\varepsilon &lt; 0\)</span></li>
+<li><strong>Parabolic Trajectory</strong>: <span class="arithmatex">\(\varepsilon = 0\)</span></li>
+<li><strong>Hyperbolic Trajectory</strong>: <span class="arithmatex">\(\varepsilon &gt; 0\)</span></li>
+</ol>
 <hr/>
-<h2 id="coordinate-system">Coordinate System</h2>
-<h3 id="cartesian-coordinates">Cartesian Coordinates</h3>
-<p>In 2D or 3D space, the position vector can be expressed as:</p>
-<div class="arithmatex">\[
-\vec{r} = x \hat{i} + y \hat{j} \quad \text{(2D)}, \qquad \vec{r} = x \hat{i} + y \hat{j} + z \hat{k} \quad \text{(3D)}
-\]</div>
-<p>Acceleration components in Cartesian coordinates:</p>
-<div class="arithmatex">\[
-\vec{a} = \ddot{x} \hat{i} + \ddot{y} \hat{j} \quad \text{(2D)}, \qquad \vec{a} = \ddot{x} \hat{i} + \ddot{y} \hat{j} + \ddot{z} \hat{k} \quad \text{(3D)}
-\]</div>
-<h3 id="polar-coordinates-for-planar-motion">Polar Coordinates (for planar motion)</h3>
-<p>In 2D polar coordinates <span class="arithmatex">\((r, \theta)\)</span>, the position and acceleration are:</p>
-<div class="arithmatex">\[
-\vec{r} = r \hat{e}_r
-\]</div>
-<div class="arithmatex">\[
-\vec{a} = \left( \ddot{r} - r \dot{\theta}^2 \right) \hat{e}_r + \left( r \ddot{\theta} + 2 \dot{r} \dot{\theta} \right) \hat{e}_\theta
-\]</div>
-<hr/>
-<h2 id="additional-physical-effects">Additional Physical Effects</h2>
-<h3 id="earths-rotation">Earth's Rotation</h3>
-<p>If the motion is observed from a rotating frame (e.g., Earth’s surface), fictitious forces must be included:</p>
+<h2 id="13-energy-based-classification">1.3 Energy-Based Classification</h2>
+<ol>
+<li><strong>Specific Mechanical Energy</strong></li>
+</ol>
+<p>$$
+   \varepsilon = \frac{v^2}{2} - \frac{GM}{r}
+   $$</p>
 <ul>
+<li><span class="arithmatex">\(v\)</span>: payload speed  </li>
+<li><span class="arithmatex">\(r\)</span>: distance to Earth’s center  </li>
 <li>
-<p><strong>Coriolis Force:</strong>
-  $$
-  \vec{F}_{\text{cor}} = -2m \left( \vec{\omega} \times \vec{v} \right)
-  $$</p>
+<p><span class="arithmatex">\(\varepsilon\)</span>: total energy per unit mass</p>
 </li>
 <li>
-<p><strong>Centrifugal Force:</strong>
-  $$
-  \vec{F}_{\text{cen}} = -m \vec{\omega} \times \left( \vec{\omega} \times \vec{r} \right)
-  $$</p>
+<p><strong>Trajectory Conditions Based on <span class="arithmatex">\(\varepsilon\)</span></strong></p>
 </li>
+<li><span class="arithmatex">\(\varepsilon &lt; 0\)</span>: Bound orbit (elliptical)</li>
+<li><span class="arithmatex">\(\varepsilon = 0\)</span>: Parabolic escape</li>
+<li><span class="arithmatex">\(\varepsilon &gt; 0\)</span>: Hyperbolic escape</li>
 </ul>
-<p>Where <span class="arithmatex">\(\vec{\omega}\)</span> is the angular velocity vector of Earth.</p>
 <hr/>
-<h3 id="atmospheric-drag">Atmospheric Drag</h3>
-<p>Applicable for low-altitude releases. The drag force is modeled as:</p>
-<div class="arithmatex">\[
-\vec{F}_d = -\frac{1}{2} C_D \rho A v^2 \hat{v}
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(C_D\)</span> is the drag coefficient,
-- <span class="arithmatex">\(\rho\)</span> is atmospheric density,
-- <span class="arithmatex">\(A\)</span> is the cross-sectional area,
-- <span class="arithmatex">\(v\)</span> is the velocity magnitude,
-- <span class="arithmatex">\(\hat{v}\)</span> is the unit vector in the direction of velocity.</p>
-<p>Atmospheric density <span class="arithmatex">\(\rho\)</span> decreases exponentially with altitude:</p>
-<div class="arithmatex">\[
-\rho(h) = \rho_0 \exp\left(-\frac{h}{H}\right)
-\]</div>
-<p>Where <span class="arithmatex">\(H\)</span> is the scale height (approx. 8.5 km near Earth).</p>
-<hr/>
-<h3 id="earths-oblateness-j2-perturbation">Earth's Oblateness (J2 Perturbation)</h3>
-<p>To model Earth’s non-spherical shape, include the <span class="arithmatex">\(J_2\)</span> perturbation:</p>
-<div class="arithmatex">\[
-a_{J_2} = \frac{3}{2} J_2 \frac{GM_E R_E^2}{r^4} \left(1 - 5\sin^2\phi\right) \hat{r}
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(J_2\)</span> is the zonal harmonic coefficient,
-- <span class="arithmatex">\(R_E\)</span> is Earth’s equatorial radius,
-- <span class="arithmatex">\(\phi\)</span> is the latitude.</p>
-<hr/>
-<h2 id="dimensionality-of-the-model">Dimensionality of the Model</h2>
+<h2 id="14-orbital-velocity-conditions">1.4 Orbital Velocity Conditions</h2>
+<ol>
+<li><strong>Escape Velocity Formula</strong></li>
+</ol>
+<p>$$
+   v_{\text{esc}} = \sqrt{\frac{2GM}{r}}
+   $$</p>
 <ul>
-<li><strong>2D Analysis</strong> is sufficient for idealized planar motion.</li>
-<li><strong>3D Analysis</strong> is necessary when:</li>
-<li>Inclination effects matter,</li>
-<li>The trajectory involves polar or equatorial asymmetry,</li>
-<li>Earth’s rotation or oblateness is included.</li>
+<li>If <span class="arithmatex">\(v &lt; v_{\text{esc}}\)</span>: bound orbit  </li>
+<li>If <span class="arithmatex">\(v = v_{\text{esc}}\)</span>: parabolic trajectory  </li>
+<li>If <span class="arithmatex">\(v &gt; v_{\text{esc}}\)</span>: escape on a hyperbolic path</li>
 </ul>
 <hr/>
-<h2 id="summary">Summary</h2>
-<p>To accurately model a payload's trajectory near Earth, one must choose an appropriate coordinate system, apply Newtonian mechanics, and consider secondary forces like atmospheric drag, Earth's rotation, and oblateness depending on the scenario's complexity and required precision.</p>
-<h1 id="2-initial-conditions-and-parameters">2. Initial Conditions and Parameters</h1>
-<p>To simulate the motion of a freely released payload near Earth, precise specification of initial conditions and constants is essential. These values directly affect the resulting trajectory type (suborbital, orbital, or escape).</p>
-<hr/>
-<h2 id="initial-position">Initial Position</h2>
-<p>In a three-dimensional model, the initial position <span class="arithmatex">\(\vec{r}_0\)</span> is defined in terms of:</p>
-<ul>
-<li><strong>Altitude above Earth's surface</strong>: <span class="arithmatex">\(h\)</span></li>
-<li><strong>Latitude</strong>: <span class="arithmatex">\(\phi\)</span></li>
-<li><strong>Longitude</strong>: <span class="arithmatex">\(\lambda\)</span></li>
-</ul>
-<p>The radial distance from Earth’s center is:</p>
-<div class="arithmatex">\[
-r_0 = R_E + h
-\]</div>
-<p>Where <span class="arithmatex">\(R_E\)</span> is Earth's mean radius.</p>
-<p>The Cartesian coordinates of the payload's position in Earth-Centered Earth-Fixed (ECEF) frame:</p>
-<div class="arithmatex">\[
-\begin{aligned}
-x_0 &amp;= (R_E + h) \cos\phi \cos\lambda \\
-y_0 &amp;= (R_E + h) \cos\phi \sin\lambda \\
-z_0 &amp;= (R_E + h) \sin\phi
-\end{aligned}
-\]</div>
-<hr/>
-<h2 id="initial-velocity">Initial Velocity</h2>
-<p>The initial velocity vector <span class="arithmatex">\(\vec{v}_0\)</span> is specified by:</p>
-<ul>
-<li><strong>Magnitude</strong>: <span class="arithmatex">\(v_0\)</span></li>
-<li><strong>Elevation angle</strong> (from local horizontal): <span class="arithmatex">\(\theta\)</span></li>
-<li><strong>Azimuth angle</strong> (relative to geographic north): <span class="arithmatex">\(\psi\)</span></li>
-</ul>
-<p>In local North-East-Down (NED) coordinates:</p>
-<div class="arithmatex">\[
-\begin{aligned}
-v_N &amp;= v_0 \cos\theta \cos\psi \\
-v_E &amp;= v_0 \cos\theta \sin\psi \\
-v_D &amp;= -v_0 \sin\theta
-\end{aligned}
-\]</div>
-<p>These can be transformed to ECEF or inertial frames depending on the simulation needs.</p>
-<hr/>
-<h2 id="earths-physical-parameters">Earth's Physical Parameters</h2>
-<h3 id="mass-of-earth">Mass of Earth</h3>
-<div class="arithmatex">\[
-M_E = 5.972 \times 10^{24}\,\text{kg}
-\]</div>
-<h3 id="mean-radius-of-earth">Mean Radius of Earth</h3>
-<div class="arithmatex">\[
-R_E = 6.371 \times 10^6\,\text{m}
-\]</div>
-<h3 id="gravitational-constant">Gravitational Constant</h3>
-<div class="arithmatex">\[
-G = 6.67430 \times 10^{-11}\,\text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}
-\]</div>
-<h3 id="standard-gravitational-parameter">Standard Gravitational Parameter</h3>
-<p>Often denoted by <span class="arithmatex">\(\mu\)</span>:</p>
-<div class="arithmatex">\[
-\mu = G M_E = 3.986 \times 10^{14}\,\text{m}^3\,\text{s}^{-2}
-\]</div>
-<hr/>
-<h2 id="characteristic-velocities">Characteristic Velocities</h2>
-<h3 id="escape-velocity">Escape Velocity</h3>
-<p>Escape velocity from a distance <span class="arithmatex">\(r\)</span> (typically <span class="arithmatex">\(r = R_E + h\)</span>):</p>
-<div class="arithmatex">\[
-v_{\text{esc}} = \sqrt{\frac{2 G M_E}{r}} = \sqrt{\frac{2 \mu}{r}}
-\]</div>
-<p>At the surface (<span class="arithmatex">\(r = R_E\)</span>):</p>
-<div class="arithmatex">\[
-v_{\text{esc, surface}} \approx 11.2\,\text{km/s}
-\]</div>
-<h3 id="circular-orbital-velocity">Circular Orbital Velocity</h3>
-<p>For a circular orbit at radius <span class="arithmatex">\(r\)</span>:</p>
-<div class="arithmatex">\[
-v_{\text{orb}} = \sqrt{\frac{G M_E}{r}} = \sqrt{\frac{\mu}{r}}
-\]</div>
-<p>At low Earth orbit (LEO), say <span class="arithmatex">\(h = 300\,\text{km}\)</span>:</p>
-<div class="arithmatex">\[
-r = R_E + 300\,\text{km} \Rightarrow v_{\text{orb}} \approx 7.73\,\text{km/s}
-\]</div>
-<hr/>
-<h2 id="summary_1">Summary</h2>
-<p>A realistic simulation requires:</p>
-<ul>
-<li>Accurate geolocation for position and frame alignment</li>
-<li>Velocity decomposition into components aligned with the coordinate system</li>
-<li>Use of precise Earth constants</li>
-<li>Computation of reference velocities (<span class="arithmatex">\(v_{\text{esc}}, v_{\text{orb}}\)</span>) to assess trajectory class</li>
-</ul>
-<p>These initial parameters form the foundation for determining whether the payload will enter orbit, return to Earth, or escape its gravitational pull.</p>
-<h1 id="3-classification-of-trajectories">3. Classification of Trajectories</h1>
-<p>The classification of a payload’s trajectory under Earth's gravity depends fundamentally on <strong>mechanical energy</strong> and <strong>angular momentum</strong>. These physical quantities govern whether the object remains bound to Earth, escapes it, or reenters.</p>
-<hr/>
-<h2 id="total-specific-mechanical-energy">Total Specific Mechanical Energy</h2>
-<p>The specific mechanical energy <span class="arithmatex">\(\mathcal{E}\)</span> (energy per unit mass) of a payload in a gravitational field is given by:</p>
-<div class="arithmatex">\[
-\mathcal{E} = \frac{v^2}{2} - \frac{\mu}{r}
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(v\)</span> is the speed of the payload,
-- <span class="arithmatex">\(r\)</span> is the radial distance from Earth's center,
-- <span class="arithmatex">\(\mu = GM_E\)</span> is the standard gravitational parameter.</p>
-<p>This total energy determines the <strong>type of conic section</strong> the trajectory traces:</p>
-<hr/>
-<h3 id="1-elliptical-orbit-bound">1. <strong>Elliptical Orbit</strong> (Bound)</h3>
-<div class="arithmatex">\[
-\mathcal{E} &lt; 0
-\]</div>
-<ul>
-<li>The payload is gravitationally <strong>bound</strong> to Earth.</li>
-<li>The trajectory is an <strong>ellipse</strong>.</li>
-<li>The semi-major axis <span class="arithmatex">\(a\)</span> can be computed as:</li>
-</ul>
-<div class="arithmatex">\[
-a = -\frac{\mu}{2\mathcal{E}}
-\]</div>
-<ul>
-<li>Special case: <strong>circular orbit</strong> when eccentricity <span class="arithmatex">\(e = 0\)</span> and <span class="arithmatex">\(v = v_{\text{orb}}\)</span>.</li>
-</ul>
-<hr/>
-<h3 id="2-parabolic-trajectory-escape-with-exact-energy">2. <strong>Parabolic Trajectory</strong> (Escape with Exact Energy)</h3>
-<div class="arithmatex">\[
-\mathcal{E} = 0
-\]</div>
-<ul>
-<li>The payload has just enough energy to <strong>escape</strong> Earth's gravity.</li>
-<li>The trajectory is a <strong>parabola</strong>.</li>
-<li>This corresponds to moving at exactly <strong>escape velocity</strong>:</li>
-</ul>
-<div class="arithmatex">\[
-v = v_{\text{esc}} = \sqrt{\frac{2\mu}{r}}
-\]</div>
-<hr/>
-<h3 id="3-hyperbolic-trajectory-unbound">3. <strong>Hyperbolic Trajectory</strong> (Unbound)</h3>
-<div class="arithmatex">\[
-\mathcal{E} &gt; 0
-\]</div>
-<ul>
-<li>The payload is <strong>unbound</strong> from Earth and escapes permanently.</li>
-<li>The trajectory is a <strong>hyperbola</strong>.</li>
-<li>Speed exceeds escape velocity:</li>
-</ul>
-<div class="arithmatex">\[
-v &gt; \sqrt{\frac{2\mu}{r}}
-\]</div>
-<hr/>
-<h3 id="4-suborbital-or-reentry-trajectory">4. <strong>Suborbital or Reentry Trajectory</strong></h3>
-<p>This is a special case of <strong>elliptical motion</strong> where the perigee lies within Earth's surface, leading to impact:</p>
-<ul>
-<li>Still <span class="arithmatex">\(\mathcal{E} &lt; 0\)</span>, but trajectory intersects Earth.</li>
-<li>Common in reentry vehicles, ballistic missiles, and failed orbit insertions.</li>
-</ul>
-<hr/>
-<h2 id="angular-momentum">Angular Momentum</h2>
-<p>Specific angular momentum <span class="arithmatex">\(\vec{h}\)</span> is defined as:</p>
-<div class="arithmatex">\[
-\vec{h} = \vec{r} \times \vec{v}
-\]</div>
-<p>Its magnitude (scalar form in 2D motion):</p>
-<div class="arithmatex">\[
-h = r v \sin\theta
-\]</div>
-<p>Where <span class="arithmatex">\(\theta\)</span> is the angle between <span class="arithmatex">\(\vec{r}\)</span> and <span class="arithmatex">\(\vec{v}\)</span>.</p>
-<p>Angular momentum is <strong>conserved</strong> in a central gravitational field:</p>
-<div class="arithmatex">\[
-\frac{d\vec{h}}{dt} = 0
-\]</div>
-<p>It governs orbital geometry:</p>
-<ul>
-<li>Determines <strong>orbital plane</strong> in 3D motion</li>
-<li>Influences trajectory shape (with energy)</li>
-</ul>
-<hr/>
-<h2 id="eccentricity-and-orbit-shape">Eccentricity and Orbit Shape</h2>
-<p>The <strong>eccentricity</strong> <span class="arithmatex">\(e\)</span> is a function of energy and angular momentum:</p>
-<div class="arithmatex">\[
-e = \sqrt{1 + \frac{2 \mathcal{E} h^2}{\mu^2}}
-\]</div>
-<ul>
-<li><span class="arithmatex">\(e = 0\)</span>: circular</li>
-<li><span class="arithmatex">\(0 &lt; e &lt; 1\)</span>: elliptical</li>
-<li><span class="arithmatex">\(e = 1\)</span>: parabolic</li>
-<li><span class="arithmatex">\(e &gt; 1\)</span>: hyperbolic</li>
-</ul>
-<hr/>
-<h2 id="summary-table">Summary Table</h2>
+<h2 id="15-summary-table">1.5 Summary Table</h2>
+<ol>
+<li><strong>Trajectory Type Comparison</strong></li>
+</ol>
 <table>
 <thead>
 <tr>
+<th>#</th>
 <th>Trajectory Type</th>
-<th>Specific Energy <span class="arithmatex">\(\mathcal{E}\)</span></th>
+<th>Specific Energy <span class="arithmatex">\(\varepsilon\)</span></th>
 <th>Eccentricity <span class="arithmatex">\(e\)</span></th>
-<th>Bound?</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Circular Orbit</td>
-<td><span class="arithmatex">\(&lt; 0\)</span></td>
-<td><span class="arithmatex">\(0\)</span></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Elliptical Orbit</td>
-<td><span class="arithmatex">\(&lt; 0\)</span></td>
+<td>1</td>
+<td>Elliptical</td>
+<td><span class="arithmatex">\(\varepsilon &lt; 0\)</span></td>
 <td><span class="arithmatex">\(0 &lt; e &lt; 1\)</span></td>
-<td>Yes</td>
+<td>Closed orbit</td>
 </tr>
 <tr>
-<td>Parabolic Escape</td>
-<td><span class="arithmatex">\(= 0\)</span></td>
-<td><span class="arithmatex">\(1\)</span></td>
-<td>No</td>
+<td>2</td>
+<td>Parabolic</td>
+<td><span class="arithmatex">\(\varepsilon = 0\)</span></td>
+<td><span class="arithmatex">\(e = 1\)</span></td>
+<td>Critical escape path</td>
 </tr>
 <tr>
-<td>Hyperbolic Escape</td>
-<td><span class="arithmatex">\(&gt; 0\)</span></td>
-<td><span class="arithmatex">\(&gt; 1\)</span></td>
-<td>No</td>
-</tr>
-<tr>
-<td>Suborbital/Reentry</td>
-<td><span class="arithmatex">\(&lt; 0\)</span></td>
-<td><span class="arithmatex">\(e\)</span> varies</td>
-<td>Yes</td>
+<td>3</td>
+<td>Hyperbolic</td>
+<td><span class="arithmatex">\(\varepsilon &gt; 0\)</span></td>
+<td><span class="arithmatex">\(e &gt; 1\)</span></td>
+<td>Open escape trajectory</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-<h2 id="conclusion">Conclusion</h2>
-<p>By analyzing the <strong>mechanical energy</strong> and <strong>angular momentum</strong> of a payload, we can classify its trajectory into one of several conic sections. This classification is essential for understanding whether the payload will orbit Earth, escape it, or return to the surface.</p>
+<h1 id="2-initial-conditions-definition">2. Initial Conditions Definition</h1>
+<h2 id="21-key-state-variables">2.1 Key State Variables</h2>
+<ol>
+<li><strong>Initial Position</strong><br/>
+   The payload’s position is specified in a coordinate system (typically geocentric inertial or orbital).<br/>
+   In Cartesian coordinates:</li>
+</ol>
+<p>$$
+   \vec{r}_0 = \begin{bmatrix} x_0 \ y_0 \ z_0 \end{bmatrix}
+   $$</p>
+<p>Where:
+   - <span class="arithmatex">\(x_0, y_0, z_0\)</span> represent the initial position components relative to Earth's center.</p>
+<ol>
+<li>
+<p><strong>Initial Velocity</strong><br/>
+    The velocity vector at the moment of release is:</p>
+<div class="arithmatex">\[
+\vec{v}_0 = \begin{bmatrix} v_{x0} \\ v_{y0} \\ v_{z0} \end{bmatrix}
+\]</div>
+<p>The direction and magnitude of <span class="arithmatex">\(\vec{v}_0\)</span> determine whether the payload remains in orbit, descends, or escapes.</p>
+</li>
+<li>
+<p><strong>Initial Altitude</strong><br/>
+    Altitude <span class="arithmatex">\(h\)</span> is measured from Earth's surface:</p>
+<div class="arithmatex">\[
+h = r_0 - R_\oplus
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(r_0 = \|\vec{r}_0\|\)</span> is the radial distance from Earth's center
+- <span class="arithmatex">\(R_\oplus\)</span> is Earth's radius</p>
+</li>
+</ol>
+<hr/>
+<h2 id="22-real-world-scenarios">2.2 Real-World Scenarios</h2>
+<ol>
+<li>
+<p><strong>Low Earth Orbit (LEO) Release</strong></p>
+<ul>
+<li>Typical altitude: <span class="arithmatex">\(200 - 2,000\ \text{km}\)</span></li>
+<li>Circular orbital speed at altitude <span class="arithmatex">\(h\)</span>:</li>
+</ul>
+<p>$$
+  v_{\text{LEO}} = \sqrt{\frac{GM}{R_\oplus + h}}
+  $$</p>
+<ul>
+<li>Initial conditions resemble those of the launch vehicle at release time.</li>
+</ul>
+</li>
+<li>
+<p><strong>Suborbital Flight Release</strong></p>
+<ul>
+<li>Altitude typically &lt; <span class="arithmatex">\(1000\ \text{km}\)</span>, may fall back to Earth.</li>
+<li>Initial vertical component of velocity is significant.</li>
+<li>May include atmospheric drag in lower portions of the trajectory.</li>
+</ul>
+</li>
+<li>
+<p><strong>Elliptical Orbit Transfer</strong></p>
+<ul>
+<li>If a payload is released during a transfer orbit:</li>
+</ul>
+<p>$$
+  v_0 \ne v_{\text{circular}}
+  $$</p>
+<ul>
+<li>Requires vector analysis of the release point within an elliptical path.</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h2 id="23-summary-of-required-initial-data">2.3 Summary of Required Initial Data</h2>
+<ol>
+<li>To simulate or predict the payload’s trajectory, you must define:<ul>
+<li>Initial position vector <span class="arithmatex">\(\vec{r}_0\)</span></li>
+<li>Initial velocity vector <span class="arithmatex">\(\vec{v}_0\)</span></li>
+<li>Mass of Earth <span class="arithmatex">\(M\)</span></li>
+<li>Gravitational constant <span class="arithmatex">\(G\)</span></li>
+<li>Earth radius <span class="arithmatex">\(R_\oplus\)</span></li>
+<li>Atmospheric model (optional)</li>
+<li>Reference frame (e.g., inertial or rotating)</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h1 id="3-equations-of-motion">3. Equations of Motion</h1>
+<h2 id="31-newtons-second-law-in-gravitational-context">3.1 Newton’s Second Law in Gravitational Context</h2>
+<ol>
+<li><strong>Basic Formulation</strong></li>
+</ol>
+<p>According to Newton’s Second Law:</p>
+<div class="arithmatex">\[
+\vec{F} = m \vec{a}
+\]</div>
+<p>For a gravitational two-body system, the only force acting on the payload is gravity:</p>
+<div class="arithmatex">\[
+\vec{F}_{\text{gravity}} = -G \frac{Mm}{r^2} \hat{r}
+\]</div>
+<p>Substituting into Newton’s law:</p>
+<div class="arithmatex">\[
+m \vec{a} = -G \frac{Mm}{r^2} \hat{r}
+\]</div>
+<p>Canceling <span class="arithmatex">\(m\)</span> (the payload's mass) from both sides:</p>
+<div class="arithmatex">\[
+\vec{a} = -G \frac{M}{r^2} \hat{r}
+\]</div>
+<p>This gives the second-order differential equation governing motion:</p>
+<div class="arithmatex">\[
+\ddot{\vec{r}} = -G \frac{M}{r^3} \vec{r}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(\vec{r}\)</span> is the position vector from Earth’s center to the payload
+- <span class="arithmatex">\(r = \|\vec{r}\|\)</span> is its magnitude</p>
+<hr/>
+<h2 id="32-vector-form-of-equations-of-motion">3.2 Vector Form of Equations of Motion</h2>
+<ol>
+<li><strong>State-Space Representation</strong></li>
+</ol>
+<p>The motion can also be expressed as a system of first-order differential equations:</p>
+<div class="arithmatex">\[
+\frac{d\vec{r}}{dt} = \vec{v}
+\]</div>
+<div class="arithmatex">\[
+\frac{d\vec{v}}{dt} = -G \frac{M}{r^3} \vec{r}
+\]</div>
+<p>This is commonly used for numerical integration in orbital simulations.</p>
+<hr/>
+<h2 id="33-orbital-plane-simplification-2d-case">3.3 Orbital Plane Simplification (2D Case)</h2>
+<ol>
+<li><strong>Planar Motion Assumption</strong></li>
+</ol>
+<p>Assuming the payload moves in a fixed 2D orbital plane (e.g., <span class="arithmatex">\(xy\)</span>-plane):</p>
+<div class="arithmatex">\[
+\vec{r} = \begin{bmatrix} x(t) \\ y(t) \end{bmatrix}, \quad
+\vec{v} = \begin{bmatrix} \dot{x}(t) \\ \dot{y}(t) \end{bmatrix}
+\]</div>
+<p>The equations of motion become:</p>
+<div class="arithmatex">\[
+\ddot{x} = -G \frac{M x}{(x^2 + y^2)^{3/2}}, \quad
+\ddot{y} = -G \frac{M y}{(x^2 + y^2)^{3/2}}
+\]</div>
+<hr/>
+<h2 id="34-conservation-laws">3.4 Conservation Laws</h2>
+<ol>
+<li><strong>Energy Conservation</strong></li>
+</ol>
+<p>In the absence of external forces (like atmospheric drag), the <strong>specific mechanical energy</strong> is conserved:</p>
+<div class="arithmatex">\[
+\varepsilon = \frac{v^2}{2} - \frac{GM}{r} = \text{constant}
+\]</div>
+<ol>
+<li><strong>Angular Momentum Conservation</strong></li>
+</ol>
+<p>Angular momentum per unit mass is also conserved:</p>
+<div class="arithmatex">\[
+\vec{h} = \vec{r} \times \vec{v} = \text{constant vector}
+\]</div>
+<p>Its magnitude is:</p>
+<div class="arithmatex">\[
+h = r v \sin{\theta}
+\]</div>
+<p>Where <span class="arithmatex">\(\theta\)</span> is the angle between <span class="arithmatex">\(\vec{r}\)</span> and <span class="arithmatex">\(\vec{v}\)</span>.</p>
+<hr/>
+<h2 id="35-keplers-laws-brief-overview">3.5 Kepler’s Laws (Brief Overview)</h2>
+<ol>
+<li>
+<p><strong>Kepler’s First Law</strong>:<br/>
+The orbit of a body around Earth is an ellipse with Earth at one focus.</p>
+</li>
+<li>
+<p><strong>Kepler’s Second Law</strong>:<br/>
+The line joining the body and Earth sweeps out equal areas in equal times.</p>
+</li>
+<li>
+<p><strong>Kepler’s Third Law</strong>:<br/>
+The square of the orbital period <span class="arithmatex">\(T\)</span> is proportional to the cube of the semi-major axis <span class="arithmatex">\(a\)</span>:</p>
+</li>
+</ol>
+<div class="arithmatex">\[
+T^2 = \frac{4\pi^2 a^3}{GM}
+\]</div>
+<hr/>
+<h1 id="4-numerical-simulation-framework">4. Numerical Simulation Framework</h1>
+<h2 id="41-motivation-for-numerical-methods">4.1 Motivation for Numerical Methods</h2>
+<ol>
+<li><strong>Why Numerical Simulation?</strong><br/>
+   The equations of motion for orbital mechanics are nonlinear and, in most practical cases, do not admit closed-form solutions — especially when:</li>
+<li>Initial conditions are arbitrary</li>
+<li>Non-conservative forces (e.g., drag) are present</li>
+<li>Complex mission scenarios (e.g., staged releases, planetary perturbations)</li>
+</ol>
+<p>Thus, we rely on <strong>numerical integration</strong> to approximate the trajectory over discrete time steps.</p>
+<hr/>
+<h2 id="42-discretizing-the-equations-of-motion">4.2 Discretizing the Equations of Motion</h2>
+<ol>
+<li><strong>State Vector Formulation</strong></li>
+</ol>
+<p>We define the system state vector:</p>
+<div class="arithmatex">\[
+\vec{y} = \begin{bmatrix} \vec{r} \\ \vec{v} \end{bmatrix} =
+\begin{bmatrix} x \\ y \\ z \\ \dot{x} \\ \dot{y} \\ \dot{z} \end{bmatrix}
+\]</div>
+<p>The derivative of the state vector is:</p>
+<div class="arithmatex">\[
+\frac{d\vec{y}}{dt} =
+\begin{bmatrix}
+\vec{v} \\
+- G \frac{M}{r^3} \vec{r}
+\end{bmatrix}
+\]</div>
+<p>This formulation is well-suited to numerical solvers like Runge-Kutta or symplectic integrators.</p>
+<hr/>
+<h2 id="43-common-numerical-methods">4.3 Common Numerical Methods</h2>
+<ol>
+<li><strong>Euler’s Method</strong> (First-order)</li>
+<li>Simple but inaccurate for long time scales</li>
+<li>
+<p>Update rule:</p>
+<p>$$
+ \vec{y}_{n+1} = \vec{y}_n + \Delta t \cdot \frac{d\vec{y}_n}{dt}
+ $$</p>
+</li>
+<li>
+<p><strong>Runge-Kutta Methods</strong> (e.g., RK4)</p>
+</li>
+<li>Widely used for orbital problems due to better accuracy</li>
+<li>
+<p>Uses multiple intermediate steps per time increment</p>
+</li>
+<li>
+<p><strong>Symplectic Integrators</strong></p>
+</li>
+<li>Preserve energy and angular momentum better over long time periods</li>
+<li>Useful in long-term simulations (e.g., planetary systems)</li>
+</ol>
+<hr/>
+<h2 id="44-simulation-time-step-and-duration">4.4 Simulation Time Step and Duration</h2>
+<ol>
+<li><strong>Choosing <span class="arithmatex">\(\Delta t\)</span></strong></li>
+</ol>
+<p>The time step <span class="arithmatex">\(\Delta t\)</span> must be:
+   - Small enough to capture fast dynamics
+   - Large enough to ensure reasonable simulation speed</p>
+<p>A typical choice for LEO simulations:
+   $$
+   \Delta t \in [0.1,\ 10] \ \text{seconds}
+   $$</p>
+<ol>
+<li><strong>Stopping Criteria</strong></li>
+<li>Fixed total simulation time <span class="arithmatex">\(T_{\text{final}}\)</span></li>
+<li>Payload reaches specific altitude or distance</li>
+<li>Collision or escape conditions are met</li>
+</ol>
+<hr/>
+<h2 id="45-handling-escape-and-collision">4.5 Handling Escape and Collision</h2>
+<ol>
+<li><strong>Escape Detection</strong></li>
+</ol>
+<p>Check if:</p>
+<p>$$
+   |\vec{r}| &gt; r_{\text{escape}} \quad \text{and} \quad \varepsilon &gt; 0
+   $$</p>
+<p>Then the payload is no longer gravitationally bound to Earth.</p>
+<ol>
+<li><strong>Collision Detection</strong></li>
+</ol>
+<p>Check if:</p>
+<p>$$
+   |\vec{r}| \leq R_\oplus
+   $$</p>
+<p>Then the payload has impacted Earth.</p>
+<hr/>
+<h2 id="46-suggested-tools-and-libraries">4.6 Suggested Tools and Libraries</h2>
+<ol>
+<li><strong>Python-Based Tools</strong></li>
+<li><code>numpy</code>: For vector/matrix math</li>
+<li><code>scipy.integrate.solve_ivp</code>: For solving ODEs</li>
+<li><code>matplotlib</code>: For plotting trajectories</li>
+<li>
+<p><code>astropy.constants</code>: For astronomical constants</p>
+</li>
+<li>
+<p><strong>Others</strong></p>
+</li>
+<li>MATLAB or Julia for academic research</li>
+<li>STK, GMAT, or Orekit for industry-grade mission simulation</li>
+</ol>
+<hr/>
+<h1 id="5-classification-of-trajectories">5. Classification of Trajectories</h1>
+<h2 id="51-based-on-specific-mechanical-energy">5.1 Based on Specific Mechanical Energy</h2>
+<ol>
+<li><strong>Total Specific Mechanical Energy</strong></li>
+</ol>
+<p>The energy per unit mass of a payload in a gravitational field is:</p>
+<div class="arithmatex">\[
+\varepsilon = \frac{v^2}{2} - \frac{GM}{r}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(v\)</span> is the magnitude of the velocity vector,
+- <span class="arithmatex">\(r\)</span> is the radial distance from Earth’s center.</p>
+<ol>
+<li><strong>Trajectory Categories</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Trajectory Type</th>
+<th>Energy Condition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Elliptical Orbit</td>
+<td><span class="arithmatex">\(\varepsilon &lt; 0\)</span></td>
+<td>Closed orbit, bound to Earth</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Parabolic Path</td>
+<td><span class="arithmatex">\(\varepsilon = 0\)</span></td>
+<td>Critical escape, marginally unbound</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Hyperbolic Path</td>
+<td><span class="arithmatex">\(\varepsilon &gt; 0\)</span></td>
+<td>Open trajectory, escapes gravity</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="52-based-on-orbital-eccentricity">5.2 Based on Orbital Eccentricity</h2>
+<ol>
+<li><strong>Eccentricity (<span class="arithmatex">\(e\)</span>)</strong> defines the shape of the orbit:</li>
+</ol>
+<div class="arithmatex">\[
+e = \sqrt{1 + \frac{2 \varepsilon h^2}{(GM)^2}}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(h = |\vec{r} \times \vec{v}|\)</span> is the specific angular momentum.</p>
+<ol>
+<li><strong>Classification by <span class="arithmatex">\(e\)</span></strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Trajectory Type</th>
+<th>Eccentricity <span class="arithmatex">\(e\)</span></th>
+<th>Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Circular Orbit</td>
+<td><span class="arithmatex">\(e = 0\)</span></td>
+<td>Circle</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Elliptical Orbit</td>
+<td><span class="arithmatex">\(0 &lt; e &lt; 1\)</span></td>
+<td>Ellipse</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Parabolic Path</td>
+<td><span class="arithmatex">\(e = 1\)</span></td>
+<td>Parabola</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Hyperbolic Path</td>
+<td><span class="arithmatex">\(e &gt; 1\)</span></td>
+<td>Hyperbola</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="53-directional-and-orbital-characteristics">5.3 Directional and Orbital Characteristics</h2>
+<ol>
+<li>
+<p><strong>Prograde vs. Retrograde</strong></p>
+</li>
+<li>
+<p><strong>Prograde</strong>: Velocity vector aligned with Earth’s rotation (more efficient).</p>
+</li>
+<li>
+<p><strong>Retrograde</strong>: Velocity vector opposite Earth’s rotation (higher energy cost).</p>
+</li>
+<li>
+<p><strong>Inclination (<span class="arithmatex">\(i\)</span>)</strong></p>
+</li>
+<li>
+<p>Defined as the angle between the orbital plane and Earth’s equator.</p>
+</li>
+<li>Determines whether an orbit is:</li>
+<li><strong>Equatorial</strong> (<span class="arithmatex">\(i \approx 0^\circ\)</span>)</li>
+<li><strong>Polar</strong> (<span class="arithmatex">\(i \approx 90^\circ\)</span>)</li>
+<li><strong>Inclined</strong> (between <span class="arithmatex">\(0^\circ\)</span> and <span class="arithmatex">\(90^\circ\)</span>)</li>
+</ol>
+<hr/>
+<h2 id="54-escape-and-reentry-criteria">5.4 Escape and Reentry Criteria</h2>
+<ol>
+<li><strong>Escape Condition</strong><br/>
+Payload has escaped Earth’s gravity if:</li>
+</ol>
+<div class="arithmatex">\[
+\varepsilon &gt; 0 \quad \text{and} \quad \|\vec{r}\| \rightarrow \infty
+\]</div>
+<ol>
+<li><strong>Reentry Condition</strong><br/>
+Payload will reenter Earth if:</li>
+</ol>
+<div class="arithmatex">\[
+\varepsilon &lt; 0 \quad \text{and} \quad \|\vec{r}\| \leq R_\oplus \quad \text{at any time}
+\]</div>
+<hr/>
+<h2 id="55-practical-interpretation">5.5 Practical Interpretation</h2>
+<ol>
+<li>
+<p><strong>Application in Mission Design</strong></p>
+</li>
+<li>
+<p><strong>Elliptical</strong>: Typical for communication satellites, ISS</p>
+</li>
+<li><strong>Parabolic</strong>: Rare in practice; theoretical escape threshold</li>
+<li><strong>Hyperbolic</strong>: Used for planetary flybys and interplanetary escape</li>
+<li><strong>Circular</strong>: Ideal for stable, constant-altitude orbits</li>
+</ol>
+<hr/>
+<h1 id="6-computational-implementation">6. Computational Implementation</h1>
+<p>Numerical simulation is the cornerstone of analyzing orbital trajectories. This section describes the <strong>design of simulation components</strong>, including constants, integrators, data structures, and plotting, all implemented in Python using the classical <strong>Runge-Kutta 4th Order (RK4)</strong> method.</p>
+<hr/>
+<h2 id="61-physical-constants-and-setup">6.1 Physical Constants and Setup</h2>
+<p>We begin by defining global physical constants and parameters for time-stepping.</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Physical constants
+G = 6.67430e-11            # Gravitational constant [m^3 kg^-1 s^-2]
+M = 5.972e24               # Mass of Earth [kg]
+R_EARTH = 6.371e6          # Radius of Earth [m]
+
+# Launch altitude and initial position
+LAUNCH_ALTITUDE = 1e6      # 1000 km altitude
+R0 = R_EARTH + LAUNCH_ALTITUDE
+
+# Time configuration
+DT = 10                    # Time step [s]
+MAX_TIME = 4 * 3600        # Total simulation time: 4 hours
+</code></pre>
+<hr/>
+<h2 id="62-gravitational-acceleration-and-rk4-integration">6.2 Gravitational Acceleration and RK4 Integration</h2>
+<p>The payload is subject to Newtonian gravity. The motion is integrated using the RK4 method for high accuracy.</p>
+<h3 id="gravitational-acceleration-function">Gravitational Acceleration Function</h3>
+<pre><code class="language-python">def acceleration(r):
+    r_norm = np.linalg.norm(r)
+    return -G * M * r / r_norm**3
+</code></pre>
+<h3 id="rk4-integration-function">RK4 Integration Function</h3>
+<pre><code class="language-python">def rk4_step(r, v, dt):
+    k1v = acceleration(r)
+    k1r = v
+
+    k2v = acceleration(r + 0.5 * dt * k1r)
+    k2r = v + 0.5 * dt * k1v
+
+    k3v = acceleration(r + 0.5 * dt * k2r)
+    k3r = v + 0.5 * dt * k2v
+
+    k4v = acceleration(r + dt * k3r)
+    k4r = v + dt * k3v
+
+    r_next = r + (dt / 6) * (k1r + 2*k2r + 2*k3r + k4r)
+    v_next = v + (dt / 6) * (k1v + 2*k2v + 2*k3v + k4v)
+
+    return r_next, v_next
+</code></pre>
+<hr/>
+<h2 id="63-trajectory-simulation-loop">6.3 Trajectory Simulation Loop</h2>
+<p>This function takes an initial velocity (in km/s), initializes the payload state, and simulates its trajectory using RK4.</p>
+<pre><code class="language-python">def simulate_trajectory(v0_kms):
+    r = np.array([R0, 0, 0], dtype=float)
+    v = np.array([0, v0_kms * 1000, 0], dtype=float)
+
+    positions = [r.copy()]
+    t = 0
+    while t &lt; MAX_TIME:
+        r, v = rk4_step(r, v, DT)
+        if np.linalg.norm(r) &lt; R_EARTH:
+            break  # Reentry condition
+        positions.append(r.copy())
+        t += DT
+    return np.array(positions)
+</code></pre>
+<hr/>
+<h2 id="64-plotting-the-trajectories">6.4 Plotting the Trajectories</h2>
+<p>We use <code>matplotlib</code> to visualize multiple trajectories from various initial speeds. Earth is plotted as a filled circle.</p>
+<pre><code class="language-python">def plot_trajectories(velocity_list):
+    plt.figure(figsize=(8, 8))
+
+    # Draw Earth
+    earth = plt.Circle((0, 0), R_EARTH, color='blue', alpha=0.4, label='Earth')
+    plt.gca().add_patch(earth)
+    plt.plot(0, 0, 'yo', label='Center of Earth')
+
+    # Simulate and plot each trajectory
+    for i, v0 in enumerate(velocity_list):
+        pos = simulate_trajectory(v0)
+        x, y = pos[:, 0], pos[:, 1]
+        plt.plot(x, y, label=f"Trajectory {i+1} ({v0} km/s)")
+
+    plt.xlabel("x [m]")
+    plt.ylabel("y [m]")
+    plt.title("Trajectories in a Gravitational Field")
+    plt.axis('equal')
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+</code></pre>
+<hr/>
+<h2 id="65-simulation-examples">6.5 Simulation Examples</h2>
+<h3 id="example-1-suborbital-and-near-orbital-velocities">🔹 Example 1: Suborbital and Near-Orbital Velocities</h3>
+<pre><code class="language-python">plot_trajectories([5, 5.5, 6, 6.5, 7, 7.5, 8])
+</code></pre>
+<p><img alt="alt text" src="../image-7.png"/></p>
+<h3 id="example-2-elliptical-to-escape-velocities">🔹 Example 2: Elliptical to Escape Velocities</h3>
+<pre><code class="language-python">plot_trajectories([9.0, 9.2, 9.4, 9.6, 9.8, 10])
+</code></pre>
+<p><img alt="alt text" src="../image-8.png"/></p>
+<h3 id="example-3-hyperbolic-escape-trajectories">🔹 Example 3: Hyperbolic Escape Trajectories</h3>
+<pre><code class="language-python">plot_trajectories([11, 12, 13, 14, 15])
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image-9.png"/></h2>
+<h1 id="7-applications-and-real-world-scenarios">7. Applications and Real-World Scenarios</h1>
+<p>Understanding different trajectory types is essential for interpreting and designing space missions. The following section maps <strong>simulated orbital behaviors</strong> to <strong>real-world mission contexts</strong>, helping bridge theoretical modeling and aerospace application.</p>
+<hr/>
+<h2 id="71-suborbital-trajectories">7.1 Suborbital Trajectories</h2>
+<p><strong>Definition</strong>:<br/>
+A suborbital trajectory is one where the object reaches space but <strong>does not complete an orbit</strong> — it falls back to Earth.</p>
+<p><strong>Velocity Condition</strong>:<br/>
+Initial speed <strong>less than orbital velocity</strong>, typically &lt; 7.6 km/s.</p>
+<p><strong>Real-World Examples</strong>:
+- <strong>Blue Origin New Shepard</strong> flights
+- NASA’s <strong>X-15 rocket plane</strong> (1960s)
+- <strong>Ballistic missile paths</strong></p>
+<p><strong>Mission Objectives</strong>:
+- Suborbital science and microgravity experiments
+- Testing heat shields or reentry dynamics
+- Space tourism</p>
+<hr/>
+<h2 id="72-elliptical-orbits">7.2 Elliptical Orbits</h2>
+<p><strong>Definition</strong>:<br/>
+An orbit with <strong>eccentricity</strong> between 0 and 1. The object is gravitationally bound but travels at varying altitudes.</p>
+<p><strong>Velocity Condition</strong>:<br/>
+Initial speed between circular and escape velocity:<br/>
+<span class="arithmatex">\(7.6\ \text{km/s} &lt; v &lt; 11.2\ \text{km/s}\)</span></p>
+<p><strong>Real-World Examples</strong>:
+- <strong>Geostationary Transfer Orbits (GTO)</strong>
+- <strong>Molniya orbits</strong> (highly elliptical)
+- Apollo parking orbits before trans-lunar injection</p>
+<p><strong>Mission Objectives</strong>:
+- Placing satellites in high Earth orbit
+- Delaying or staging for interplanetary missions
+- Long-duration visibility for high-latitude regions</p>
+<hr/>
+<h2 id="73-circular-orbits">7.3 Circular Orbits</h2>
+<p><strong>Definition</strong>:<br/>
+An orbit with <strong>eccentricity = 0</strong>. Constant altitude and velocity.</p>
+<p><strong>Velocity Condition</strong>:<br/>
+Exactly the <strong>first cosmic velocity</strong>:<br/>
+<span class="arithmatex">\(v_{\text{circular}} = \sqrt{\frac{GM}{r}}\)</span></p>
+<p><strong>Real-World Examples</strong>:
+- <strong>International Space Station (ISS)</strong>
+- Many <strong>Low Earth Orbit (LEO)</strong> satellites
+- Earth observation missions</p>
+<p><strong>Mission Objectives</strong>:
+- Communication and surveillance satellites
+- Crew habitats and long-term missions
+- Scientific research in microgravity</p>
+<hr/>
+<h2 id="74-parabolic-trajectories">7.4 Parabolic Trajectories</h2>
+<p><strong>Definition</strong>:<br/>
+Theoretical boundary case between bound and unbound motion (<span class="arithmatex">\(e = 1\)</span>).</p>
+<p><strong>Velocity Condition</strong>:<br/>
+Exact <strong>escape velocity</strong>:<br/>
+<span class="arithmatex">\(v = \sqrt{\frac{2GM}{r}}\)</span></p>
+<p><strong>Real-World Examples</strong>:
+- Rare in practice; used as a design threshold
+- Simulated for <strong>emergency escape paths</strong></p>
+<p><strong>Mission Objectives</strong>:
+- Escape Earth without long-term orbit
+- Trajectory modeling for <strong>asteroid deflection</strong> concepts</p>
+<hr/>
+<h2 id="75-hyperbolic-trajectories">7.5 Hyperbolic Trajectories</h2>
+<p><strong>Definition</strong>:<br/>
+Open trajectory with <strong>eccentricity &gt; 1</strong>. The object escapes Earth's gravity permanently.</p>
+<p><strong>Velocity Condition</strong>:<br/>
+Initial speed <strong>greater than escape velocity</strong></p>
+<p><strong>Real-World Examples</strong>:
+- <strong>Voyager 1 &amp; 2</strong> and <strong>Pioneer</strong> missions
+- Flybys for <strong>gravity assists</strong>
+- <strong>Space probes</strong> leaving Earth for other planets</p>
+<p><strong>Mission Objectives</strong>:
+- Interplanetary travel
+- Deep-space exploration
+- Gravitational assist maneuvers (e.g., slingshot effects)</p>
+<hr/>
+<h2 id="76-summary-table">7.6 Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Trajectory Type</th>
+<th>Velocity Range</th>
+<th>Eccentricity <span class="arithmatex">\(e\)</span></th>
+<th>Mission Context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suborbital</td>
+<td><span class="arithmatex">\(v &lt; 7.6\ \text{km/s}\)</span></td>
+<td><span class="arithmatex">\(e &lt; 1\)</span></td>
+<td>Reentry testing, tourism, missiles</td>
+</tr>
+<tr>
+<td>Circular Orbit</td>
+<td><span class="arithmatex">\(v = 7.6\ \text{km/s}\)</span></td>
+<td><span class="arithmatex">\(e = 0\)</span></td>
+<td>ISS, GPS, Earth science missions</td>
+</tr>
+<tr>
+<td>Elliptical Orbit</td>
+<td><span class="arithmatex">\(7.6 &lt; v &lt; 11.2\)</span></td>
+<td><span class="arithmatex">\(0 &lt; e &lt; 1\)</span></td>
+<td>GTOs, lunar transfers, Molniya orbits</td>
+</tr>
+<tr>
+<td>Parabolic Path</td>
+<td><span class="arithmatex">\(v = 11.2\ \text{km/s}\)</span></td>
+<td><span class="arithmatex">\(e = 1\)</span></td>
+<td>Escape threshold modeling</td>
+</tr>
+<tr>
+<td>Hyperbolic Path</td>
+<td><span class="arithmatex">\(v &gt; 11.2\ \text{km/s}\)</span></td>
+<td><span class="arithmatex">\(e &gt; 1\)</span></td>
+<td>Voyager, Mars missions, deep space</td>
+</tr>
+</tbody>
+</table>
+<h3 id="colab">Colab</h3>
+<p><a href="https://colab.research.google.com/drive/1uIWTssl_k1bevi-HXL3HIAm_7zuU74xZ#scrollTo=jehPGdMWLbgX">Souce Code</a></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
