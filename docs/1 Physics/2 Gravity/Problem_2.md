@@ -387,7 +387,7 @@ plt.xlabel("Celestial Body")
 plt.grid(axis='y')
 plt.show()
 ```
-
+![alt text](image-3.png)
 ### Interpretation:
 - **Lower $v_1$ (e.g., Moon, Mars)**: Easier to launch and orbit, but less gravity to hold atmospheres.
 - **Higher $v_1$ (e.g., Jupiter)**: Extremely high propulsion needs.
@@ -409,7 +409,7 @@ plt.xlabel("Celestial Body")
 plt.grid(axis='y')
 plt.show()
 ```
-
+![alt text](image-4.png)
 ### Implications:
 - **Earth to Mars** missions must exceed 11.2 km/s.
 - Planning launches from **smaller bodies** can reduce energy cost (e.g., launch return missions from Mars or Moon).
@@ -432,7 +432,7 @@ plt.ylabel("Velocity (km/s)")
 plt.grid(axis='y')
 plt.show()
 ```
-
+![alt text](image-5.png)
 ### Context:
 - **Voyager 1** reached this speed using gravity assists.
 - Exceeding this velocity is necessary for **interstellar missions**.
@@ -460,7 +460,7 @@ plt.yscale('log')
 plt.grid(True)
 plt.show()
 ```
-
+![alt text](image-6.png)
 ### Takeaway:
 - Small increases in required speed demand **huge increases in fuel mass**.
 - Efficient mission design minimizes required $\Delta v$ (e.g., using gravity assists, low-energy transfers).

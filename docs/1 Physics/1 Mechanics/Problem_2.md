@@ -312,7 +312,7 @@ sol = solve_ivp(pendulum, t_span, y0, args=(gamma, omega0, A, omega_drive), t_ev
 
 ## 2. Time Series Plot (Angular Displacement and Velocity)
 
- ```python
+```python
 import matplotlib.pyplot as plt
 
 plt.figure()
@@ -384,10 +384,10 @@ plt.show()
 ```
 ![alt text](image-13.png)
 
- ## 6. Animation of the Pendulum
+## 6. Animation of the Pendulum
 
- ```python
- import matplotlib.animation as animation
+```python
+import matplotlib.animation as animation
 
 fig, ax = plt.subplots()
 ax.set_xlim(-1.2, 1.2)
