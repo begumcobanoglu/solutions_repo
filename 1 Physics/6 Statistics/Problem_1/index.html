@@ -172,6 +172,210 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="1-setup-and-preparation">1. Setup and Preparation</h1>
+<h2 id="objective">Objective</h2>
+<p>The objective of this study is to <strong>empirically validate</strong> the Central Limit Theorem (CLT) through simulation. The CLT asserts that, given a sufficiently large sample size <span class="arithmatex">\(n\)</span>, the distribution of the sample mean <span class="arithmatex">\(\bar{X}\)</span> will approximate a normal distribution, regardless of the shape of the population distribution, provided the population has finite mean <span class="arithmatex">\(\mu\)</span> and finite variance <span class="arithmatex">\(\sigma^2\)</span>.</p>
+<p>Formally:</p>
+<div class="arithmatex">\[
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i \xrightarrow{d} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \quad \text{as} \quad n \to \infty
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(X_i\)</span> are i.i.d. random variables with mean <span class="arithmatex">\(\mu\)</span> and variance <span class="arithmatex">\(\sigma^2\)</span></li>
+<li><span class="arithmatex">\(\bar{X}_n\)</span> is the sample mean</li>
+<li><span class="arithmatex">\(\xrightarrow{d}\)</span> denotes convergence in distribution</li>
+</ul>
+<p>The study aims to demonstrate this convergence by simulating various population distributions and observing the behavior of the sample mean.</p>
+<hr/>
+<h2 id="scope-of-simulation">Scope of Simulation</h2>
+<p>This study will involve:</p>
+<ol>
+<li>
+<p>Constructing large synthetic populations from known distributions:</p>
+<ul>
+<li>Uniform</li>
+<li>Exponential</li>
+<li>Binomial</li>
+</ul>
+</li>
+<li>
+<p>Drawing multiple random samples of various sizes (e.g., <span class="arithmatex">\(n = 5, 10, 30, 50\)</span>)</p>
+</li>
+<li>
+<p>Computing the sample means:
+   $$
+   \bar{X}<em>n = \frac{1}{n} \sum</em>{i=1}^n X_i
+   $$</p>
+</li>
+<li>
+<p>Analyzing the distribution of these sample means across different sample sizes and original distributions.</p>
+</li>
+</ol>
+<hr/>
+<h2 id="programming-environment">Programming Environment</h2>
+<p>To conduct this simulation study, we will use <strong>Python</strong> due to its extensive support for scientific computing and data visualization. The following libraries will be essential:</p>
+<ul>
+<li><code>NumPy</code>: For random sampling and numerical operations</li>
+<li><code>Matplotlib</code>: For basic plotting</li>
+<li><code>Seaborn</code>: For enhanced statistical visualizations</li>
+</ul>
+<h3 id="required-python-libraries">Required Python Libraries</h3>
+<p>```python
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns</p>
+<h1 id="2-population-distribution-generation">2. Population Distribution Generation</h1>
+<h2 id="purpose">Purpose</h2>
+<p>To explore the Central Limit Theorem (CLT), we first need to generate <strong>synthetic populations</strong> that serve as the origin of samples. These populations will be drawn from three statistically distinct distributions:</p>
+<ul>
+<li><strong>Uniform Distribution</strong></li>
+<li><strong>Exponential Distribution</strong></li>
+<li><strong>Binomial Distribution</strong></li>
+</ul>
+<p>Each of these will highlight different characteristics (e.g., skewness, discreteness) that allow us to study the robustness of the CLT.</p>
+<hr/>
+<h2 id="21-uniform-distribution">2.1 Uniform Distribution</h2>
+<h3 id="definition">Definition</h3>
+<p>A continuous distribution with constant probability over an interval <span class="arithmatex">\([a, b]\)</span>:</p>
+<div class="arithmatex">\[
+X \sim \text{Uniform}(a, b)
+\]</div>
+<h3 id="probability-density-function-pdf">Probability Density Function (PDF)</h3>
+<div class="arithmatex">\[
+f(x) = 
+\begin{cases}
+\frac{1}{b - a} &amp; \text{for } x \in [a, b] \\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<h3 id="statistical-properties">Statistical Properties</h3>
+<ul>
+<li>Mean: <span class="arithmatex">\(\mathbb{E}[X] = \frac{a + b}{2}\)</span></li>
+<li>Variance: <span class="arithmatex">\(\text{Var}(X) = \frac{(b - a)^2}{12}\)</span></li>
+</ul>
+<h3 id="example-parameters">Example Parameters</h3>
+<ul>
+<li><span class="arithmatex">\(a = 0\)</span>, <span class="arithmatex">\(b = 10\)</span></li>
+<li>Hence, <span class="arithmatex">\(\mu = 5\)</span>, <span class="arithmatex">\(\sigma^2 = \frac{100}{12} \approx 8.33\)</span></li>
+</ul>
+<hr/>
+<h2 id="22-exponential-distribution">2.2 Exponential Distribution</h2>
+<h3 id="definition_1">Definition</h3>
+<p>A continuous distribution often used to model time until an event (e.g., failure time, interarrival time):</p>
+<div class="arithmatex">\[
+X \sim \text{Exponential}(\lambda)
+\]</div>
+<h3 id="probability-density-function-pdf_1">Probability Density Function (PDF)</h3>
+<div class="arithmatex">\[
+f(x) = 
+\begin{cases}
+\lambda e^{-\lambda x} &amp; \text{for } x \geq 0 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<h3 id="statistical-properties_1">Statistical Properties</h3>
+<ul>
+<li>Mean: <span class="arithmatex">\(\mathbb{E}[X] = \frac{1}{\lambda}\)</span></li>
+<li>Variance: <span class="arithmatex">\(\text{Var}(X) = \frac{1}{\lambda^2}\)</span></li>
+</ul>
+<h3 id="example-parameters_1">Example Parameters</h3>
+<ul>
+<li><span class="arithmatex">\(\lambda = 1\)</span></li>
+<li>Hence, <span class="arithmatex">\(\mu = 1\)</span>, <span class="arithmatex">\(\sigma^2 = 1\)</span></li>
+</ul>
+<p><em>Note: The exponential distribution is positively skewed and will be useful to demonstrate the CLT’s effectiveness on skewed data.</em></p>
+<hr/>
+<h2 id="23-binomial-distribution">2.3 Binomial Distribution</h2>
+<h3 id="definition_2">Definition</h3>
+<p>A discrete distribution representing the number of successes in <span class="arithmatex">\(n\)</span> independent Bernoulli trials with success probability <span class="arithmatex">\(p\)</span>:</p>
+<div class="arithmatex">\[
+X \sim \text{Binomial}(n, p)
+\]</div>
+<h3 id="probability-mass-function-pmf">Probability Mass Function (PMF)</h3>
+<div class="arithmatex">\[
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \quad \text{for } k = 0, 1, \dots, n
+\]</div>
+<h3 id="statistical-properties_2">Statistical Properties</h3>
+<ul>
+<li>Mean: <span class="arithmatex">\(\mathbb{E}[X] = np\)</span></li>
+<li>Variance: <span class="arithmatex">\(\text{Var}(X) = np(1 - p)\)</span></li>
+</ul>
+<h3 id="example-parameters_2">Example Parameters</h3>
+<ul>
+<li><span class="arithmatex">\(n = 10\)</span>, <span class="arithmatex">\(p = 0.5\)</span></li>
+<li>Hence, <span class="arithmatex">\(\mu = 5\)</span>, <span class="arithmatex">\(\sigma^2 = 2.5\)</span></li>
+</ul>
+<hr/>
+<h2 id="data-generation-strategy">Data Generation Strategy</h2>
+<p>For each distribution:</p>
+<ol>
+<li><strong>Set known parameters</strong> <span class="arithmatex">\(\theta\)</span> (e.g., <span class="arithmatex">\(a, b\)</span> or <span class="arithmatex">\(\lambda\)</span> or <span class="arithmatex">\(n, p\)</span>)</li>
+<li><strong>Generate large population</strong> of size <span class="arithmatex">\(N = 100,000\)</span></li>
+<li><strong>Store for sampling</strong></li>
+</ol>
+<h3 id="python-code-snippet">Python Code Snippet</h3>
+<p>```python
+N = 100000  # Population size</p>
+<h1 id="uniform-distribution">Uniform distribution</h1>
+<p>uniform_pop = np.random.uniform(0, 10, size=N)</p>
+<h1 id="exponential-distribution">Exponential distribution</h1>
+<p>exponential_pop = np.random.exponential(scale=1.0, size=N)  # scale = 1/lambda</p>
+<h1 id="binomial-distribution">Binomial distribution</h1>
+<p>binomial_pop = np.random.binomial(n=10, p=0.5, size=N)</p>
+<h1 id="3-sampling-process">3. Sampling Process</h1>
+<h2 id="purpose_1">Purpose</h2>
+<p>The goal of this stage is to simulate the <strong>sampling distribution of the sample mean</strong> for various sample sizes and population distributions. This process enables us to observe the <strong>convergence toward normality</strong>, as predicted by the Central Limit Theorem (CLT).</p>
+<hr/>
+<h2 id="sample-sizes">Sample Sizes</h2>
+<p>We choose a range of sample sizes that are commonly used in statistical analysis to explore how quickly the CLT begins to take effect. Specifically, we use:</p>
+<div class="arithmatex">\[
+n \in \{5, 10, 30, 50\}
+\]</div>
+<p>These values allow us to assess the evolution of the sampling distribution shape from small to moderately large sample sizes.</p>
+<hr/>
+<h2 id="procedure-overview">Procedure Overview</h2>
+<p>For each <strong>population distribution</strong> <span class="arithmatex">\(D\)</span> and each <strong>sample size</strong> <span class="arithmatex">\(n\)</span>, we will:</p>
+<ol>
+<li>Draw <span class="arithmatex">\(M\)</span> independent random samples of size <span class="arithmatex">\(n\)</span>:
+   $$
+   {X_{i1}, X_{i2}, \ldots, X_{in}}, \quad \text{for } i = 1, 2, \ldots, M
+   $$</li>
+<li>Compute the sample mean for each sample:
+   $$
+   \bar{X}<em>i = \frac{1}{n} \sum</em>{j=1}^n X_{ij}
+   $$</li>
+<li>Store all <span class="arithmatex">\(\bar{X}_i\)</span> to form the empirical <strong>sampling distribution</strong> of the mean:
+   $$
+   \left{\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_M \right}
+   $$</li>
+</ol>
+<h3 id="parameters-used">Parameters Used</h3>
+<ul>
+<li><span class="arithmatex">\(M = 1000\)</span> samples per condition (distribution × sample size)</li>
+<li><span class="arithmatex">\(n = 5\)</span>, <span class="arithmatex">\(10\)</span>, <span class="arithmatex">\(30\)</span>, <span class="arithmatex">\(50\)</span></li>
+<li>Distributions: Uniform, Exponential, Binomial (as defined earlier)</li>
+</ul>
+<hr/>
+<h2 id="python-code-snippet-conceptual">Python Code Snippet (Conceptual)</h2>
+<p>```python
+M = 1000  # Number of samples per condition
+sample_sizes = [5, 10, 30, 50]</p>
+<p>sampling_means = {
+    "Uniform": {},
+    "Exponential": {},
+    "Binomial": {}
+}</p>
+<p>for dist_name, population in {
+    "Uniform": uniform_pop,
+    "Exponential": exponential_pop,
+    "Binomial": binomial_pop
+}.items():
+    for n in sample_sizes:
+        means = [
+            np.mean(np.random.choice(population, size=n, replace=False))
+            for _ in range(M)
+        ]
+        sampling_means[dist_name][n] = means</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
