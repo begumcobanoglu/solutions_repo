@@ -172,6 +172,129 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="interference-patterns-on-a-water-surface">Interference Patterns on a Water Surface</h1>
+<h2 id="1-mathematical-representation-of-single-wave-source">1. Mathematical Representation of Single Wave Source</h2>
+<p>The disturbance on a water surface caused by a point source emitting circular waves can be mathematically described using a <strong>wave equation</strong> for a single disturbance.</p>
+<h3 id="general-form-of-the-wave-equation">General Form of the Wave Equation</h3>
+<p>The displacement of the water surface at a point <span class="arithmatex">\(\vec{r}\)</span> and time <span class="arithmatex">\(t\)</span> is given by:</p>
+<div class="arithmatex">\[
+\eta(\vec{r}, t) = A \cos(kr - \omega t + \phi)
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\eta(\vec{r}, t)\)</span>: Displacement function — describes the vertical displacement of the water at position <span class="arithmatex">\(\vec{r}\)</span> and time <span class="arithmatex">\(t\)</span>.</li>
+<li><span class="arithmatex">\(A\)</span>: Amplitude of the wave — the maximum displacement from the equilibrium position.</li>
+<li><span class="arithmatex">\(k\)</span>: Wave number — describes the spatial frequency of the wave.</li>
+<li><span class="arithmatex">\(r\)</span>: Distance from the wave source to the point <span class="arithmatex">\(\vec{r}\)</span>.</li>
+<li><span class="arithmatex">\(\omega\)</span>: Angular frequency — describes how rapidly the wave oscillates in time.</li>
+<li><span class="arithmatex">\(\phi\)</span>: Initial phase — phase offset at <span class="arithmatex">\(t = 0\)</span> and <span class="arithmatex">\(r = 0\)</span>.</li>
+</ul>
+<hr/>
+<h3 id="definitions-of-wave-parameters">Definitions of Wave Parameters</h3>
+<h4 id="amplitude-a"><strong>Amplitude (<span class="arithmatex">\(A\)</span>)</strong></h4>
+<p>The amplitude is a scalar representing the maximum displacement of the wave from its mean level. It is directly proportional to the energy carried by the wave.</p>
+<h4 id="wave-number-k"><strong>Wave Number (<span class="arithmatex">\(k\)</span>)</strong></h4>
+<p>The wave number <span class="arithmatex">\(k\)</span> relates to the wavelength <span class="arithmatex">\(\lambda\)</span> by:</p>
+<div class="arithmatex">\[
+k = \frac{2\pi}{\lambda}
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\lambda\)</span>: Wavelength — the distance between two successive points in phase (e.g., two adjacent crests).</li>
+</ul>
+<h4 id="angular-frequency-omega"><strong>Angular Frequency (<span class="arithmatex">\(\omega\)</span>)</strong></h4>
+<p>The angular frequency is defined as:</p>
+<div class="arithmatex">\[
+\omega = 2\pi f
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(f\)</span>: Frequency — the number of oscillations per second.</li>
+</ul>
+<h4 id="radial-distance-r"><strong>Radial Distance (<span class="arithmatex">\(r\)</span>)</strong></h4>
+<p>The distance <span class="arithmatex">\(r\)</span> is the Euclidean distance from the wave source (at point <span class="arithmatex">\(\vec{r}_0\)</span>) to the observation point <span class="arithmatex">\(\vec{r}\)</span>:</p>
+<div class="arithmatex">\[
+r = \|\vec{r} - \vec{r}_0\| = \sqrt{(x - x_0)^2 + (y - y_0)^2}
+\]</div>
+<h4 id="initial-phase-phi"><strong>Initial Phase (<span class="arithmatex">\(\phi\)</span>)</strong></h4>
+<p>The initial phase <span class="arithmatex">\(\phi\)</span> determines the wave's starting position at time <span class="arithmatex">\(t = 0\)</span>. It introduces a phase shift, affecting the position of the peaks and troughs.</p>
+<hr/>
+<h3 id="summary-equation">Summary Equation</h3>
+<p>Combining all the above components, the complete expression for a <strong>circular wave</strong> emanating from a point source is:</p>
+<div class="arithmatex">\[
+\eta(\vec{r}, t) = A \cos\left( \frac{2\pi}{\lambda} r - 2\pi f t + \phi \right)
+\]</div>
+<p>or, equivalently:</p>
+<div class="arithmatex">\[
+\eta(\vec{r}, t) = A \cos(kr - \omega t + \phi)
+\]</div>
+<p>This equation will form the foundation for constructing more complex wave interference patterns when multiple sources are considered.</p>
+<hr/>
+<h2 id="2-extension-to-multiple-wave-sources">2. Extension to Multiple Wave Sources</h2>
+<p>When multiple wave sources emit waves simultaneously, the <strong>net displacement</strong> of the water surface at any point is governed by the <strong>principle of superposition</strong>. According to this principle, the total disturbance at any location is the <strong>sum of the individual wave contributions</strong> from all sources.</p>
+<hr/>
+<h3 id="superposition-principle"><strong>Superposition Principle</strong></h3>
+<p>If there are <span class="arithmatex">\(N\)</span> point sources located at positions <span class="arithmatex">\(\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_N\)</span>, each generating a wave, the net displacement at position <span class="arithmatex">\(\vec{r}\)</span> and time <span class="arithmatex">\(t\)</span> is:</p>
+<div class="arithmatex">\[
+\eta_{\text{total}}(\vec{r}, t) = \sum_{n=1}^{N} A_n \cos(k r_n - \omega t + \phi_n)
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(A_n\)</span>: Amplitude of the <span class="arithmatex">\(n\)</span>-th source.</li>
+<li><span class="arithmatex">\(r_n = \|\vec{r} - \vec{r}_n\|\)</span>: Distance from the <span class="arithmatex">\(n\)</span>-th source to observation point.</li>
+<li><span class="arithmatex">\(\phi_n\)</span>: Initial phase of the <span class="arithmatex">\(n\)</span>-th source.</li>
+<li><span class="arithmatex">\(k\)</span>: Wave number (assumed common to all sources for same wavelength).</li>
+<li><span class="arithmatex">\(\omega\)</span>: Angular frequency (assumed common to all sources for same frequency).</li>
+</ul>
+<hr/>
+<h3 id="key-considerations"><strong>Key Considerations</strong></h3>
+<h4 id="1-number-of-sources"><strong>1. Number of Sources</strong></h4>
+<p>Let <span class="arithmatex">\(N\)</span> be the number of wave sources.</p>
+<ul>
+<li>Each source contributes a term to the total wave function.</li>
+<li>Interference becomes richer and more complex as <span class="arithmatex">\(N\)</span> increases.</li>
+</ul>
+<h4 id="2-source-locations"><strong>2. Source Locations</strong></h4>
+<p>Each source is defined by a 2D position vector:</p>
+<div class="arithmatex">\[
+\vec{r}_n = (x_n, y_n)
+\]</div>
+<p>The radial distance to observation point <span class="arithmatex">\(\vec{r} = (x, y)\)</span> is:</p>
+<div class="arithmatex">\[
+r_n = \sqrt{(x - x_n)^2 + (y - y_n)^2}
+\]</div>
+<h4 id="3-phase-difference-between-sources"><strong>3. Phase Difference Between Sources</strong></h4>
+<p>Each source may have a unique initial phase <span class="arithmatex">\(\phi_n\)</span>, which introduces a <strong>phase difference</strong> between the waves. This phase difference can cause:</p>
+<ul>
+<li><strong>Constructive interference</strong>: when phase difference leads to in-phase summation.</li>
+<li><strong>Destructive interference</strong>: when waves are out of phase by <span class="arithmatex">\(\pi\)</span> (or odd multiples).</li>
+</ul>
+<hr/>
+<h3 id="two-source-interference-example"><strong>Two-Source Interference Example</strong></h3>
+<p>For two identical sources with equal amplitude <span class="arithmatex">\(A\)</span>, wavelength <span class="arithmatex">\(\lambda\)</span>, frequency <span class="arithmatex">\(f\)</span>, and no phase difference, the net wave at point <span class="arithmatex">\(\vec{r}\)</span> is:</p>
+<div class="arithmatex">\[
+\eta_{\text{total}}(\vec{r}, t) = A \cos(k r_1 - \omega t) + A \cos(k r_2 - \omega t)
+\]</div>
+<p>Using the trigonometric identity:</p>
+<div class="arithmatex">\[
+\cos \alpha + \cos \beta = 2 \cos\left( \frac{\alpha + \beta}{2} \right) \cos\left( \frac{\alpha - \beta}{2} \right)
+\]</div>
+<p>We get:</p>
+<div class="arithmatex">\[
+\eta_{\text{total}}(\vec{r}, t) = 2A \cos\left( \frac{k(r_1 - r_2)}{2} \right) \cos\left( \frac{k(r_1 + r_2)}{2} - \omega t \right)
+\]</div>
+<p>This shows that the amplitude of the resulting wave is <strong>modulated</strong> by the path difference <span class="arithmatex">\((r_1 - r_2)\)</span>, producing <strong>interference fringes</strong> in space.</p>
+<hr/>
+<h3 id="summary"><strong>Summary</strong></h3>
+<ul>
+<li>Multiple wave sources produce a <strong>net wave field</strong> through superposition.</li>
+<li>The pattern depends on:</li>
+<li>Relative positions of sources</li>
+<li>Phase differences</li>
+<li>Path length differences to the observation point</li>
+<li>The resulting interference patterns can exhibit <strong>regions of constructive and destructive interference</strong>, crucial in understanding wave phenomena like diffraction and coherence.</li>
+</ul>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
