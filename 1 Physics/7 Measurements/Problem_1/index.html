@@ -172,239 +172,287 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<h1 id="1-theoretical-framework">1. Theoretical Framework</h1>
-<h2 id="objective">Objective</h2>
-<p>To derive the mathematical relationship between the period of oscillation <span class="arithmatex">\(T\)</span> of a simple pendulum and the local gravitational acceleration <span class="arithmatex">\(g\)</span>.</p>
-<hr/>
-<h2 id="ideal-simple-pendulum">Ideal Simple Pendulum</h2>
-<p>An <strong>ideal simple pendulum</strong> consists of:
-- A point mass (bob) suspended by a <strong>massless, inextensible string</strong>
-- Oscillating in a <strong>vertical plane</strong> under the influence of gravity
-- No air resistance or friction at the pivot
-- <strong>Small-angle approximation</strong>: angular displacement <span class="arithmatex">\(\theta\)</span> (in radians) is small enough that <span class="arithmatex">\(\sin\theta \approx \theta\)</span></p>
-<hr/>
-<h2 id="derivation-of-the-pendulum-period">Derivation of the Pendulum Period</h2>
-<p>The angular equation of motion for a simple pendulum is:</p>
-<div class="arithmatex">\[
-\frac{d^2\theta}{dt^2} + \frac{g}{L}\sin\theta = 0
-\]</div>
-<p>This is a nonlinear second-order differential equation. However, for small angles (<span class="arithmatex">\(\theta \ll 1\)</span> rad), we can apply the approximation:</p>
-<div class="arithmatex">\[
-\sin\theta \approx \theta
-\]</div>
-<p>This simplifies the equation to a linear form:</p>
-<div class="arithmatex">\[
-\frac{d^2\theta}{dt^2} + \frac{g}{L}\theta = 0
-\]</div>
-<p>This is the standard form of the simple harmonic oscillator (SHO):</p>
-<div class="arithmatex">\[
-\frac{d^2x}{dt^2} + \omega^2 x = 0
-\]</div>
-<p>By comparison, the <strong>angular frequency</strong> <span class="arithmatex">\(\omega\)</span> is:</p>
-<div class="arithmatex">\[
-\omega = \sqrt{\frac{g}{L}}
-\]</div>
-<p>The <strong>period</strong> <span class="arithmatex">\(T\)</span> of the oscillation is related to angular frequency by:</p>
-<div class="arithmatex">\[
-T = \frac{2\pi}{\omega}
-\]</div>
-<p>Substituting the expression for <span class="arithmatex">\(\omega\)</span>:</p>
-<div class="arithmatex">\[
-T = 2\pi\sqrt{\frac{L}{g}}
-\]</div>
-<hr/>
-<h2 id="final-formula">Final Formula</h2>
-<p>The period of a simple pendulum is:</p>
-<div class="arithmatex">\[
-T = 2\pi \sqrt{\frac{L}{g}}
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(T\)</span> is the time for one complete oscillation (s)
-- <span class="arithmatex">\(L\)</span> is the length of the pendulum (m)
-- <span class="arithmatex">\(g\)</span> is the gravitational acceleration (m/s²)</p>
-<hr/>
-<h2 id="assumptions">Assumptions</h2>
-<p>To derive this expression, the following assumptions are made:</p>
-<ol>
-<li><strong>Point Mass</strong>: The pendulum bob is treated as a point mass; rotational inertia is ignored.</li>
-<li><strong>Massless String</strong>: The string or rod has negligible mass and does not stretch.</li>
-<li><strong>Frictionless Pivot</strong>: The pivot point is ideal and does not resist motion.</li>
-<li><strong>Small-Angle Approximation</strong>: Valid for angular displacements <span class="arithmatex">\(\theta &lt; 15^\circ\)</span> (typically).</li>
-<li><strong>No Air Resistance</strong>: The effects of drag or damping are neglected.</li>
-</ol>
-<hr/>
-<h2 id="implications">Implications</h2>
-<p>Under these assumptions, the pendulum behaves as an ideal simple harmonic oscillator, and the period depends <strong>only on the length <span class="arithmatex">\(L\)</span></strong> of the pendulum and the <strong>gravitational field <span class="arithmatex">\(g\)</span></strong>, not on mass or amplitude (for small angles).</p>
-<p>This relationship enables precise experimental determination of <span class="arithmatex">\(g\)</span> through period measurements.</p>
-<hr/>
-<h1 id="2-experimental-design">2. Experimental Design</h1>
-<h2 id="objective_1">Objective</h2>
-<p>To design an experiment capable of accurately determining the local gravitational acceleration <span class="arithmatex">\(g\)</span> by measuring the oscillation period <span class="arithmatex">\(T\)</span> of a simple pendulum.</p>
-<hr/>
-<h2 id="21-determining-pendulum-length-l">2.1 Determining Pendulum Length <span class="arithmatex">\(L\)</span></h2>
-<h3 id="definition">Definition</h3>
-<p>The length <span class="arithmatex">\(L\)</span> of a simple pendulum is defined as the distance from the <strong>pivot point</strong> to the <strong>center of mass</strong> of the pendulum bob:</p>
-<div class="arithmatex">\[
-L = l_{\text{string}} + r_{\text{cm}}
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(l_{\text{string}}\)</span> is the measured length of the string or rod
-- <span class="arithmatex">\(r_{\text{cm}}\)</span> is the distance from the attachment point to the center of mass of the bob</p>
-<h3 id="measurement-techniques">Measurement Techniques</h3>
+<h1 id="measuring-earths-gravitational-acceleration-with-a-pendulum">Measuring Earth's Gravitational Acceleration with a Pendulum</h1>
+<h2 id="1-prepare-materials">1. Prepare Materials</h2>
+<p>Precise measurement of the gravitational acceleration, <span class="arithmatex">\(g\)</span>, begins with careful preparation and selection of experimental apparatus. Each component must be chosen and recorded with attention to measurement accuracy and resolution, as these foundational steps propagate through all subsequent calculations.</p>
+<h3 id="11-string">1.1 String</h3>
 <ul>
-<li>Use a <strong>meter ruler</strong> or <strong>measuring tape</strong> with millimeter precision.</li>
-<li>Measure from the fixed pivot to the <strong>center of mass</strong> of the bob (typically the geometric center if spherical).</li>
-<li>Ensure the string is <strong>taut and straight</strong> during measurement.</li>
-<li>Record uncertainty in <span class="arithmatex">\(L\)</span>, typically <span class="arithmatex">\(\pm 0.5 \ \text{mm}\)</span> to <span class="arithmatex">\(\pm 1 \ \text{mm}\)</span>.</li>
+<li>A lightweight, inextensible string of known length, <span class="arithmatex">\(L\)</span>.</li>
+</ul>
+<h3 id="12-pendulum-bob-weight">1.2 Pendulum Bob (Weight)</h3>
+<ul>
+<li>Small, dense object (e.g., metal washer, bag of coins, or keychain) as the bob.</li>
+<li><span class="arithmatex">\(L\)</span> measured to the geometric center of the bob.</li>
+</ul>
+<h3 id="13-measuring-tools">1.3 Measuring Tools</h3>
+<ul>
+<li><strong>Ruler/Tape measure:</strong> Resolution <span class="arithmatex">\(r\)</span>, so uncertainty <span class="arithmatex">\(\Delta L = r/2\)</span>.</li>
+<li><strong>Stopwatch/timer:</strong> Resolution <span class="arithmatex">\(r\_t\)</span>.</li>
+<li>Combined timing uncertainty <span class="arithmatex">\(\Delta t = \sqrt{u\_\text{human}^2 + (r\_t/2)^2}\)</span>.</li>
+</ul>
+<h3 id="14-table-of-materials">1.4 Table of Materials</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Symbol</th>
+<th>Typical Value</th>
+<th>Uncertainty</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String</td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td><span class="arithmatex">\(1.00,\text{m}\)</span></td>
+<td><span class="arithmatex">\(\Delta L\)</span></td>
+<td>Length from support to bob center</td>
+</tr>
+<tr>
+<td>Timer</td>
+<td><span class="arithmatex">\(T\_{10}\)</span></td>
+<td>N/A</td>
+<td><span class="arithmatex">\(\Delta t\)</span></td>
+<td>Time for 10 oscillations</td>
+</tr>
+<tr>
+<td>Ruler</td>
+<td><span class="arithmatex">\(r\)</span></td>
+<td><span class="arithmatex">\(1,\text{mm}\)</span></td>
+<td><span class="arithmatex">\(0.5,\text{mm}\)</span></td>
+<td>Resolution/2</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="2-set-up-the-pendulum">2. Set Up the Pendulum</h2>
+<ul>
+<li>Secure string to fixed support.</li>
+<li>Attach bob to free end, identify center of mass.</li>
+<li>Measure <span class="arithmatex">\(L\)</span> from suspension point to center of mass of bob.</li>
+<li>Ensure the pendulum swings freely and vertically.</li>
+<li>Keep swing angle <span class="arithmatex">\(&lt; 15^\circ\)</span> for the small-angle approximation: <span class="arithmatex">\(\sin \theta \approx \theta\)</span> (in radians).</li>
 </ul>
 <hr/>
-<h2 id="22-measuring-oscillation-period-t">2.2 Measuring Oscillation Period <span class="arithmatex">\(T\)</span></h2>
-<h3 id="method-options">Method Options</h3>
-<ol>
-<li><strong>Manual Stopwatch Timing</strong></li>
-<li>Time a large number of complete oscillations (e.g., 20 or 30)</li>
-<li>Divide the total time by the number of oscillations:
-     $$
-     T = \frac{t_{\text{total}}}{N}
-     $$</li>
-<li>
-<p>Use a stopwatch with precision of at least <span class="arithmatex">\(0.01 \ \text{s}\)</span></p>
-</li>
-<li>
-<p><strong>Photogate Timer</strong></p>
-</li>
-<li>Automatically detect pendulum passing through a reference point</li>
-<li>
-<p>Provides higher precision and minimizes human error</p>
-</li>
-<li>
-<p><strong>Video Analysis (High Frame Rate)</strong></p>
-</li>
-<li>Record oscillation with a camera</li>
-<li>Analyze motion frame-by-frame to measure period</li>
-</ol>
-<hr/>
-<h2 id="23-repetition-for-accuracy">2.3 Repetition for Accuracy</h2>
-<p>To reduce <strong>random errors</strong>, the experiment should be repeated:</p>
+<h2 id="3-measure-pendulum-length">3. Measure Pendulum Length</h2>
 <ul>
-<li>
-<p>Time at least <strong><span class="arithmatex">\(N = 20\)</span> to <span class="arithmatex">\(50\)</span></strong> oscillations to average out reaction delays:
+<li>Hold string taut and measure <span class="arithmatex">\(L\)</span> with ruler/tape to the center of the bob.</li>
+<li>Record <span class="arithmatex">\(L\)</span> and instrument resolution <span class="arithmatex">\(r\)</span>.</li>
+<li>Compute uncertainty: <span class="arithmatex">\(\Delta L = r/2\)</span>.</li>
+</ul>
+<hr/>
+<h2 id="4-record-the-length-and-its-uncertainty">4. Record the Length and Its Uncertainty</h2>
+<ul>
+<li>Record measured value and uncertainty:</li>
+</ul>
+<p>$$
+  L = (\text{measured value})\,\text{m} \pm \Delta L
   $$
-  T = \frac{t_{\text{total}}}{N}
+* Example: <span class="arithmatex">\(L = 1.003,\text{m} \pm 0.0005,\text{m}\)</span></p>
+<hr/>
+<h2 id="5-collect-oscillation-data">5. Collect Oscillation Data</h2>
+<ul>
+<li>Displace bob <span class="arithmatex">\(&lt; 15^\circ\)</span> and release smoothly.</li>
+<li>Time <span class="arithmatex">\(10\)</span> complete oscillations (<span class="arithmatex">\(T\_{10}\)</span>).</li>
+<li>Repeat for <span class="arithmatex">\(n = 10\)</span> trials: <span class="arithmatex">\(T\_{10,1}, T\_{10,2}, ..., T\_{10,10}\)</span>.</li>
+<li>Record each value in a table:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Trial (<span class="arithmatex">\(i\)</span>)</th>
+<th><span class="arithmatex">\(T_{10,i}\)</span> (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>19.85</td>
+</tr>
+<tr>
+<td>2</td>
+<td>19.83</td>
+</tr>
+<tr>
+<td>3</td>
+<td>19.81</td>
+</tr>
+<tr>
+<td>4</td>
+<td>19.87</td>
+</tr>
+<tr>
+<td>5</td>
+<td>19.84</td>
+</tr>
+<tr>
+<td>6</td>
+<td>19.86</td>
+</tr>
+<tr>
+<td>7</td>
+<td>19.82</td>
+</tr>
+<tr>
+<td>8</td>
+<td>19.85</td>
+</tr>
+<tr>
+<td>9</td>
+<td>19.83</td>
+</tr>
+<tr>
+<td>10</td>
+<td>19.84</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="6-calculate-statistics">6. Calculate Statistics</h2>
+<ul>
+<li>Mean:</li>
+</ul>
+<p>$$
+  \overline{T}<em>{10} = \frac{1}{n} \sum</em>{i=1}^n T_{10,i}
+  $$
+* Standard deviation:</p>
+<p>$$
+  \sigma_T = \sqrt{ \frac{1}{n-1} \sum_{i=1}^n (T_{10,i} - \overline{T}_{10})^2 }
+  $$
+* Uncertainty in mean:</p>
+<p>$$
+  \Delta T_{10} = \frac{\sigma_T}{\sqrt{n}}
   $$</p>
+<hr/>
+<h2 id="7-find-the-period-and-its-uncertainty">7. Find the Period and Its Uncertainty</h2>
+<ul>
+<li>Period:</li>
+</ul>
+<p>$$
+  T = \frac{\overline{T}_{10}}{10}
+  $$
+* Uncertainty:</p>
+<p>$$
+  \Delta T = \frac{\Delta T_{10}}{10}
+  $$</p>
+<hr/>
+<h2 id="8-calculate-gravitational-acceleration-g">8. Calculate Gravitational Acceleration (<span class="arithmatex">\(g\)</span>)</h2>
+<ul>
+<li>Use:</li>
+</ul>
+<p>$$
+  g = \frac{4\pi^2 L}{T^2}
+  $$</p>
+<hr/>
+<h2 id="9-propagate-uncertainties">9. Propagate Uncertainties</h2>
+<ul>
+<li>Use:</li>
+</ul>
+<p>$$
+  \Delta g = g \sqrt{ \left( \frac{\Delta L}{L} \right)^2 + \left( 2 \frac{\Delta T}{T} \right)^2 }
+  $$</p>
+<hr/>
+<h2 id="10-results-summary">10. Results Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\overline{T}_{10}\)</span> (s)</td>
+<td>19.84</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sigma_T\)</span> (s)</td>
+<td>0.020</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Delta T_{10}\)</span> (s)</td>
+<td>0.006</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T\)</span> (s)</td>
+<td>1.984</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Delta T\)</span> (s)</td>
+<td>0.0006</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(L\)</span> (m)</td>
+<td>1.003</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Delta L\)</span> (m)</td>
+<td>0.0005</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(g\)</span> (m/s<span class="arithmatex">\(^2\)</span>)</td>
+<td>10.04</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Delta g\)</span> (m/s<span class="arithmatex">\(^2\)</span>)</td>
+<td>0.007</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="11-visualization-histogram-of-timing-measurements">11. Visualization: Histogram of Timing Measurements</h2>
+<p>To better understand the spread of timing data, a histogram of the <span class="arithmatex">\(T\_{10}\)</span> values was constructed. This provides a visual check for consistency and outliers.</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+# Replace with your measured values
+T_10 = [19.85, 19.83, 19.81, 19.87, 19.84, 19.86, 19.82, 19.85, 19.83, 19.84]
+plt.figure(figsize=(6, 4))
+plt.hist(T_10, bins=5, edgecolor='black', alpha=0.7)
+plt.title('Histogram of Timing Measurements ($T_{10}$)')
+plt.xlabel('Time for 10 Oscillations (s)')
+plt.ylabel('Frequency')
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../WhatsApp%20G%C3%B6rsel%202025-06-10%20saat%2000.03.26_7c68e1db.jpg"/></p>
+<hr/>
+<h2 id="12-compare-and-analyze">12. Compare and Analyze</h2>
+<ul>
+<li>Compare your <span class="arithmatex">\(g\)</span> to the standard value: <span class="arithmatex">\(g\_{\text{standard}} = 9.81,\text{m/s}^2\)</span></li>
+<li>Does your result agree within uncertainty?</li>
+<li>
+<p>Discuss:</p>
 </li>
 <li>
-<p>Conduct <strong>at least 3 full trials</strong> at the same length <span class="arithmatex">\(L\)</span></p>
+<p>Major sources of uncertainty (length, timing, etc.)</p>
 </li>
-<li>Average the periods to find a more precise estimate:
-  $$
-  \bar{T} = \frac{T_1 + T_2 + T_3}{3}
-  $$</li>
+<li>Potential systematic errors (angle, air resistance, pivot friction)</li>
+<li>Any improvements for future experiments</li>
 </ul>
 <hr/>
-<h2 id="24-angle-of-release">2.4 Angle of Release</h2>
+<h2 id="13-discussion">13. Discussion</h2>
+<h3 id="measurement-resolution">Measurement Resolution</h3>
 <ul>
-<li>Keep angular displacement <span class="arithmatex">\(\theta\)</span> <strong>below <span class="arithmatex">\(15^\circ\)</span></strong> to satisfy the small-angle approximation.</li>
-<li>Use a <strong>protractor</strong> or angular guide to maintain consistency.</li>
-<li>Avoid pushing the pendulum — release it gently from rest.</li>
+<li>The resolution of the ruler sets the lower bound for <span class="arithmatex">\(\Delta L\)</span>.</li>
+<li>Timing uncertainty is dominated by human reaction time and the stopwatch resolution.</li>
 </ul>
-<hr/>
-<h2 id="25-equipment-checklist">2.5 Equipment Checklist</h2>
+<h3 id="timing-variability">Timing Variability</h3>
 <ul>
-<li>Rigid support stand</li>
-<li>Light, inextensible string</li>
-<li>Dense spherical bob</li>
-<li>Meter scale or tape</li>
-<li>Stopwatch (or photogate system)</li>
-<li>Protractor</li>
-<li>Clamp and pivot</li>
+<li>Standard deviation and standard error quantify random timing errors.</li>
+<li>Outliers (if any) may indicate procedural errors or distractions.</li>
 </ul>
-<hr/>
-<h2 id="summary">Summary</h2>
-<p>An accurate measurement of <span class="arithmatex">\(g\)</span> via a pendulum requires:
-- Precise length measurement from pivot to bob center
-- Timing many oscillations to minimize human error
-- Repeated trials and small angular displacements</p>
-<p>By optimizing these factors, the experiment can yield a high-fidelity value of gravitational acceleration with quantified uncertainty.</p>
-<hr/>
-<h1 id="3-apparatus-setup">3. Apparatus Setup</h1>
-<h2 id="objective_2">Objective</h2>
-<p>To establish a physically stable and reproducible experimental setup for pendulum motion that minimizes systematic error and maximizes accuracy in measuring the period <span class="arithmatex">\(T\)</span>.</p>
-<hr/>
-<h2 id="31-selection-of-materials">3.1 Selection of Materials</h2>
-<h3 id="string"><strong>String</strong></h3>
+<h3 id="assumptions-and-model-limitations">Assumptions and Model Limitations</h3>
 <ul>
-<li><strong>Type</strong>: Thin, <strong>non-elastic</strong>, low-mass thread or fishing line</li>
-<li><strong>Purpose</strong>: To approximate an <strong>ideal massless string</strong></li>
-<li><strong>Length</strong>: Varies based on lab space, typically 0.5 m – 1.5 m</li>
-<li><strong>Requirements</strong>:</li>
-<li>Minimal stretch under tension</li>
-<li>Uniform diameter to avoid bias in swing plane</li>
+<li>Small-angle approximation</li>
+<li>Negligible damping (air resistance, pivot friction)</li>
+<li>Point-mass bob</li>
 </ul>
-<h3 id="bob-mass"><strong>Bob (Mass)</strong></h3>
+<h3 id="implications-for-experimental-accuracy">Implications for Experimental Accuracy</h3>
 <ul>
-<li><strong>Type</strong>: Dense, <strong>symmetric</strong> solid object (e.g., a steel or brass sphere)</li>
-<li><strong>Shape</strong>: Spherical to ensure <strong>uniform center of mass</strong></li>
-<li><strong>Mass</strong>: Sufficient to reduce air resistance effects but not so heavy as to introduce safety issues</li>
-<li><strong>Attachment</strong>: Secure, centered, and aligned with the string to avoid torque</li>
+<li>Identify the largest contributors to total uncertainty.</li>
+<li>Suggest specific improvements (better tools, more trials, automated timing, etc.)</li>
 </ul>
-<h3 id="support-stand"><strong>Support Stand</strong></h3>
-<ul>
-<li><strong>Type</strong>: Laboratory-grade <strong>retort stand</strong> or <strong>tripod</strong> with a horizontal rigid bar</li>
-<li><strong>Pivot</strong>: Low-friction hook, clamp, or nail for minimal energy loss</li>
-<li><strong>Requirements</strong>:</li>
-<li>Must not wobble or shift during oscillation</li>
-<li>Height must allow the bob to swing freely without touching any surfaces</li>
-</ul>
-<hr/>
-<h2 id="32-stability-considerations">3.2 Stability Considerations</h2>
-<ul>
-<li>Secure the support stand to a <strong>non-vibrating, level surface</strong></li>
-<li>If necessary, add <strong>weights or clamps</strong> at the base for stability</li>
-<li>Ensure that the pendulum swings in a <strong>single vertical plane</strong> by:</li>
-<li>Aligning the release angle</li>
-<li>Avoiding sideward components at release</li>
-</ul>
-<hr/>
-<h2 id="33-release-mechanism">3.3 Release Mechanism</h2>
-<p>To minimize initial energy input and avoid systematic error, develop a <strong>consistent release method</strong>:</p>
-<h3 id="manual-release-basic">Manual Release (Basic)</h3>
-<ul>
-<li>Hold bob at the desired angle using a <strong>rigid object (e.g., ruler)</strong> or <strong>thread</strong></li>
-<li>Gently release without applying force</li>
-<li>Use a <strong>reference protractor</strong> to set and confirm the angle</li>
-</ul>
-<h3 id="thread-burn-or-cut-method-advanced">Thread Burn or Cut Method (Advanced)</h3>
-<ul>
-<li>Hold bob in place with a taut horizontal thread</li>
-<li>Cut or burn the thread for a <strong>near-perfect zero-force release</strong></li>
-</ul>
-<h3 id="mechanical-clamp-release-precision">Mechanical Clamp Release (Precision)</h3>
-<ul>
-<li>Use a spring-loaded or latch-based clamp to hold and release the bob at a set position</li>
-<li>Provides consistency across multiple trials</li>
-</ul>
-<hr/>
-<h2 id="34-safety-considerations">3.4 Safety Considerations</h2>
-<ul>
-<li>Keep observers clear of the pendulum path</li>
-<li>Ensure the string is not frayed or damaged</li>
-<li>Use safety goggles if flame or cutting method is used</li>
-</ul>
-<hr/>
-<h2 id="diagram-optional-in-rendered-markdown">Diagram (optional in rendered markdown)</h2>
-<p>If supported by your markdown environment, include a labeled diagram to illustrate the apparatus components and geometry.</p>
-<hr/>
-<h2 id="summary_1">Summary</h2>
-<p>A successful pendulum setup depends on:</p>
-<ul>
-<li>Using <strong>non-elastic string</strong> and a <strong>symmetric bob</strong></li>
-<li>Ensuring a <strong>rigid, stable support</strong> structure</li>
-<li>Implementing a <strong>zero-force release mechanism</strong> for repeatability</li>
-<li>Maintaining <strong>alignment and small angle displacement</strong> for theoretical consistency</li>
-</ul>
-<p>Proper setup minimizes experimental uncertainty and ensures reproducibility of the measured period <span class="arithmatex">\(T\)</span>.</p>
-<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
