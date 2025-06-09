@@ -173,127 +173,477 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
 <h1 id="interference-patterns-on-a-water-surface">Interference Patterns on a Water Surface</h1>
-<h2 id="1-mathematical-representation-of-single-wave-source">1. Mathematical Representation of Single Wave Source</h2>
-<p>The disturbance on a water surface caused by a point source emitting circular waves can be mathematically described using a <strong>wave equation</strong> for a single disturbance.</p>
-<h3 id="general-form-of-the-wave-equation">General Form of the Wave Equation</h3>
-<p>The displacement of the water surface at a point <span class="arithmatex">\(\vec{r}\)</span> and time <span class="arithmatex">\(t\)</span> is given by:</p>
-<div class="arithmatex">\[
-\eta(\vec{r}, t) = A \cos(kr - \omega t + \phi)
-\]</div>
-<p>Where:</p>
+<h2 id="1-mathematical-setup">1. Mathematical Setup</h2>
+<p>Understanding the formation of interference patterns on a water surface begins with a careful mathematical formulation of the geometry and source arrangement. In this setup, we focus on placing point wave sources at the <strong>vertices of a regular polygon</strong>, centered around the origin.</p>
+<hr/>
+<h3 id="11-choosing-a-regular-polygon">1.1 Choosing a Regular Polygon</h3>
+<p>We consider a regular polygon with <span class="arithmatex">\(N\)</span> sides, where <span class="arithmatex">\(N \in \mathbb{N}\)</span> and <span class="arithmatex">\(N \geq 3\)</span>. Regular polygons have the following properties:</p>
 <ul>
-<li><span class="arithmatex">\(\eta(\vec{r}, t)\)</span>: Displacement function — describes the vertical displacement of the water at position <span class="arithmatex">\(\vec{r}\)</span> and time <span class="arithmatex">\(t\)</span>.</li>
-<li><span class="arithmatex">\(A\)</span>: Amplitude of the wave — the maximum displacement from the equilibrium position.</li>
-<li><span class="arithmatex">\(k\)</span>: Wave number — describes the spatial frequency of the wave.</li>
-<li><span class="arithmatex">\(r\)</span>: Distance from the wave source to the point <span class="arithmatex">\(\vec{r}\)</span>.</li>
-<li><span class="arithmatex">\(\omega\)</span>: Angular frequency — describes how rapidly the wave oscillates in time.</li>
-<li><span class="arithmatex">\(\phi\)</span>: Initial phase — phase offset at <span class="arithmatex">\(t = 0\)</span> and <span class="arithmatex">\(r = 0\)</span>.</li>
+<li>All sides are of equal length.</li>
+<li>All interior angles are equal.</li>
+<li>Vertices are evenly spaced on a circle.</li>
+</ul>
+<p>Each vertex lies on a circle of radius <span class="arithmatex">\(R\)</span>, centered at the origin <span class="arithmatex">\((0, 0)\)</span>. Examples include:</p>
+<ul>
+<li><span class="arithmatex">\(N = 3\)</span>: Equilateral triangle</li>
+<li><span class="arithmatex">\(N = 4\)</span>: Square</li>
+<li><span class="arithmatex">\(N = 5\)</span>: Regular pentagon</li>
+<li><span class="arithmatex">\(N = 6\)</span>: Regular hexagon</li>
+</ul>
+<p>The angle subtended between adjacent vertices is given by:</p>
+<div class="arithmatex">\[
+\theta = \frac{2\pi}{N}
+\]</div>
+<hr/>
+<h3 id="12-vertex-coordinates">1.2 Vertex Coordinates</h3>
+<p>Assuming the center of the polygon is at the origin <span class="arithmatex">\((0, 0)\)</span>, the angle <span class="arithmatex">\(\alpha_i\)</span> of the <span class="arithmatex">\(i\)</span>-th vertex relative to the positive <span class="arithmatex">\(x\)</span>-axis is:</p>
+<div class="arithmatex">\[
+\alpha_i = \theta \cdot i = \frac{2\pi i}{N}, \quad \text{for } i = 0, 1, \dots, N - 1
+\]</div>
+<p>Using polar to Cartesian conversion, the coordinates <span class="arithmatex">\((x_i, y_i)\)</span> of the <span class="arithmatex">\(i\)</span>-th vertex are:</p>
+<div class="arithmatex">\[
+x_i = R \cdot \cos\left(\frac{2\pi i}{N}\right)
+\]</div>
+<div class="arithmatex">\[
+y_i = R \cdot \sin\left(\frac{2\pi i}{N}\right)
+\]</div>
+<p>So each vertex is located at:</p>
+<div class="arithmatex">\[
+(x_i, y_i) = \left(R \cdot \cos\left(\frac{2\pi i}{N}\right), \; R \cdot \sin\left(\frac{2\pi i}{N}\right)\right), \quad i = 0, 1, \dots, N - 1
+\]</div>
+<hr/>
+<h3 id="13-symmetry-and-structure">1.3 Symmetry and Structure</h3>
+<p>This arrangement ensures:</p>
+<ul>
+<li>Rotational symmetry of order <span class="arithmatex">\(N\)</span></li>
+<li>Uniform distribution of wave sources</li>
+<li>Mathematical convenience for simulation</li>
 </ul>
 <hr/>
-<h3 id="definitions-of-wave-parameters">Definitions of Wave Parameters</h3>
-<h4 id="amplitude-a"><strong>Amplitude (<span class="arithmatex">\(A\)</span>)</strong></h4>
-<p>The amplitude is a scalar representing the maximum displacement of the wave from its mean level. It is directly proportional to the energy carried by the wave.</p>
-<h4 id="wave-number-k"><strong>Wave Number (<span class="arithmatex">\(k\)</span>)</strong></h4>
-<p>The wave number <span class="arithmatex">\(k\)</span> relates to the wavelength <span class="arithmatex">\(\lambda\)</span> by:</p>
+<h2 id="2-wave-source-modeling">2. Wave Source Modeling</h2>
+<p>Each vertex of the selected regular polygon acts as a <strong>point source</strong> emitting circular waves on the water surface. These waves propagate outward, interfere with one another, and produce complex patterns due to superposition.</p>
+<hr/>
+<h3 id="21-assigning-wave-sources">2.1 Assigning Wave Sources</h3>
+<p>Let the total number of vertices (and therefore wave sources) be <span class="arithmatex">\(N\)</span>.</p>
+<p>Each source is placed at a vertex coordinate:</p>
 <div class="arithmatex">\[
-k = \frac{2\pi}{\lambda}
+(x_i, y_i) = \left(R \cdot \cos\left(\frac{2\pi i}{N}\right), \; R \cdot \sin\left(\frac{2\pi i}{N}\right)\right), \quad i = 0, 1, \dots, N - 1
 \]</div>
-<p>Where:</p>
+<p>Each vertex emits a <strong>circular, radially symmetric wave</strong>, spreading out from its center.</p>
+<hr/>
+<h3 id="22-defining-wave-parameters">2.2 Defining Wave Parameters</h3>
+<p>Each wave is described by the following displacement function:</p>
+<div class="arithmatex">\[
+\eta_i(x, y, t) = \frac{A}{\sqrt{r_i}} \cdot \cos\left(k r_i - \omega t + \phi\right)
+\]</div>
+<p>where:</p>
 <ul>
-<li><span class="arithmatex">\(\lambda\)</span>: Wavelength — the distance between two successive points in phase (e.g., two adjacent crests).</li>
+<li><span class="arithmatex">\(\eta_i(x, y, t)\)</span> is the vertical displacement at point <span class="arithmatex">\((x, y)\)</span> and time <span class="arithmatex">\(t\)</span> due to the <span class="arithmatex">\(i\)</span>-th source</li>
+<li><span class="arithmatex">\(A\)</span> is the amplitude of the wave (constant for all sources)</li>
+<li><span class="arithmatex">\(r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}\)</span> is the distance from the <span class="arithmatex">\(i\)</span>-th source to the observation point</li>
+<li><span class="arithmatex">\(k = \dfrac{2\pi}{\lambda}\)</span> is the <strong>wave number</strong>, with <span class="arithmatex">\(\lambda\)</span> as the wavelength</li>
+<li><span class="arithmatex">\(\omega = 2\pi f\)</span> is the <strong>angular frequency</strong>, with <span class="arithmatex">\(f\)</span> as the temporal frequency</li>
+<li><span class="arithmatex">\(\phi\)</span> is the <strong>initial phase</strong> of the wave (same for all sources if coherent)</li>
 </ul>
-<h4 id="angular-frequency-omega"><strong>Angular Frequency (<span class="arithmatex">\(\omega\)</span>)</strong></h4>
-<p>The angular frequency is defined as:</p>
-<div class="arithmatex">\[
-\omega = 2\pi f
-\]</div>
-<p>Where:</p>
+<p>Assuming <strong>coherent sources</strong>, all waves share the same values of <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(\lambda\)</span>, <span class="arithmatex">\(f\)</span>, and <span class="arithmatex">\(\phi\)</span>.</p>
+<hr/>
+<h3 id="23-coherence-assumption">2.3 Coherence Assumption</h3>
+<p>For simplicity and physical realism:</p>
 <ul>
-<li><span class="arithmatex">\(f\)</span>: Frequency — the number of oscillations per second.</li>
+<li>All sources emit waves <strong>in phase</strong>: <span class="arithmatex">\(\phi_i = \phi\)</span> for all <span class="arithmatex">\(i\)</span></li>
+<li>All waves have the <strong>same frequency and wavelength</strong>: <span class="arithmatex">\(f_i = f\)</span>, <span class="arithmatex">\(\lambda_i = \lambda\)</span></li>
+<li>The medium is homogeneous and isotropic, allowing <strong>identical propagation speed</strong> for all waves</li>
 </ul>
-<h4 id="radial-distance-r"><strong>Radial Distance (<span class="arithmatex">\(r\)</span>)</strong></h4>
-<p>The distance <span class="arithmatex">\(r\)</span> is the Euclidean distance from the wave source (at point <span class="arithmatex">\(\vec{r}_0\)</span>) to the observation point <span class="arithmatex">\(\vec{r}\)</span>:</p>
-<div class="arithmatex">\[
-r = \|\vec{r} - \vec{r}_0\| = \sqrt{(x - x_0)^2 + (y - y_0)^2}
-\]</div>
-<h4 id="initial-phase-phi"><strong>Initial Phase (<span class="arithmatex">\(\phi\)</span>)</strong></h4>
-<p>The initial phase <span class="arithmatex">\(\phi\)</span> determines the wave's starting position at time <span class="arithmatex">\(t = 0\)</span>. It introduces a phase shift, affecting the position of the peaks and troughs.</p>
+<p>This assumption ensures that observed interference is purely due to <strong>path length differences</strong>, not source variability.</p>
 <hr/>
-<h3 id="summary-equation">Summary Equation</h3>
-<p>Combining all the above components, the complete expression for a <strong>circular wave</strong> emanating from a point source is:</p>
-<div class="arithmatex">\[
-\eta(\vec{r}, t) = A \cos\left( \frac{2\pi}{\lambda} r - 2\pi f t + \phi \right)
-\]</div>
-<p>or, equivalently:</p>
-<div class="arithmatex">\[
-\eta(\vec{r}, t) = A \cos(kr - \omega t + \phi)
-\]</div>
-<p>This equation will form the foundation for constructing more complex wave interference patterns when multiple sources are considered.</p>
+<h2 id="3-wave-equation-implementation">3. Wave Equation Implementation</h2>
+<p>With the geometry and wave parameters defined, we now formulate the explicit mathematical expression for the wave generated by each source.</p>
 <hr/>
-<h2 id="2-extension-to-multiple-wave-sources">2. Extension to Multiple Wave Sources</h2>
-<p>When multiple wave sources emit waves simultaneously, the <strong>net displacement</strong> of the water surface at any point is governed by the <strong>principle of superposition</strong>. According to this principle, the total disturbance at any location is the <strong>sum of the individual wave contributions</strong> from all sources.</p>
-<hr/>
-<h3 id="superposition-principle"><strong>Superposition Principle</strong></h3>
-<p>If there are <span class="arithmatex">\(N\)</span> point sources located at positions <span class="arithmatex">\(\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_N\)</span>, each generating a wave, the net displacement at position <span class="arithmatex">\(\vec{r}\)</span> and time <span class="arithmatex">\(t\)</span> is:</p>
+<h3 id="31-general-form-of-a-circular-wave">3.1 General Form of a Circular Wave</h3>
+<p>The displacement of the water surface caused by a <strong>single point source</strong> located at <span class="arithmatex">\((x_i, y_i)\)</span> is given by:</p>
 <div class="arithmatex">\[
-\eta_{\text{total}}(\vec{r}, t) = \sum_{n=1}^{N} A_n \cos(k r_n - \omega t + \phi_n)
+\eta_i(x, y, t) = \frac{A}{\sqrt{r_i}} \cdot \cos\left(k r_i - \omega t + \phi\right)
 \]</div>
-<p>Where:</p>
+<p>where:</p>
 <ul>
-<li><span class="arithmatex">\(A_n\)</span>: Amplitude of the <span class="arithmatex">\(n\)</span>-th source.</li>
-<li><span class="arithmatex">\(r_n = \|\vec{r} - \vec{r}_n\|\)</span>: Distance from the <span class="arithmatex">\(n\)</span>-th source to observation point.</li>
-<li><span class="arithmatex">\(\phi_n\)</span>: Initial phase of the <span class="arithmatex">\(n\)</span>-th source.</li>
-<li><span class="arithmatex">\(k\)</span>: Wave number (assumed common to all sources for same wavelength).</li>
-<li><span class="arithmatex">\(\omega\)</span>: Angular frequency (assumed common to all sources for same frequency).</li>
+<li><span class="arithmatex">\(\eta_i(x, y, t)\)</span>: surface displacement at point <span class="arithmatex">\((x, y)\)</span> and time <span class="arithmatex">\(t\)</span> due to the <span class="arithmatex">\(i\)</span>-th source</li>
+<li><span class="arithmatex">\(A\)</span>: wave amplitude</li>
+<li><span class="arithmatex">\(k = \dfrac{2\pi}{\lambda}\)</span>: wave number</li>
+<li><span class="arithmatex">\(\omega = 2\pi f\)</span>: angular frequency</li>
+<li><span class="arithmatex">\(\phi\)</span>: initial phase</li>
+<li><span class="arithmatex">\(r_i\)</span>: radial distance from source <span class="arithmatex">\(i\)</span> to point <span class="arithmatex">\((x, y)\)</span></li>
 </ul>
 <hr/>
-<h3 id="key-considerations"><strong>Key Considerations</strong></h3>
-<h4 id="1-number-of-sources"><strong>1. Number of Sources</strong></h4>
-<p>Let <span class="arithmatex">\(N\)</span> be the number of wave sources.</p>
-<ul>
-<li>Each source contributes a term to the total wave function.</li>
-<li>Interference becomes richer and more complex as <span class="arithmatex">\(N\)</span> increases.</li>
-</ul>
-<h4 id="2-source-locations"><strong>2. Source Locations</strong></h4>
-<p>Each source is defined by a 2D position vector:</p>
+<h3 id="32-distance-from-source-to-field-point">3.2 Distance from Source to Field Point</h3>
+<p>The radial distance <span class="arithmatex">\(r_i\)</span> from the <span class="arithmatex">\(i\)</span>-th source to an arbitrary point <span class="arithmatex">\((x, y)\)</span> on the water surface is:</p>
 <div class="arithmatex">\[
-\vec{r}_n = (x_n, y_n)
+r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}
 \]</div>
-<p>The radial distance to observation point <span class="arithmatex">\(\vec{r} = (x, y)\)</span> is:</p>
+<p>Substituting <span class="arithmatex">\(r_i\)</span> into the wave function:</p>
 <div class="arithmatex">\[
-r_n = \sqrt{(x - x_n)^2 + (y - y_n)^2}
+\eta_i(x, y, t) = \frac{A}{\sqrt{(x - x_i)^2 + (y - y_i)^2}} \cdot \cos\left(k \sqrt{(x - x_i)^2 + (y - y_i)^2} - \omega t + \phi\right)
 \]</div>
-<h4 id="3-phase-difference-between-sources"><strong>3. Phase Difference Between Sources</strong></h4>
-<p>Each source may have a unique initial phase <span class="arithmatex">\(\phi_n\)</span>, which introduces a <strong>phase difference</strong> between the waves. This phase difference can cause:</p>
+<p>This equation fully describes the spatiotemporal behavior of the wave from source <span class="arithmatex">\(i\)</span>.</p>
+<hr/>
+<h3 id="33-summary-of-parameters">3.3 Summary of Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(A\)</span></td>
+<td>Amplitude</td>
+<td>meters (m)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\lambda\)</span></td>
+<td>Wavelength</td>
+<td>meters (m)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f\)</span></td>
+<td>Frequency</td>
+<td>hertz (Hz)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(k\)</span></td>
+<td>Wave number, <span class="arithmatex">\(k = \dfrac{2\pi}{\lambda}\)</span></td>
+<td>radians/m</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\omega\)</span></td>
+<td>Angular frequency, <span class="arithmatex">\(\omega = 2\pi f\)</span></td>
+<td>radians/s</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\phi\)</span></td>
+<td>Initial phase</td>
+<td>radians</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r_i\)</span></td>
+<td>Distance from source to <span class="arithmatex">\((x, y)\)</span></td>
+<td>meters (m)</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="4-superposition-principle">4. Superposition Principle</h2>
+<p>In wave physics, the <strong>principle of superposition</strong> states that when multiple waves overlap in space, the resulting displacement at any point is the <strong>algebraic sum</strong> of the individual wave displacements at that point.</p>
+<hr/>
+<h3 id="41-total-wave-displacement">4.1 Total Wave Displacement</h3>
+<p>Given <span class="arithmatex">\(N\)</span> coherent point sources, each located at <span class="arithmatex">\((x_i, y_i)\)</span> and producing a wave described by:</p>
+<div class="arithmatex">\[
+\eta_i(x, y, t) = \frac{A}{\sqrt{(x - x_i)^2 + (y - y_i)^2}} \cdot \cos\left(k \sqrt{(x - x_i)^2 + (y - y_i)^2} - \omega t + \phi\right)
+\]</div>
+<p>The <strong>total surface displacement</strong> <span class="arithmatex">\(\eta_{\text{sum}}(x, y, t)\)</span> at point <span class="arithmatex">\((x, y)\)</span> and time <span class="arithmatex">\(t\)</span> is given by:</p>
+<div class="arithmatex">\[
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
+\]</div>
+<p>This summation must be computed <strong>pointwise</strong> across the surface domain of interest.</p>
+<hr/>
+<h3 id="42-physical-interpretation">4.2 Physical Interpretation</h3>
 <ul>
-<li><strong>Constructive interference</strong>: when phase difference leads to in-phase summation.</li>
-<li><strong>Destructive interference</strong>: when waves are out of phase by <span class="arithmatex">\(\pi\)</span> (or odd multiples).</li>
+<li>Where waves <strong>constructively interfere</strong> (peaks meet peaks or troughs meet troughs), the displacement magnitude increases.</li>
+<li>Where waves <strong>destructively interfere</strong> (peaks meet troughs), the displacement magnitude decreases or cancels out.</li>
+<li>The resulting interference pattern is a direct consequence of differences in the <strong>path lengths</strong> <span class="arithmatex">\(r_i\)</span> and the shared phase/frequency properties of the waves.</li>
 </ul>
 <hr/>
-<h3 id="two-source-interference-example"><strong>Two-Source Interference Example</strong></h3>
-<p>For two identical sources with equal amplitude <span class="arithmatex">\(A\)</span>, wavelength <span class="arithmatex">\(\lambda\)</span>, frequency <span class="arithmatex">\(f\)</span>, and no phase difference, the net wave at point <span class="arithmatex">\(\vec{r}\)</span> is:</p>
+<h3 id="43-time-dependency">4.3 Time Dependency</h3>
+<p>Although the full function <span class="arithmatex">\(\eta_{\text{sum}}(x, y, t)\)</span> evolves over time, many visual analyses are conducted by examining a <strong>snapshot in time</strong>, such as:</p>
 <div class="arithmatex">\[
-\eta_{\text{total}}(\vec{r}, t) = A \cos(k r_1 - \omega t) + A \cos(k r_2 - \omega t)
+t = 0 \quad \Rightarrow \quad \eta_{\text{sum}}(x, y, 0)
 \]</div>
-<p>Using the trigonometric identity:</p>
-<div class="arithmatex">\[
-\cos \alpha + \cos \beta = 2 \cos\left( \frac{\alpha + \beta}{2} \right) \cos\left( \frac{\alpha - \beta}{2} \right)
-\]</div>
-<p>We get:</p>
-<div class="arithmatex">\[
-\eta_{\text{total}}(\vec{r}, t) = 2A \cos\left( \frac{k(r_1 - r_2)}{2} \right) \cos\left( \frac{k(r_1 + r_2)}{2} - \omega t \right)
-\]</div>
-<p>This shows that the amplitude of the resulting wave is <strong>modulated</strong> by the path difference <span class="arithmatex">\((r_1 - r_2)\)</span>, producing <strong>interference fringes</strong> in space.</p>
+<p>This captures the spatial interference pattern formed at a specific moment and is useful for visualization and interpretation.</p>
 <hr/>
-<h3 id="summary"><strong>Summary</strong></h3>
+<h2 id="5-simulation-grid-and-animated-visualization-with-gif-export-and-inline-display">5. Simulation Grid and Animated Visualization (with GIF Export and Inline Display)</h2>
+<p>We simulate time-evolving wave interference patterns from multiple coherent point sources. For each configuration (1, 2, 3, and 5 sources), we generate:</p>
 <ul>
-<li>Multiple wave sources produce a <strong>net wave field</strong> through superposition.</li>
-<li>The pattern depends on:</li>
-<li>Relative positions of sources</li>
-<li>Phase differences</li>
-<li>Path length differences to the observation point</li>
-<li>The resulting interference patterns can exhibit <strong>regions of constructive and destructive interference</strong>, crucial in understanding wave phenomena like diffraction and coherence.</li>
+<li>A 2D animated contour plot</li>
+<li>A 3D animated surface plot</li>
 </ul>
+<p>Each animation is saved as a <code>.gif</code> and displayed inline using base64 encoding.</p>
+<hr/>
+<h3 id="51-setup-and-wave-function">5.1 Setup and Wave Function</h3>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from mpl_toolkits.mplot3d import Axes3D
+from IPython.display import HTML
+import base64
+
+# Wave parameters
+A = 1
+wavelength = 2
+k = 2 * np.pi / wavelength
+f = 1
+omega = 2 * np.pi * f
+phi = 0
+
+# Grid setup
+x = np.linspace(-10, 10, 200)
+y = np.linspace(-10, 10, 200)
+X, Y = np.meshgrid(x, y)
+
+# Wave superposition function
+def compute_eta(sources, t):
+    eta = np.zeros_like(X)
+    for (x0, y0) in sources:
+        R = np.sqrt((X - x0)**2 + (Y - y0)**2)
+        R[R == 0] = 1e-10
+        eta += A / np.sqrt(R) * np.cos(k * R - omega * t + phi)
+    return eta
+
+# Display helper
+def display_gif(gif_path):
+    with open(gif_path, 'rb') as f:
+        gif_data = f.read()
+    b64_gif = base64.b64encode(gif_data).decode('utf-8')
+    return HTML(f'&lt;img src="data:image/gif;base64,{b64_gif}"&gt;')
+````
+
+---
+
+### 5.2 One Source — 2D and 3D Animation
+
+```python
+# Source configuration
+sources = [(0, 0)]
+N = 1
+
+# 2D Animation
+fig, ax = plt.subplots()
+def update_2d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.contourf(X, Y, eta, levels=100, cmap='RdBu')
+    ax.set_title(f'{N} Source — t = {t:.2f}s')
+    ax.axis('equal')
+
+ani = animation.FuncAnimation(fig, update_2d, frames=60, interval=100)
+gif_path = f'interference_{N}_source_2D.gif'
+ani.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<pre><code class="language-python"># 3D Animation
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+def update_3d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.plot_surface(X, Y, eta, cmap='viridis', linewidth=0, antialiased=False)
+    ax.set_title(f'{N} Source — 3D t = {t:.2f}s')
+    ax.set_zlim(-2, 2)
+
+ani3d = animation.FuncAnimation(fig, update_3d, frames=60, interval=100)
+gif_path = f'interference_{N}_source_3D.gif'
+ani3d.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<hr/>
+<h3 id="53-two-sources-2d-and-3d-animation">5.3 Two Sources — 2D and 3D Animation</h3>
+<pre><code class="language-python">sources = [(-3, 0), (3, 0)]
+N = 2
+
+# 2D Animation
+fig, ax = plt.subplots()
+def update_2d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.contourf(X, Y, eta, levels=100, cmap='RdBu')
+    ax.set_title(f'{N} Sources — t = {t:.2f}s')
+    ax.axis('equal')
+
+ani = animation.FuncAnimation(fig, update_2d, frames=60, interval=100)
+gif_path = f'interference_{N}_sources_2D.gif'
+ani.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<pre><code class="language-python"># 3D Animation
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+def update_3d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.plot_surface(X, Y, eta, cmap='viridis', linewidth=0, antialiased=False)
+    ax.set_title(f'{N} Sources — 3D t = {t:.2f}s')
+    ax.set_zlim(-2, 2)
+
+ani3d = animation.FuncAnimation(fig, update_3d, frames=60, interval=100)
+gif_path = f'interference_{N}_sources_3D.gif'
+ani3d.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image-3.png"/></h2>
+<h3 id="54-three-sources-triangle-2d-and-3d-animation">5.4 Three Sources (Triangle) — 2D and 3D Animation</h3>
+<pre><code class="language-python">N = 3
+R_polygon = 5
+sources = [(R_polygon * np.cos(2*np.pi*i/N), R_polygon * np.sin(2*np.pi*i/N)) for i in range(N)]
+
+# 2D Animation
+fig, ax = plt.subplots()
+def update_2d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.contourf(X, Y, eta, levels=100, cmap='RdBu')
+    ax.set_title(f'{N} Sources — t = {t:.2f}s')
+    ax.axis('equal')
+
+ani = animation.FuncAnimation(fig, update_2d, frames=60, interval=100)
+gif_path = f'interference_{N}_sources_2D.gif'
+ani.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<pre><code class="language-python"># 3D Animation
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+def update_3d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.plot_surface(X, Y, eta, cmap='viridis', linewidth=0, antialiased=False)
+    ax.set_title(f'{N} Sources — 3D t = {t:.2f}s')
+    ax.set_zlim(-2, 2)
+
+ani3d = animation.FuncAnimation(fig, update_3d, frames=60, interval=100)
+gif_path = f'interference_{N}_sources_3D.gif'
+ani3d.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<h2 id="_2"><img alt="alt text" src="../image-5.png"/></h2>
+<h3 id="55-five-sources-pentagon-2d-and-3d-animation">5.5 Five Sources (Pentagon) — 2D and 3D Animation</h3>
+<pre><code class="language-python">N = 5
+R_polygon = 5
+sources = [(R_polygon * np.cos(2*np.pi*i/N), R_polygon * np.sin(2*np.pi*i/N)) for i in range(N)]
+
+# 2D Animation
+fig, ax = plt.subplots()
+def update_2d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.contourf(X, Y, eta, levels=100, cmap='RdBu')
+    ax.set_title(f'{N} Sources — t = {t:.2f}s')
+    ax.axis('equal')
+
+ani = animation.FuncAnimation(fig, update_2d, frames=60, interval=100)
+gif_path = f'interference_{N}_sources_2D.gif'
+ani.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<p><img alt="alt text" src="../image-6.png"/></p>
+<pre><code class="language-python"># 3D Animation
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+def update_3d(frame):
+    t = frame * 0.1
+    ax.clear()
+    eta = compute_eta(sources, t)
+    ax.plot_surface(X, Y, eta, cmap='viridis', linewidth=0, antialiased=False)
+    ax.set_title(f'{N} Sources — 3D t = {t:.2f}s')
+    ax.set_zlim(-2, 2)
+
+ani3d = animation.FuncAnimation(fig, update_3d, frames=60, interval=100)
+gif_path = f'interference_{N}_sources_3D.gif'
+ani3d.save(gif_path, writer='pillow', fps=10)
+display_gif(gif_path)
+</code></pre>
+<h2 id="_3"><img alt="alt text" src="../image-7.png"/></h2>
+<h2 id="6-analysis-and-explanation">6. Analysis and Explanation</h2>
+<p>The interference patterns formed by multiple wave sources are deeply influenced by the <strong>geometric symmetry</strong> of their arrangement and the fundamental <strong>principles of wave behavior</strong>. In this section, we analyze the resulting patterns and interpret their physical significance.</p>
+<hr/>
+<h3 id="61-interpreting-patterns-based-on-geometry">6.1 Interpreting Patterns Based on Geometry</h3>
+<p>The configuration of wave sources at the vertices of a regular polygon introduces specific spatial symmetries into the interference pattern:</p>
+<ul>
+<li>For a polygon with <span class="arithmatex">\(N\)</span> sides, there is an <strong><span class="arithmatex">\(N\)</span>-fold rotational symmetry</strong> in the interference pattern.</li>
+<li>The interference pattern exhibits <strong>periodic structures</strong> and <strong>nodal lines</strong> (regions of destructive interference) that radiate outward or form closed loops.</li>
+<li>The <strong>distance between sources</strong> and the <strong>radius <span class="arithmatex">\(R\)</span></strong> of the polygon directly affect the density and spacing of the interference fringes.</li>
+</ul>
+<h4 id="examples">Examples:</h4>
+<ul>
+<li><strong>Triangle (<span class="arithmatex">\(N=3\)</span>):</strong> Produces a 3-fold symmetry pattern with prominent lobes spaced at <span class="arithmatex">\(120^\circ\)</span> intervals.</li>
+<li><strong>Square (<span class="arithmatex">\(N=4\)</span>):</strong> Results in a cross-shaped interference pattern with symmetry along both <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> axes.</li>
+<li><strong>Pentagon (<span class="arithmatex">\(N=5\)</span>):</strong> Creates a more intricate pattern with fivefold symmetry, exhibiting complex combinations of constructive and destructive regions.</li>
+</ul>
+<p>As <span class="arithmatex">\(N\)</span> increases, the pattern approaches <strong>circular symmetry</strong>, similar to a ring of sources (e.g., a circular aperture in wave optics).</p>
+<hr/>
+<h3 id="62-explaining-the-physical-meaning">6.2 Explaining the Physical Meaning</h3>
+<p>The resulting interference patterns arise from the <strong>principle of linear superposition</strong>:</p>
+<div class="arithmatex">\[
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
+\]</div>
+<p>Where each <span class="arithmatex">\(\eta_i\)</span> represents the wave contribution from source <span class="arithmatex">\(i\)</span>. The total displacement at a point <span class="arithmatex">\((x, y)\)</span> is the algebraic sum of all wave contributions.</p>
+<h4 id="key-physical-phenomena">Key Physical Phenomena:</h4>
+<ul>
+<li>
+<p><strong>Constructive Interference:</strong><br/>
+  Occurs when waves arrive <strong>in phase</strong> (their peaks align), producing a local maximum in displacement.</p>
+</li>
+<li>
+<p><strong>Destructive Interference:</strong><br/>
+  Occurs when waves arrive <strong>out of phase</strong> (peak meets trough), resulting in cancellation or minimum displacement.</p>
+</li>
+<li>
+<p><strong>Path Difference and Phase Relationship:</strong><br/>
+  The interference at any point depends on the relative <strong>path lengths <span class="arithmatex">\(r_i\)</span></strong> from each source to that point. Equal path lengths lead to constructive interference, while differences of <span class="arithmatex">\(\frac{\lambda}{2}, \frac{3\lambda}{2}, \dots\)</span> cause destructive interference.</p>
+</li>
+</ul>
+<h4 id="wave-coherence">Wave Coherence:</h4>
+<p>Because all sources are assumed <strong>coherent</strong> (same frequency <span class="arithmatex">\(f\)</span>, wavelength <span class="arithmatex">\(\lambda\)</span>, amplitude <span class="arithmatex">\(A\)</span>, and phase <span class="arithmatex">\(\phi\)</span>), the <strong>interference pattern is stable over time</strong>, simply oscillating with frequency <span class="arithmatex">\(f\)</span>.</p>
+<h4 id="time-dependence">Time Dependence:</h4>
+<p>Though the wave field <span class="arithmatex">\(\eta(x, y, t)\)</span> varies in time, the <strong>spatial structure of the interference pattern</strong> is defined by the fixed positions of the sources and the wavelength <span class="arithmatex">\(\lambda\)</span>. At any instant <span class="arithmatex">\(t\)</span>, the same nodal and antinodal structures appear, merely oscillating in magnitude.</p>
+<hr/>
+<h3 id="63-summary-of-observations">6.3 Summary of Observations</h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Dominant Features</th>
+<th>Symmetry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Source</td>
+<td>Radial ripples</td>
+<td>Circular</td>
+</tr>
+<tr>
+<td>2 Sources</td>
+<td>Stripes, fringes</td>
+<td>Mirror symmetry</td>
+</tr>
+<tr>
+<td>3 Sources</td>
+<td>Radial lobes</td>
+<td>3-fold</td>
+</tr>
+<tr>
+<td>4 Sources</td>
+<td>Grid-like nodes</td>
+<td>4-fold (cross)</td>
+</tr>
+<tr>
+<td>5 Sources</td>
+<td>Starburst pattern</td>
+<td>5-fold</td>
+</tr>
+</tbody>
+</table>
+<p>These observations illustrate the direct link between <strong>geometry</strong>, <strong>symmetry</strong>, and <strong>interference phenomena</strong> in wave physics.</p>
 <hr/>
 </div>
 </div><footer>
