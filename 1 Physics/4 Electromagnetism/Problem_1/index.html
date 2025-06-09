@@ -172,6 +172,398 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="1-conceptual-foundation">1. Conceptual Foundation</h1>
+<h2 id="lorentz-force-the-fundamental-interaction">Lorentz Force: The Fundamental Interaction</h2>
+<p>The <strong>Lorentz Force</strong> describes the force experienced by a charged particle moving in electric and magnetic fields. It is given by:</p>
+<div class="arithmatex">\[
+\vec{F} = q\vec{E} + q\vec{v} \times \vec{B}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(q\)</span> is the electric charge of the particle
+- <span class="arithmatex">\(\vec{E}\)</span> is the electric field vector
+- <span class="arithmatex">\(\vec{v}\)</span> is the velocity vector of the particle
+- <span class="arithmatex">\(\vec{B}\)</span> is the magnetic field vector
+- <span class="arithmatex">\(\times\)</span> denotes the <strong>vector cross product</strong></p>
+<h3 id="electric-and-magnetic-components">Electric and Magnetic Components</h3>
+<p>The Lorentz force can be split into two distinct contributions:</p>
+<ol>
+<li>
+<p><strong>Electric Force:</strong>
+   $$
+   \vec{F}_E = q\vec{E}
+   $$
+   This component acts <strong>regardless of the particle's motion</strong>, and always points in the direction of the electric field if <span class="arithmatex">\(q &gt; 0\)</span>.</p>
+</li>
+<li>
+<p><strong>Magnetic Force:</strong>
+   $$
+   \vec{F}_B = q\vec{v} \times \vec{B}
+   $$
+   This force depends on the particle's <strong>velocity</strong> and is always <strong>perpendicular</strong> to both <span class="arithmatex">\(\vec{v}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>. Hence, it does no work and only alters the direction of motion.</p>
+</li>
+</ol>
+<h2 id="equations-of-motion-for-charged-particles">Equations of Motion for Charged Particles</h2>
+<p>We now derive the equations of motion by applying <strong>Newton's Second Law</strong>:</p>
+<div class="arithmatex">\[
+m\frac{d\vec{v}}{dt} = \vec{F} = q\vec{E} + q\vec{v} \times \vec{B}
+\]</div>
+<p>Assume a constant magnetic field <span class="arithmatex">\(\vec{B} = B\hat{z}\)</span> and no electric field <span class="arithmatex">\((\vec{E} = 0)\)</span> for simplicity. Then:</p>
+<div class="arithmatex">\[
+m\frac{d\vec{v}}{dt} = q\vec{v} \times B\hat{z}
+\]</div>
+<p>Let <span class="arithmatex">\(\vec{v} = v_x\hat{x} + v_y\hat{y} + v_z\hat{z}\)</span>, then the cross product is:</p>
+<div class="arithmatex">\[
+\vec{v} \times \vec{B} = 
+\begin{vmatrix}
+\hat{x} &amp; \hat{y} &amp; \hat{z} \\
+v_x &amp; v_y &amp; v_z \\
+0 &amp; 0 &amp; B \\
+\end{vmatrix}
+= (v_y B)\hat{x} - (v_x B)\hat{y}
+\]</div>
+<p>Substituting into the equation:</p>
+<div class="arithmatex">\[
+m\frac{d\vec{v}}{dt} = qB(v_y\hat{x} - v_x\hat{y})
+\]</div>
+<p>This yields the system of ODEs:</p>
+<div class="arithmatex">\[
+\begin{cases}
+\frac{dv_x}{dt} = \frac{qB}{m}v_y \\
+\frac{dv_y}{dt} = -\frac{qB}{m}v_x \\
+\frac{dv_z}{dt} = 0
+\end{cases}
+\]</div>
+<p>Define the <strong>cyclotron frequency</strong> as:</p>
+<div class="arithmatex">\[
+\omega_c = \frac{qB}{m}
+\]</div>
+<p>Then the system becomes:</p>
+<div class="arithmatex">\[
+\begin{cases}
+\frac{dv_x}{dt} = \omega_c v_y \\
+\frac{dv_y}{dt} = -\omega_c v_x \\
+\frac{dv_z}{dt} = 0
+\end{cases}
+\]</div>
+<p>Solving the first two coupled differential equations yields circular motion:</p>
+<div class="arithmatex">\[
+v_x(t) = v_0 \cos(\omega_c t) \\
+v_y(t) = v_0 \sin(\omega_c t)
+\]</div>
+<p>Integrating again for position:</p>
+<div class="arithmatex">\[
+x(t) = \frac{v_0}{\omega_c} \sin(\omega_c t) \\
+y(t) = \frac{v_0}{\omega_c} [1 - \cos(\omega_c t)]
+\]</div>
+<p>This represents <strong>circular motion</strong> in the <span class="arithmatex">\(xy\)</span>-plane, with radius:</p>
+<div class="arithmatex">\[
+r = \frac{mv_0}{qB}
+\]</div>
+<p>and <strong>uniform motion</strong> in the <span class="arithmatex">\(z\)</span>-direction (if any initial <span class="arithmatex">\(v_z\)</span> is present):</p>
+<div class="arithmatex">\[
+z(t) = v_z t + z_0
+\]</div>
+<p>Thus, in a uniform magnetic field, a charged particle follows a <strong>helical trajectory</strong>.</p>
+<hr/>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>The <strong>Lorentz Force</strong> is the sum of electric and magnetic effects on a charged particle.</li>
+<li>The <strong>electric component</strong> accelerates the particle linearly.</li>
+<li>The <strong>magnetic component</strong> curves the path without changing speed.</li>
+<li>In a uniform magnetic field, the particle undergoes <strong>circular or helical motion</strong> with frequency <span class="arithmatex">\(\omega_c = \frac{qB}{m}\)</span>.</li>
+</ul>
+<h1 id="2-application-contexts">2. Application Contexts</h1>
+<p>The <strong>Lorentz Force</strong> plays a fundamental role in numerous real-world technologies and scientific instruments. Understanding its applications provides insights into how electromagnetic theory underpins modern engineering, physics, and space science.</p>
+<h2 id="21-particle-accelerators">2.1 Particle Accelerators</h2>
+<h3 id="cyclotrons">Cyclotrons</h3>
+<p>In a <strong>cyclotron</strong>, charged particles are accelerated using a <strong>perpendicular magnetic field</strong> and an <strong>alternating electric field</strong>. The magnetic field causes particles to spiral outward as their velocity increases.</p>
+<ul>
+<li>The magnetic force keeps the particles in circular paths:
+  $$
+  F_B = qvB = \frac{mv^2}{r}
+  $$</li>
+<li>Rearranging gives the cyclotron radius:
+  $$
+  r = \frac{mv}{qB}
+  $$</li>
+<li>The angular frequency (independent of velocity) is:
+  $$
+  \omega = \frac{qB}{m}
+  $$</li>
+</ul>
+<p>This <strong>frequency independence</strong> makes cyclotrons efficient for accelerating light charged particles.</p>
+<h3 id="synchrotrons">Synchrotrons</h3>
+<p>In a <strong>synchrotron</strong>, particles move in a fixed circular path with <strong>varying magnetic field strength</strong> and <strong>synchronized radio-frequency (RF) electric fields</strong>.</p>
+<ul>
+<li>To keep particles in a constant-radius orbit as velocity increases:
+  $$
+  B(t) = \frac{mv(t)}{qr}
+  $$</li>
+<li>The magnetic field increases with time to match the increasing momentum.</li>
+</ul>
+<p>Relativistic effects are crucial at high energies, where:</p>
+<div class="arithmatex">\[
+p = \gamma mv \quad \text{and} \quad \gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}
+\]</div>
+<h2 id="22-mass-spectrometers">2.2 Mass Spectrometers</h2>
+<p><strong>Mass spectrometers</strong> use the Lorentz force to separate ions based on their <strong>mass-to-charge ratio</strong>.</p>
+<ul>
+<li>Ions enter a region with uniform <span class="arithmatex">\(\vec{B}\)</span> and follow circular paths:
+  $$
+  r = \frac{mv}{qB}
+  $$</li>
+<li>Solving for mass-to-charge ratio:
+  $$
+  \frac{m}{q} = \frac{rB}{v}
+  $$</li>
+</ul>
+<p>Velocity is often selected using a <strong>velocity selector</strong> (crossed <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> fields):</p>
+<div class="arithmatex">\[
+qE = qvB \Rightarrow v = \frac{E}{B}
+\]</div>
+<p>This enables precise mass discrimination in analytical chemistry and isotope analysis.</p>
+<h2 id="23-plasma-confinement-tokamaks">2.3 Plasma Confinement (Tokamaks)</h2>
+<p>In <strong>fusion reactors</strong> like <strong>tokamaks</strong>, plasma must be confined using <strong>magnetic fields</strong> due to its high temperature and conductivity.</p>
+<ul>
+<li>Charged particles spiral around magnetic field lines due to:
+  $$
+  \vec{F} = q\vec{v} \times \vec{B}
+  $$</li>
+<li>
+<p>The combination of toroidal (around a donut) and poloidal (around the cross-section) magnetic fields creates <strong>helical paths</strong>, confining particles in a stable configuration.</p>
+</li>
+<li>
+<p><strong>Magnetic mirrors</strong> and <strong>magnetic bottle effects</strong> arise from inhomogeneous fields:
+  $$
+  \mu = \frac{mv_\perp^2}{2B} = \text{constant (adiabatic invariant)}
+  $$</p>
+</li>
+</ul>
+<p>Confinement depends on reducing cross-field diffusion and instabilities.</p>
+<h2 id="24-cosmic-ray-trajectories">2.4 Cosmic Ray Trajectories</h2>
+<p>Charged <strong>cosmic rays</strong> interact with the interstellar and interplanetary magnetic fields as they travel through space.</p>
+<ul>
+<li>Their trajectories are deflected by the Lorentz force:
+  $$
+  \vec{F} = q\vec{v} \times \vec{B}
+  $$</li>
+<li>
+<p>This causes <strong>spiraling or helical paths</strong>, which complicates tracing cosmic rays back to their origin.</p>
+</li>
+<li>
+<p>High-energy cosmic rays can penetrate Earth’s magnetic field depending on the <strong>rigidity</strong>:
+  $$
+  R = \frac{pc}{q}
+  $$</p>
+</li>
+</ul>
+<p>Only cosmic rays with high enough <span class="arithmatex">\(R\)</span> can reach Earth's surface, creating <strong>geomagnetic shielding</strong>.</p>
+<h2 id="25-cathode-ray-tubes-crts">2.5 Cathode Ray Tubes (CRTs)</h2>
+<p>In <strong>CRTs</strong> (used in old televisions and oscilloscopes), electron beams are directed and deflected using electric and magnetic fields.</p>
+<ul>
+<li>The electrons are first accelerated by an electric potential <span class="arithmatex">\(V\)</span>:
+  $$
+  \frac{1}{2}mv^2 = qV \Rightarrow v = \sqrt{\frac{2qV}{m}}
+  $$</li>
+<li>Then deflected by perpendicular electric or magnetic fields:
+  $$
+  F = q\vec{v} \times \vec{B}
+  $$</li>
+</ul>
+<p>This allows precise positioning of the beam on the screen for image or waveform rendering.</p>
+<hr/>
+<h2 id="summary-of-applications">Summary of Applications</h2>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Role of Lorentz Force</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cyclotron</td>
+<td>Circular acceleration using magnetic fields</td>
+</tr>
+<tr>
+<td>Synchrotron</td>
+<td>Relativistic beam confinement with dynamic fields</td>
+</tr>
+<tr>
+<td>Mass Spectrometer</td>
+<td>Mass separation via circular motion in <span class="arithmatex">\(\vec{B}\)</span></td>
+</tr>
+<tr>
+<td>Tokamak (Plasma)</td>
+<td>Helical confinement of high-energy ions</td>
+</tr>
+<tr>
+<td>Cosmic Rays</td>
+<td>Trajectory bending in interplanetary magnetic fields</td>
+</tr>
+<tr>
+<td>Cathode Ray Tubes</td>
+<td>Electron beam steering for display and measurement</td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-simulation-components">3. Simulation Components</h1>
+<p>Simulating the motion of charged particles under the Lorentz force is essential for understanding complex electromagnetic systems. Accurate simulations require careful selection of numerical methods, time discretization, and physical configurations.</p>
+<h2 id="31-numerical-integration">3.1 Numerical Integration</h2>
+<p>The equation of motion for a charged particle is derived from the Lorentz force law:</p>
+<div class="arithmatex">\[
+m\frac{d\vec{v}}{dt} = q\vec{E} + q\vec{v} \times \vec{B}
+\]</div>
+<p>Coupled with:</p>
+<div class="arithmatex">\[
+\frac{d\vec{r}}{dt} = \vec{v}
+\]</div>
+<p>This forms a <strong>second-order system</strong> that can be solved numerically using <strong>initial value problem solvers</strong>.</p>
+<h3 id="euler-method">Euler Method</h3>
+<p>The <strong>Euler method</strong> is the simplest integration scheme:</p>
+<div class="arithmatex">\[
+\vec{v}_{n+1} = \vec{v}_n + \Delta t \cdot \frac{q}{m} \left( \vec{E}_n + \vec{v}_n \times \vec{B}_n \right)
+\]</div>
+<div class="arithmatex">\[
+\vec{r}_{n+1} = \vec{r}_n + \Delta t \cdot \vec{v}_n
+\]</div>
+<ul>
+<li>First-order accurate</li>
+<li>Computationally inexpensive</li>
+<li>Low stability for stiff problems</li>
+</ul>
+<h3 id="runge-kutta-4th-order-rk4">Runge-Kutta 4th Order (RK4)</h3>
+<p>A higher-order method that significantly improves accuracy and stability:</p>
+<p>Given a system:</p>
+<div class="arithmatex">\[
+\frac{d\vec{y}}{dt} = \vec{f}(t, \vec{y})
+\]</div>
+<p>The RK4 updates are:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+k_1 &amp;= \vec{f}(t_n, \vec{y}_n) \\
+k_2 &amp;= \vec{f}\left(t_n + \frac{\Delta t}{2}, \vec{y}_n + \frac{\Delta t}{2}k_1\right) \\
+k_3 &amp;= \vec{f}\left(t_n + \frac{\Delta t}{2}, \vec{y}_n + \frac{\Delta t}{2}k_2\right) \\
+k_4 &amp;= \vec{f}(t_n + \Delta t, \vec{y}_n + \Delta t k_3) \\
+\vec{y}_{n+1} &amp;= \vec{y}_n + \frac{\Delta t}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+\end{aligned}
+\]</div>
+<ul>
+<li>Fourth-order accuracy</li>
+<li>Stable for a wider range of time steps</li>
+<li>Widely used in plasma and space simulations</li>
+</ul>
+<h2 id="32-time-stepping">3.2 Time Stepping</h2>
+<p>The <strong>time step <span class="arithmatex">\(\Delta t\)</span></strong> is crucial for both <strong>stability</strong> and <strong>accuracy</strong>.</p>
+<h3 id="cfl-like-condition-heuristic-for-charged-particles">CFL-Like Condition (heuristic for charged particles):</h3>
+<div class="arithmatex">\[
+\Delta t \ll \frac{1}{\omega_c} = \frac{m}{qB}
+\]</div>
+<p>Where <span class="arithmatex">\(\omega_c\)</span> is the <strong>cyclotron frequency</strong>. Choosing <span class="arithmatex">\(\Delta t\)</span> too large can lead to:</p>
+<ul>
+<li>Artificial energy gain/loss</li>
+<li>Incorrect phase trajectories</li>
+<li>Numerical instability</li>
+</ul>
+<p><strong>Adaptive time-stepping</strong> may be used for fields with strong spatial or temporal variations.</p>
+<h2 id="33-simulation-scenarios">3.3 Simulation Scenarios</h2>
+<h3 id="1-uniform-magnetic-field-only-vecb-ne-0-vece-0">1. Uniform Magnetic Field Only (<span class="arithmatex">\(\vec{B} \ne 0\)</span>, <span class="arithmatex">\(\vec{E} = 0\)</span>)</h3>
+<ul>
+<li>Motion is <strong>circular or helical</strong>, depending on initial velocity vector</li>
+<li>Radius: <span class="arithmatex">\(r = \frac{mv_\perp}{qB}\)</span></li>
+<li>Angular frequency: <span class="arithmatex">\(\omega_c = \frac{qB}{m}\)</span></li>
+<li><span class="arithmatex">\(v_\parallel\)</span> remains constant ⇒ helical trajectory</li>
+</ul>
+<h3 id="2-uniform-electric-field-only-vece-ne-0-vecb-0">2. Uniform Electric Field Only (<span class="arithmatex">\(\vec{E} \ne 0\)</span>, <span class="arithmatex">\(\vec{B} = 0\)</span>)</h3>
+<ul>
+<li>Motion is <strong>uniform acceleration</strong>:
+  $$
+  \vec{a} = \frac{q\vec{E}}{m}
+  $$</li>
+<li>Velocity:
+  $$
+  \vec{v}(t) = \vec{v}_0 + \frac{q\vec{E}}{m}t
+  $$</li>
+<li>Position:
+  $$
+  \vec{r}(t) = \vec{r}_0 + \vec{v}_0 t + \frac{1}{2} \frac{q\vec{E}}{m}t^2
+  $$</li>
+</ul>
+<h3 id="3-combined-vece-and-vecb-fields">3. Combined <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> Fields</h3>
+<h4 id="a-parallel-fields-vece-parallel-vecb">(a) Parallel Fields: <span class="arithmatex">\(\vec{E} \parallel \vec{B}\)</span></h4>
+<ul>
+<li>Motion is a <strong>superposition</strong>:</li>
+<li>Acceleration along field lines (due to <span class="arithmatex">\(\vec{E}\)</span>)</li>
+<li>Spiral motion around <span class="arithmatex">\(\vec{B}\)</span> lines</li>
+</ul>
+<h4 id="b-crossed-fields-vece-perp-vecb">(b) Crossed Fields: <span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span></h4>
+<ul>
+<li>Results in <strong>E × B drift</strong>:
+  $$
+  \vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}
+  $$</li>
+<li>Net trajectory: <strong>circular motion + constant drift velocity</strong></li>
+</ul>
+<h3 id="4-non-uniform-or-time-varying-fields-advanced">4. Non-uniform or Time-Varying Fields <em>(Advanced)</em></h3>
+<ul>
+<li>For spatial variation:
+  $$
+  \vec{B} = \vec{B}(\vec{r}), \quad \vec{E} = \vec{E}(\vec{r})
+  $$</li>
+<li>For time variation:
+  $$
+  \vec{B} = \vec{B}(t), \quad \vec{E} = \vec{E}(t)
+  $$</li>
+<li>Requires:</li>
+<li>Interpolation techniques (if fields are grid-defined)</li>
+<li>High-resolution time-stepping</li>
+<li>Possibly implicit or symplectic integrators for long-term stability</li>
+</ul>
+<p>These scenarios are key to advanced plasma physics, magnetic reconnection modeling, and spacecraft trajectory prediction.</p>
+<hr/>
+<h2 id="summary_1">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Key Concept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Euler Method</td>
+<td>Simple but unstable for rapid dynamics (1st-order)</td>
+</tr>
+<tr>
+<td>RK4</td>
+<td>Accurate, stable, widely used (4th-order)</td>
+</tr>
+<tr>
+<td>Time Step</td>
+<td>Must resolve cyclotron motion; <span class="arithmatex">\(\Delta t \ll \frac{1}{\omega_c}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\vec{B}\)</span> only</td>
+<td>Circular/helical motion</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\vec{E}\)</span> only</td>
+<td>Linear acceleration</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\vec{E} \parallel \vec{B}\)</span></td>
+<td>Helical motion with acceleration along field lines</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span></td>
+<td>Drift motion; constant perpendicular velocity</td>
+</tr>
+<tr>
+<td>Varying Fields</td>
+<td>Requires advanced solvers and high-fidelity discretization</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
