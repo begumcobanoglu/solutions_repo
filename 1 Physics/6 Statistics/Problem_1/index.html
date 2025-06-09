@@ -84,6 +84,72 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#uniform-distribution">📘 Uniform Distribution</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exponential-distribution">📘 Exponential Distribution</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#binomial-distribution">📘 Binomial Distribution</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-plan">🔢 Simulation Plan</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-perform-sampling-compute-sample-means">2. Perform Sampling &amp; Compute Sample Means</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#sampling-strategy">🧮 Sampling Strategy</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#iterative-sampling-process">🔁 Iterative Sampling Process</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#theoretical-expectation">📈 Theoretical Expectation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#data-collection-summary">💾 Data Collection Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-visualize-sampling-distributions">3. Visualize Sampling Distributions</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#objectives">🎯 Objectives</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#theoretical-background">📐 Theoretical Background</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#simulation-parameters">🧪 Simulation Parameters</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#python-code-all-sampling-distributions-in-a-single-figure">📊 Python Code: All Sampling Distributions in a Single Figure</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#interpretation">🔍 Interpretation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-analyze-convergence-behavior">4. Analyze Convergence Behavior</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#rate-of-convergence-toward-normality">📈 Rate of Convergence Toward Normality</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#influence-of-original-distribution-shape">🧭 Influence of Original Distribution Shape</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#role-of-variance-in-spread-of-sample-means">📏 Role of Variance in Spread of Sample Means</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#empirical-indicators-of-convergence">🔍 Empirical Indicators of Convergence</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">📌 Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-discuss-practical-applications">5. Discuss Practical Applications</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-estimating-population-means-from-samples">🧪 1. Estimating Population Means from Samples</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-monitoring-quality-in-production-systems">🏭 2. Monitoring Quality in Production Systems</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-risk-and-uncertainty-in-financial-modeling">💹 3. Risk and Uncertainty in Financial Modeling</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#broader-perspective">🧠 Broader Perspective</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">📌 Conclusion</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -172,210 +238,364 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<h1 id="1-setup-and-preparation">1. Setup and Preparation</h1>
-<h2 id="objective">Objective</h2>
-<p>The objective of this study is to <strong>empirically validate</strong> the Central Limit Theorem (CLT) through simulation. The CLT asserts that, given a sufficiently large sample size <span class="arithmatex">\(n\)</span>, the distribution of the sample mean <span class="arithmatex">\(\bar{X}\)</span> will approximate a normal distribution, regardless of the shape of the population distribution, provided the population has finite mean <span class="arithmatex">\(\mu\)</span> and finite variance <span class="arithmatex">\(\sigma^2\)</span>.</p>
-<p>Formally:</p>
-<div class="arithmatex">\[
-\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i \xrightarrow{d} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \quad \text{as} \quad n \to \infty
-\]</div>
-<p>where:</p>
-<ul>
-<li><span class="arithmatex">\(X_i\)</span> are i.i.d. random variables with mean <span class="arithmatex">\(\mu\)</span> and variance <span class="arithmatex">\(\sigma^2\)</span></li>
-<li><span class="arithmatex">\(\bar{X}_n\)</span> is the sample mean</li>
-<li><span class="arithmatex">\(\xrightarrow{d}\)</span> denotes convergence in distribution</li>
-</ul>
-<p>The study aims to demonstrate this convergence by simulating various population distributions and observing the behavior of the sample mean.</p>
-<hr/>
-<h2 id="scope-of-simulation">Scope of Simulation</h2>
-<p>This study will involve:</p>
-<ol>
-<li>
-<p>Constructing large synthetic populations from known distributions:</p>
-<ul>
-<li>Uniform</li>
-<li>Exponential</li>
-<li>Binomial</li>
-</ul>
-</li>
-<li>
-<p>Drawing multiple random samples of various sizes (e.g., <span class="arithmatex">\(n = 5, 10, 30, 50\)</span>)</p>
-</li>
-<li>
-<p>Computing the sample means:
-   $$
-   \bar{X}<em>n = \frac{1}{n} \sum</em>{i=1}^n X_i
-   $$</p>
-</li>
-<li>
-<p>Analyzing the distribution of these sample means across different sample sizes and original distributions.</p>
-</li>
-</ol>
-<hr/>
-<h2 id="programming-environment">Programming Environment</h2>
-<p>To conduct this simulation study, we will use <strong>Python</strong> due to its extensive support for scientific computing and data visualization. The following libraries will be essential:</p>
-<ul>
-<li><code>NumPy</code>: For random sampling and numerical operations</li>
-<li><code>Matplotlib</code>: For basic plotting</li>
-<li><code>Seaborn</code>: For enhanced statistical visualizations</li>
-</ul>
-<h3 id="required-python-libraries">Required Python Libraries</h3>
-<p>```python
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns</p>
-<h1 id="2-population-distribution-generation">2. Population Distribution Generation</h1>
-<h2 id="purpose">Purpose</h2>
-<p>To explore the Central Limit Theorem (CLT), we first need to generate <strong>synthetic populations</strong> that serve as the origin of samples. These populations will be drawn from three statistically distinct distributions:</p>
+<p>In this section, we explore the foundational population distributions that will be used to demonstrate the Central Limit Theorem (CLT). The three chosen distributions are:</p>
 <ul>
 <li><strong>Uniform Distribution</strong></li>
 <li><strong>Exponential Distribution</strong></li>
 <li><strong>Binomial Distribution</strong></li>
 </ul>
-<p>Each of these will highlight different characteristics (e.g., skewness, discreteness) that allow us to study the robustness of the CLT.</p>
+<p>A synthetic population of size <span class="arithmatex">\(N = 10{,}000\)</span> will be generated for each distribution using random number generation techniques.</p>
 <hr/>
-<h2 id="21-uniform-distribution">2.1 Uniform Distribution</h2>
-<h3 id="definition">Definition</h3>
-<p>A continuous distribution with constant probability over an interval <span class="arithmatex">\([a, b]\)</span>:</p>
-<div class="arithmatex">\[
-X \sim \text{Uniform}(a, b)
-\]</div>
-<h3 id="probability-density-function-pdf">Probability Density Function (PDF)</h3>
+<h3 id="uniform-distribution">📘 Uniform Distribution</h3>
+<p>The continuous uniform distribution over the interval <span class="arithmatex">\([a, b]\)</span> is defined by the probability density function (PDF):</p>
 <div class="arithmatex">\[
 f(x) = 
 \begin{cases}
-\frac{1}{b - a} &amp; \text{for } x \in [a, b] \\
+\frac{1}{b - a} &amp; \text{for } a \le x \le b \\
 0 &amp; \text{otherwise}
 \end{cases}
 \]</div>
-<h3 id="statistical-properties">Statistical Properties</h3>
-<ul>
-<li>Mean: <span class="arithmatex">\(\mathbb{E}[X] = \frac{a + b}{2}\)</span></li>
-<li>Variance: <span class="arithmatex">\(\text{Var}(X) = \frac{(b - a)^2}{12}\)</span></li>
-</ul>
-<h3 id="example-parameters">Example Parameters</h3>
-<ul>
-<li><span class="arithmatex">\(a = 0\)</span>, <span class="arithmatex">\(b = 10\)</span></li>
-<li>Hence, <span class="arithmatex">\(\mu = 5\)</span>, <span class="arithmatex">\(\sigma^2 = \frac{100}{12} \approx 8.33\)</span></li>
-</ul>
-<hr/>
-<h2 id="22-exponential-distribution">2.2 Exponential Distribution</h2>
-<h3 id="definition_1">Definition</h3>
-<p>A continuous distribution often used to model time until an event (e.g., failure time, interarrival time):</p>
+<p>For simulation purposes, we choose:
+- <span class="arithmatex">\(a = 0\)</span>
+- <span class="arithmatex">\(b = 1\)</span></p>
+<p>So:</p>
 <div class="arithmatex">\[
-X \sim \text{Exponential}(\lambda)
+f(x) = 1 \quad \text{for } 0 \le x \le 1
 \]</div>
-<h3 id="probability-density-function-pdf_1">Probability Density Function (PDF)</h3>
+<p><strong>Mean and variance</strong> of a uniform distribution:</p>
 <div class="arithmatex">\[
-f(x) = 
+\mu = \frac{a + b}{2}, \quad \sigma^2 = \frac{(b - a)^2}{12}
+\]</div>
+<hr/>
+<h3 id="exponential-distribution">📘 Exponential Distribution</h3>
+<p>The exponential distribution models the time between events in a Poisson process and has the PDF:</p>
+<div class="arithmatex">\[
+f(x; \lambda) = 
 \begin{cases}
-\lambda e^{-\lambda x} &amp; \text{for } x \geq 0 \\
+\lambda e^{-\lambda x} &amp; \text{for } x \ge 0 \\
 0 &amp; \text{otherwise}
 \end{cases}
 \]</div>
-<h3 id="statistical-properties_1">Statistical Properties</h3>
-<ul>
-<li>Mean: <span class="arithmatex">\(\mathbb{E}[X] = \frac{1}{\lambda}\)</span></li>
-<li>Variance: <span class="arithmatex">\(\text{Var}(X) = \frac{1}{\lambda^2}\)</span></li>
-</ul>
-<h3 id="example-parameters_1">Example Parameters</h3>
-<ul>
-<li><span class="arithmatex">\(\lambda = 1\)</span></li>
-<li>Hence, <span class="arithmatex">\(\mu = 1\)</span>, <span class="arithmatex">\(\sigma^2 = 1\)</span></li>
-</ul>
-<p><em>Note: The exponential distribution is positively skewed and will be useful to demonstrate the CLT’s effectiveness on skewed data.</em></p>
-<hr/>
-<h2 id="23-binomial-distribution">2.3 Binomial Distribution</h2>
-<h3 id="definition_2">Definition</h3>
-<p>A discrete distribution representing the number of successes in <span class="arithmatex">\(n\)</span> independent Bernoulli trials with success probability <span class="arithmatex">\(p\)</span>:</p>
+<p>We use <span class="arithmatex">\(\lambda = 1\)</span> in the simulations.</p>
+<p><strong>Mean and variance</strong>:</p>
 <div class="arithmatex">\[
-X \sim \text{Binomial}(n, p)
+\mu = \frac{1}{\lambda}, \quad \sigma^2 = \frac{1}{\lambda^2}
 \]</div>
-<h3 id="probability-mass-function-pmf">Probability Mass Function (PMF)</h3>
+<p>For <span class="arithmatex">\(\lambda = 1\)</span>, we get:</p>
 <div class="arithmatex">\[
-P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \quad \text{for } k = 0, 1, \dots, n
+\mu = 1, \quad \sigma^2 = 1
 \]</div>
-<h3 id="statistical-properties_2">Statistical Properties</h3>
+<hr/>
+<h3 id="binomial-distribution">📘 Binomial Distribution</h3>
+<p>The binomial distribution models the number of successes in <span class="arithmatex">\(n\)</span> independent Bernoulli trials with success probability <span class="arithmatex">\(p\)</span>. The probability mass function (PMF) is:</p>
+<div class="arithmatex">\[
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}, \quad k = 0, 1, ..., n
+\]</div>
+<p>We use:
+- <span class="arithmatex">\(n = 10\)</span>
+- <span class="arithmatex">\(p = 0.5\)</span></p>
+<p><strong>Mean and variance</strong>:</p>
+<div class="arithmatex">\[
+\mu = np, \quad \sigma^2 = np(1 - p)
+\]</div>
+<p>For our parameters:</p>
+<div class="arithmatex">\[
+\mu = 5, \quad \sigma^2 = 2.5
+\]</div>
+<hr/>
+<h3 id="simulation-plan">🔢 Simulation Plan</h3>
 <ul>
-<li>Mean: <span class="arithmatex">\(\mathbb{E}[X] = np\)</span></li>
-<li>Variance: <span class="arithmatex">\(\text{Var}(X) = np(1 - p)\)</span></li>
-</ul>
-<h3 id="example-parameters_2">Example Parameters</h3>
-<ul>
-<li><span class="arithmatex">\(n = 10\)</span>, <span class="arithmatex">\(p = 0.5\)</span></li>
-<li>Hence, <span class="arithmatex">\(\mu = 5\)</span>, <span class="arithmatex">\(\sigma^2 = 2.5\)</span></li>
+<li>Generate <span class="arithmatex">\(N = 10{,}000\)</span> samples from each distribution.</li>
+<li>Validate empirical means and variances against theoretical values.</li>
+<li>Use this data for downstream sampling and CLT visualization.</li>
 </ul>
 <hr/>
-<h2 id="data-generation-strategy">Data Generation Strategy</h2>
-<p>For each distribution:</p>
-<ol>
-<li><strong>Set known parameters</strong> <span class="arithmatex">\(\theta\)</span> (e.g., <span class="arithmatex">\(a, b\)</span> or <span class="arithmatex">\(\lambda\)</span> or <span class="arithmatex">\(n, p\)</span>)</li>
-<li><strong>Generate large population</strong> of size <span class="arithmatex">\(N = 100,000\)</span></li>
-<li><strong>Store for sampling</strong></li>
-</ol>
-<h3 id="python-code-snippet">Python Code Snippet</h3>
-<p>```python
-N = 100000  # Population size</p>
-<h1 id="uniform-distribution">Uniform distribution</h1>
-<p>uniform_pop = np.random.uniform(0, 10, size=N)</p>
-<h1 id="exponential-distribution">Exponential distribution</h1>
-<p>exponential_pop = np.random.exponential(scale=1.0, size=N)  # scale = 1/lambda</p>
-<h1 id="binomial-distribution">Binomial distribution</h1>
-<p>binomial_pop = np.random.binomial(n=10, p=0.5, size=N)</p>
-<h1 id="3-sampling-process">3. Sampling Process</h1>
-<h2 id="purpose_1">Purpose</h2>
-<p>The goal of this stage is to simulate the <strong>sampling distribution of the sample mean</strong> for various sample sizes and population distributions. This process enables us to observe the <strong>convergence toward normality</strong>, as predicted by the Central Limit Theorem (CLT).</p>
+<h2 id="2-perform-sampling-compute-sample-means">2. Perform Sampling &amp; Compute Sample Means</h2>
+<p>This section outlines the process of constructing sampling distributions of the sample mean, which is the empirical basis for demonstrating the Central Limit Theorem (CLT).</p>
 <hr/>
-<h2 id="sample-sizes">Sample Sizes</h2>
-<p>We choose a range of sample sizes that are commonly used in statistical analysis to explore how quickly the CLT begins to take effect. Specifically, we use:</p>
+<h3 id="sampling-strategy">🧮 Sampling Strategy</h3>
+<p>We define a set of sample sizes:</p>
 <div class="arithmatex">\[
 n \in \{5, 10, 30, 50\}
 \]</div>
-<p>These values allow us to assess the evolution of the sampling distribution shape from small to moderately large sample sizes.</p>
+<p>For each population distribution (Uniform, Exponential, Binomial), and for each sample size <span class="arithmatex">\(n\)</span>, the following steps are performed:</p>
 <hr/>
-<h2 id="procedure-overview">Procedure Overview</h2>
-<p>For each <strong>population distribution</strong> <span class="arithmatex">\(D\)</span> and each <strong>sample size</strong> <span class="arithmatex">\(n\)</span>, we will:</p>
+<h3 id="iterative-sampling-process">🔁 Iterative Sampling Process</h3>
+<p>Let <span class="arithmatex">\(N = 10{,}000\)</span> be the size of the population dataset, and <span class="arithmatex">\(R = 1{,}000\)</span> the number of repeated samples.</p>
+<p>For each iteration <span class="arithmatex">\(r = 1, 2, ..., R\)</span>:</p>
 <ol>
-<li>Draw <span class="arithmatex">\(M\)</span> independent random samples of size <span class="arithmatex">\(n\)</span>:
+<li>
+<p>Draw a simple random sample:
    $$
-   {X_{i1}, X_{i2}, \ldots, X_{in}}, \quad \text{for } i = 1, 2, \ldots, M
-   $$</li>
-<li>Compute the sample mean for each sample:
+   {X_1^{(r)}, X_2^{(r)}, \dots, X_n^{(r)}} \sim \text{Population}
+   $$</p>
+</li>
+<li>
+<p>Compute the sample mean:
    $$
-   \bar{X}<em>i = \frac{1}{n} \sum</em>{j=1}^n X_{ij}
-   $$</li>
-<li>Store all <span class="arithmatex">\(\bar{X}_i\)</span> to form the empirical <strong>sampling distribution</strong> of the mean:
-   $$
-   \left{\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_M \right}
-   $$</li>
+   \bar{X}^{(r)} = \frac{1}{n} \sum_{i=1}^{n} X_i^{(r)}
+   $$</p>
+</li>
+<li>
+<p>Store <span class="arithmatex">\(\bar{X}^{(r)}\)</span> for analysis.</p>
+</li>
 </ol>
-<h3 id="parameters-used">Parameters Used</h3>
+<p>After <span class="arithmatex">\(R\)</span> repetitions, we obtain a <strong>sampling distribution</strong> of the sample mean:</p>
+<div class="arithmatex">\[
+\{\bar{X}^{(1)}, \bar{X}^{(2)}, \dots, \bar{X}^{(R)}\}
+\]</div>
+<hr/>
+<h3 id="theoretical-expectation">📈 Theoretical Expectation</h3>
+<p>According to the Central Limit Theorem, for sufficiently large <span class="arithmatex">\(n\)</span>:</p>
+<div class="arithmatex">\[
+\bar{X} \sim \mathcal{N}\left( \mu, \frac{\sigma^2}{n} \right)
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(\mu\)</span> is the population mean
+- <span class="arithmatex">\(\sigma^2\)</span> is the population variance</p>
+<p>As <span class="arithmatex">\(n\)</span> increases, the sampling distribution of <span class="arithmatex">\(\bar{X}\)</span> becomes approximately normal, <strong>regardless of the population's shape</strong>.</p>
+<hr/>
+<h3 id="data-collection-summary">💾 Data Collection Summary</h3>
 <ul>
-<li><span class="arithmatex">\(M = 1000\)</span> samples per condition (distribution × sample size)</li>
-<li><span class="arithmatex">\(n = 5\)</span>, <span class="arithmatex">\(10\)</span>, <span class="arithmatex">\(30\)</span>, <span class="arithmatex">\(50\)</span></li>
-<li>Distributions: Uniform, Exponential, Binomial (as defined earlier)</li>
+<li><strong>Input:</strong> Population data of size <span class="arithmatex">\(N = 10{,}000\)</span></li>
+<li><strong>Output:</strong> Sampling distributions of sample means</li>
+<li><strong>Storage:</strong> One distribution of 1,000 means per (<span class="arithmatex">\(\text{distribution}\)</span>, <span class="arithmatex">\(n\)</span>) pair</li>
+</ul>
+<p>This systematic approach allows us to <strong>empirically demonstrate</strong> the CLT across various conditions.</p>
+<hr/>
+<h2 id="3-visualize-sampling-distributions">3. Visualize Sampling Distributions</h2>
+<p>The goal of this section is to <strong>empirically observe the Central Limit Theorem (CLT)</strong> in action by visualizing the sampling distributions of the sample mean across different population types and sample sizes.</p>
+<hr/>
+<h3 id="objectives">🎯 Objectives</h3>
+<ul>
+<li>Create histograms of sample means drawn from:</li>
+<li><strong>Uniform</strong></li>
+<li><strong>Exponential</strong></li>
+<li><strong>Binomial</strong></li>
+<li>Compare how the shape of the sampling distribution changes as the sample size increases.</li>
+<li>Overlay a theoretical <strong>normal distribution</strong> to visualize convergence.</li>
 </ul>
 <hr/>
-<h2 id="python-code-snippet-conceptual">Python Code Snippet (Conceptual)</h2>
-<p>```python
-M = 1000  # Number of samples per condition
-sample_sizes = [5, 10, 30, 50]</p>
-<p>sampling_means = {
-    "Uniform": {},
-    "Exponential": {},
-    "Binomial": {}
-}</p>
-<p>for dist_name, population in {
-    "Uniform": uniform_pop,
-    "Exponential": exponential_pop,
-    "Binomial": binomial_pop
-}.items():
-    for n in sample_sizes:
-        means = [
-            np.mean(np.random.choice(population, size=n, replace=False))
-            for _ in range(M)
-        ]
-        sampling_means[dist_name][n] = means</p>
+<h3 id="theoretical-background">📐 Theoretical Background</h3>
+<p>According to the CLT, for a population with mean <span class="arithmatex">\(\mu\)</span> and finite variance <span class="arithmatex">\(\sigma^2\)</span>, the distribution of the sample mean <span class="arithmatex">\(\bar{X}\)</span> approaches a normal distribution as the sample size <span class="arithmatex">\(n\)</span> increases:</p>
+<div class="arithmatex">\[
+\bar{X} \sim \mathcal{N} \left( \mu, \frac{\sigma^2}{n} \right)
+\]</div>
+<p>This holds regardless of the shape of the original population distribution, provided <span class="arithmatex">\(n\)</span> is sufficiently large and the samples are independent.</p>
+<hr/>
+<h3 id="simulation-parameters">🧪 Simulation Parameters</h3>
+<ul>
+<li><strong>Population size:</strong> <span class="arithmatex">\(10{,}000\)</span></li>
+<li><strong>Sample sizes:</strong> <span class="arithmatex">\(n \in \{5, 10, 30, 50\}\)</span></li>
+<li><strong>Repetitions per configuration:</strong> <span class="arithmatex">\(1{,}000\)</span></li>
+<li><strong>Distributions used:</strong></li>
+<li>Uniform<span class="arithmatex">\((0,1)\)</span></li>
+<li>Exponential<span class="arithmatex">\((\lambda=1)\)</span></li>
+<li>Binomial<span class="arithmatex">\((n=10, p=0.5)\)</span></li>
+</ul>
+<hr/>
+<h3 id="python-code-all-sampling-distributions-in-a-single-figure">📊 Python Code: All Sampling Distributions in a Single Figure</h3>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# Settings
+distributions = {
+    'Uniform': np.random.uniform(0, 1, 10_000),
+    'Exponential': np.random.exponential(scale=1.0, size=10_000),
+    'Binomial': np.random.binomial(n=10, p=0.5, size=10_000)
+}
+
+sample_sizes = [5, 10, 30, 50]
+repeats = 1000
+
+# Setup subplot grid
+fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(20, 12))
+fig.suptitle('Sampling Distributions of the Sample Mean (CLT Demonstration)', fontsize=16)
+
+# Iterate through distributions and sample sizes
+for row_idx, (dist_name, population) in enumerate(distributions.items()):
+    for col_idx, n in enumerate(sample_sizes):
+        ax = axes[row_idx, col_idx]
+
+        # Generate sample means
+        sample_means = [np.mean(np.random.choice(population, size=n, replace=False)) for _ in range(repeats)]
+
+        # Histogram
+        ax.hist(sample_means, bins=30, density=True, alpha=0.6, label='Sample Means')
+
+        # Overlay Normal Curve
+        mu = np.mean(population)
+        sigma = np.std(population) / np.sqrt(n)
+        x = np.linspace(min(sample_means), max(sample_means), 200)
+        ax.plot(x, norm.pdf(x, mu, sigma), 'r--', label='Normal Approx.')
+
+        # Titles and labels
+        ax.set_title(f'{dist_name} (n={n})')
+        ax.set_xlabel('Sample Mean')
+        ax.set_ylabel('Density')
+        ax.grid(True)
+        if row_idx == 0 and col_idx == 0:
+            ax.legend()
+
+# Adjust layout
+plt.tight_layout(rect=[0, 0, 1, 0.96])  # Leave space for the main title
+plt.show()
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image-5.png"/></h2>
+<h3 id="interpretation">🔍 Interpretation</h3>
+<ul>
+<li>As <span class="arithmatex">\(n\)</span> increases, the sampling distributions become <strong>increasingly bell-shaped</strong>, closely approximating the normal distribution.</li>
+<li>The effect is more dramatic for skewed populations (e.g., exponential), confirming that the <strong>CLT compensates for non-normality</strong> through sample aggregation.</li>
+<li>
+<p>The overlaid normal curves demonstrate the expected theoretical behavior:</p>
+</li>
+<li>
+<p>Mean <span class="arithmatex">\(\mu\)</span> is preserved.</p>
+</li>
+<li>Variance shrinks by a factor of <span class="arithmatex">\(\frac{1}{n}\)</span>.</li>
+</ul>
+<hr/>
+<h2 id="4-analyze-convergence-behavior">4. Analyze Convergence Behavior</h2>
+<p>This section investigates the dynamics of convergence in sampling distributions of the sample mean. While the Central Limit Theorem (CLT) guarantees asymptotic normality, the <strong>rate of convergence</strong> and the <strong>shape of convergence</strong> depend on key properties of the population distribution.</p>
+<hr/>
+<h3 id="rate-of-convergence-toward-normality">📈 Rate of Convergence Toward Normality</h3>
+<p>Let <span class="arithmatex">\(\bar{X}_n\)</span> denote the sample mean from a random sample of size <span class="arithmatex">\(n\)</span>:</p>
+<div class="arithmatex">\[
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+\]</div>
+<p>According to the CLT:</p>
+<div class="arithmatex">\[
+\bar{X}_n \xrightarrow{d} \mathcal{N} \left( \mu, \frac{\sigma^2}{n} \right) \quad \text{as } n \to \infty
+\]</div>
+<p>The <strong>speed</strong> at which <span class="arithmatex">\(\bar{X}_n\)</span> approaches normality depends on:
+- The <strong>skewness</strong> and <strong>kurtosis</strong> of the original distribution
+- The <strong>sample size</strong> <span class="arithmatex">\(n\)</span>
+- The <strong>variance</strong> <span class="arithmatex">\(\sigma^2\)</span> of the population</p>
+<hr/>
+<h3 id="influence-of-original-distribution-shape">🧭 Influence of Original Distribution Shape</h3>
+<p>The shape of the population distribution heavily influences how fast convergence occurs:</p>
+<table>
+<thead>
+<tr>
+<th>Distribution Type</th>
+<th>Shape Characteristics</th>
+<th>Convergence Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uniform<span class="arithmatex">\((a, b)\)</span></td>
+<td>Symmetric, bounded</td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>Binomial<span class="arithmatex">\((n, p)\)</span></td>
+<td>Discrete, symmetric if <span class="arithmatex">\(p=0.5\)</span></td>
+<td>Moderate to Fast</td>
+</tr>
+<tr>
+<td>Exponential<span class="arithmatex">\((\lambda)\)</span></td>
+<td>Positively skewed, unbounded</td>
+<td>Slow (needs large <span class="arithmatex">\(n\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p>For heavily skewed or heavy-tailed distributions (e.g., exponential), larger sample sizes are needed for the sampling distribution to resemble a normal distribution.</p>
+<hr/>
+<h3 id="role-of-variance-in-spread-of-sample-means">📏 Role of Variance in Spread of Sample Means</h3>
+<p>The <strong>spread</strong> (standard deviation) of the sampling distribution of the mean decreases as sample size increases:</p>
+<div class="arithmatex">\[
+\text{Var}(\bar{X}_n) = \frac{\sigma^2}{n}
+\]</div>
+<p>Thus, larger <span class="arithmatex">\(n\)</span> not only improves normality, but also <strong>reduces uncertainty</strong> in sample-based estimates. The corresponding standard deviation of the sample mean is:</p>
+<div class="arithmatex">\[
+\text{SE}(\bar{X}) = \frac{\sigma}{\sqrt{n}}
+\]</div>
+<p>This effect is critical in:
+- Confidence interval construction
+- Hypothesis testing
+- Practical estimation scenarios</p>
+<hr/>
+<h3 id="empirical-indicators-of-convergence">🔍 Empirical Indicators of Convergence</h3>
+<p>In practice, convergence toward normality can be visually and numerically assessed through:
+- <strong>Histogram symmetry</strong> and bell-shaped appearance
+- <strong>Overlay with a normal density curve</strong>
+- <strong>Quantitative metrics</strong> like skewness, kurtosis, or the Shapiro–Wilk test</p>
+<hr/>
+<h3 id="summary">📌 Summary</h3>
+<ul>
+<li><strong>CLT convergence is universal</strong> but its <strong>rate is conditional</strong> on the population.</li>
+<li><strong>Symmetric distributions</strong> converge quickly.</li>
+<li><strong>Skewed or heavy-tailed distributions</strong> require larger sample sizes.</li>
+<li>The <strong>spread of the sampling distribution shrinks</strong> with <span class="arithmatex">\(n\)</span>, increasing precision in estimation.</li>
+</ul>
+<p>This deepens our understanding of <strong>why and how</strong> the CLT justifies statistical inference, even when the data are non-normal.</p>
+<hr/>
+<h2 id="5-discuss-practical-applications">5. Discuss Practical Applications</h2>
+<p>The Central Limit Theorem (CLT) is not merely a theoretical result — it underpins many practical methods across statistics, science, industry, and finance. This section illustrates <strong>how and why the CLT is applied</strong> in real-world scenarios involving uncertainty, estimation, and control.</p>
+<hr/>
+<h3 id="1-estimating-population-means-from-samples">🧪 1. Estimating Population Means from Samples</h3>
+<p>One of the most common applications of the CLT is to estimate the <strong>population mean</strong> <span class="arithmatex">\(\mu\)</span> using a sample mean <span class="arithmatex">\(\bar{X}\)</span>:</p>
+<div class="arithmatex">\[
+\bar{X} \approx \mathcal{N}\left( \mu, \frac{\sigma^2}{n} \right)
+\]</div>
+<p>This allows us to:
+- Construct <strong>confidence intervals</strong>:</p>
+<p>$$
+  \bar{X} \pm z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}
+  $$</p>
+<ul>
+<li>Perform <strong>hypothesis testing</strong> on means when the population distribution is unknown.</li>
+</ul>
+<p>This is critical in:
+- Clinical trials and medical research
+- Survey-based population studies
+- Polling and social sciences</p>
+<hr/>
+<h3 id="2-monitoring-quality-in-production-systems">🏭 2. Monitoring Quality in Production Systems</h3>
+<p>In industrial processes, the CLT enables <strong>statistical process control (SPC)</strong> using sample-based metrics:</p>
+<ul>
+<li>Control charts track <span class="arithmatex">\(\bar{X}\)</span> to detect shifts in process mean.</li>
+<li>Assumes sampling distribution is approximately normal even if measurements are not.</li>
+</ul>
+<p>Let <span class="arithmatex">\(X_1, \dots, X_n\)</span> be measurements per batch. Then:</p>
+<div class="arithmatex">\[
+\bar{X}_{\text{batch}} \sim \mathcal{N}\left( \mu, \frac{\sigma^2}{n} \right)
+\]</div>
+<p>This is foundational for:
+- Six Sigma methodologies
+- Manufacturing consistency
+- Detecting out-of-control conditions early</p>
+<hr/>
+<h3 id="3-risk-and-uncertainty-in-financial-modeling">💹 3. Risk and Uncertainty in Financial Modeling</h3>
+<p>In finance, many models rely on CLT to justify assumptions of <strong>normal returns</strong>, especially over aggregated time periods or portfolios:</p>
+<ul>
+<li>Daily returns <span class="arithmatex">\(R_t\)</span> may be non-normal, but the sum or average of many returns over time:</li>
+</ul>
+<p>$$
+  \bar{R}<em>n = \frac{1}{n} \sum</em>{t=1}^{n} R_t
+  $$</p>
+<p>tends toward normality due to CLT.</p>
+<p>Applications include:
+- <strong>Value at Risk (VaR)</strong> models
+- <strong>Monte Carlo simulations</strong> of portfolio behavior
+- <strong>Central limit-based pricing</strong> in actuarial models</p>
+<p>Even though raw financial data may be skewed or heavy-tailed, the CLT justifies use of Gaussian approximations in aggregated contexts.</p>
+<hr/>
+<h3 id="broader-perspective">🧠 Broader Perspective</h3>
+<p>The CLT enables practitioners to:
+- Use sample statistics as proxies for unknown population parameters
+- Apply parametric tests and confidence intervals even in <strong>non-normal environments</strong>
+- Reduce complex or irregular distributions into well-understood <strong>normal approximations</strong></p>
+<p>In essence, the CLT acts as a <strong>statistical equalizer</strong>, making inference possible in settings where full knowledge of the underlying distribution is infeasible.</p>
+<hr/>
+<h3 id="conclusion">📌 Conclusion</h3>
+<p>The Central Limit Theorem is a <strong>foundational pillar of statistical practice</strong>, providing the mathematical justification for:
+- Reliable inference
+- Predictive modeling
+- Operational control</p>
+<p>Its importance spans disciplines, reinforcing both the <strong>rigor and reach</strong> of statistical thinking.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
