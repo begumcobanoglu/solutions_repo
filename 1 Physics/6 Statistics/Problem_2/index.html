@@ -86,6 +86,58 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#area-relationship">Area Relationship</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#random-sampling-argument">Random Sampling Argument</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#derivation-of-the-estimation-formula">Derivation of the π Estimation Formula</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-simulation">2. Simulation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#generating-random-points-in-a-square">Generating Random Points in a Square</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#determining-if-a-point-lies-inside-the-circle">Determining If a Point Lies Inside the Circle</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#counting-points">Counting Points</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#estimating-from-the-ratio">Estimating π from the Ratio</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-of-algorithm">Summary of Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-visualization">3. Visualization</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-plotting-the-unit-square-and-unit-circle">1. Plotting the Unit Square and Unit Circle</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-plotting-random-points-with-circle-overlay">2. Plotting Random Points with Circle Overlay</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-distinguishing-inside-vs-outside-points">3. Distinguishing Inside vs Outside Points</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#4-analysis">4. Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#part-2-estimating-using-buffons-needle">Part 2: Estimating π Using Buffon’s Needle</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation-buffons-needle">1. Theoretical Foundation (Buffon’s Needle)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-simulation_1">2. Simulation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-visualization_1">3. Visualization</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-analysis_1">4. Analysis</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +224,500 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
+<p>Understanding the estimation of <span class="arithmatex">\(\pi\)</span> using Monte Carlo methods begins with the geometric relationship between a circle and the square that bounds it.</p>
+<h4 id="area-relationship">Area Relationship</h4>
+<p>Consider a circle of radius <span class="arithmatex">\(r\)</span> inscribed within a square. The square has side length <span class="arithmatex">\(2r\)</span>, so its area is:</p>
+<div class="arithmatex">\[
+A_{\text{square}} = (2r)^2 = 4r^2
+\]</div>
+<p>The area of the circle is:</p>
+<div class="arithmatex">\[
+A_{\text{circle}} = \pi r^2
+\]</div>
+<p>The ratio of the circle's area to the square's area is thus:</p>
+<div class="arithmatex">\[
+\frac{A_{\text{circle}}}{A_{\text{square}}} = \frac{\pi r^2}{4r^2} = \frac{\pi}{4}
+\]</div>
+<p>This geometric insight is the foundation of the Monte Carlo estimation technique for <span class="arithmatex">\(\pi\)</span>.</p>
+<h4 id="random-sampling-argument">Random Sampling Argument</h4>
+<p>Now consider a simulation in which we randomly generate <span class="arithmatex">\(N\)</span> points uniformly within the bounding square. For each point, we can determine whether it lies inside the circle using the Euclidean distance from the origin.</p>
+<p>Let <span class="arithmatex">\((x_i, y_i)\)</span> be a randomly generated point such that <span class="arithmatex">\(x_i, y_i \in [-r, r]\)</span>. The point lies inside the circle if:</p>
+<div class="arithmatex">\[
+x_i^2 + y_i^2 \leq r^2
+\]</div>
+<p>Let <span class="arithmatex">\(N_{\text{circle}}\)</span> denote the number of points that fall inside the circle. Then, the proportion of points that fall within the circle approximates the area ratio:</p>
+<div class="arithmatex">\[
+\frac{N_{\text{circle}}}{N} \approx \frac{A_{\text{circle}}}{A_{\text{square}}} = \frac{\pi}{4}
+\]</div>
+<h4 id="derivation-of-the-estimation-formula">Derivation of the π Estimation Formula</h4>
+<p>Solving for <span class="arithmatex">\(\pi\)</span>, we multiply both sides by <span class="arithmatex">\(4\)</span>:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \cdot \left( \frac{N_{\text{circle}}}{N} \right)
+\]</div>
+<p>This yields the core formula used in the circle-based Monte Carlo simulation:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \cdot \left( \frac{\text{points inside circle}}{\text{total points}} \right)
+\]</div>
+<p>This estimator converges to the true value of <span class="arithmatex">\(\pi\)</span> as <span class="arithmatex">\(N \to \infty\)</span> by the Law of Large Numbers. The accuracy of the approximation depends on the number of points sampled and the quality of the random number generator.</p>
+<h3 id="2-simulation">2. Simulation</h3>
+<p>Monte Carlo simulation for estimating <span class="arithmatex">\(\pi\)</span> relies on probabilistic sampling of points in a square and evaluating whether they fall inside a unit circle.</p>
+<h4 id="generating-random-points-in-a-square">Generating Random Points in a Square</h4>
+<p>To estimate <span class="arithmatex">\(\pi\)</span> using a circle of radius <span class="arithmatex">\(r = 1\)</span> centered at the origin <span class="arithmatex">\((0, 0)\)</span>, we simulate <span class="arithmatex">\(N\)</span> random points <span class="arithmatex">\((x_i, y_i)\)</span> uniformly within the square bounded by <span class="arithmatex">\([-1, 1] \times [-1, 1]\)</span>.</p>
+<p>This can be done using a pseudo-random number generator that produces values uniformly in <span class="arithmatex">\([-1, 1]\)</span>:</p>
+<div class="arithmatex">\[
+x_i \sim \mathcal{U}(-1, 1), \quad y_i \sim \mathcal{U}(-1, 1), \quad i = 1, 2, \dots, N
+\]</div>
+<h4 id="determining-if-a-point-lies-inside-the-circle">Determining If a Point Lies Inside the Circle</h4>
+<p>Each point is checked against the condition for being inside the unit circle of radius <span class="arithmatex">\(1\)</span>:</p>
+<div class="arithmatex">\[
+x_i^2 + y_i^2 \leq 1
+\]</div>
+<p>If this inequality holds, the point lies within or on the boundary of the circle.</p>
+<h4 id="counting-points">Counting Points</h4>
+<p>Let:</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span> be the total number of generated points,</li>
+<li><span class="arithmatex">\(N_{\text{circle}}\)</span> be the number of points that satisfy the condition <span class="arithmatex">\(x_i^2 + y_i^2 \leq 1\)</span>.</li>
+</ul>
+<p>The algorithm maintains two counters:</p>
+<ul>
+<li>One for total iterations: <span class="arithmatex">\(N\)</span></li>
+<li>One for hits inside the circle: <span class="arithmatex">\(N_{\text{circle}}\)</span></li>
+</ul>
+<h4 id="estimating-from-the-ratio">Estimating π from the Ratio</h4>
+<p>Since the ratio of the area of the unit circle to the square is <span class="arithmatex">\(\pi / 4\)</span>, we estimate <span class="arithmatex">\(\pi\)</span> by:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \cdot \left( \frac{N_{\text{circle}}}{N} \right)
+\]</div>
+<p>As <span class="arithmatex">\(N \to \infty\)</span>, this estimate converges to the true value of <span class="arithmatex">\(\pi\)</span> with high probability, due to the Law of Large Numbers.</p>
+<h4 id="summary-of-algorithm">Summary of Algorithm</h4>
+<ol>
+<li>
+<p>Initialize counters:<br/>
+<span class="arithmatex">\(N_{\text{circle}} = 0\)</span>, <span class="arithmatex">\(N = \text{desired number of samples}\)</span></p>
+</li>
+<li>
+<p>Repeat <span class="arithmatex">\(N\)</span> times:</p>
+</li>
+<li>Generate random <span class="arithmatex">\(x \in [-1, 1]\)</span></li>
+<li>Generate random <span class="arithmatex">\(y \in [-1, 1]\)</span></li>
+<li>
+<p>If <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>, increment <span class="arithmatex">\(N_{\text{circle}}\)</span></p>
+</li>
+<li>
+<p>Estimate <span class="arithmatex">\(\pi\)</span> using:</p>
+</li>
+</ol>
+<p>$$
+   \pi \approx 4 \cdot \left( \frac{N_{\text{circle}}}{N} \right)
+   $$</p>
+<p>This forms the computational core of the Monte Carlo method for <span class="arithmatex">\(\pi\)</span> estimation.</p>
+<h3 id="3-visualization">3. Visualization</h3>
+<p>We visualize the Monte Carlo simulation by plotting the square, the unit circle, and the randomly generated points—distinguishing between those that fall inside and outside the circle.</p>
+<h4 id="1-plotting-the-unit-square-and-unit-circle"><strong>1. Plotting the Unit Square and Unit Circle</strong></h4>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+# Create a circle using parametric equations
+theta = np.linspace(0, 2 * np.pi, 500)
+x_circle = np.cos(theta)
+y_circle = np.sin(theta)
+
+# Plot square boundary and unit circle
+plt.figure(figsize=(6, 6))
+plt.plot(x_circle, y_circle, label='Unit Circle', linewidth=2)
+plt.xlim(-1, 1)
+plt.ylim(-1, 1)
+plt.axhline(1, color='gray', linestyle='--', linewidth=0.5)
+plt.axhline(-1, color='gray', linestyle='--', linewidth=0.5)
+plt.axvline(1, color='gray', linestyle='--', linewidth=0.5)
+plt.axvline(-1, color='gray', linestyle='--', linewidth=0.5)
+plt.gca().set_aspect('equal')
+plt.title("Unit Circle Inscribed in a Square")
+plt.legend()
+plt.grid(True)
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image.png"/></p>
+<h4 id="2-plotting-random-points-with-circle-overlay"><strong>2. Plotting Random Points with Circle Overlay</strong></h4>
+<pre><code class="language-python"># Generate random points
+N = 500
+x_points = np.random.uniform(-1, 1, N)
+y_points = np.random.uniform(-1, 1, N)
+
+# Plot unit circle
+plt.figure(figsize=(6, 6))
+plt.plot(x_circle, y_circle, label='Unit Circle', color='black')
+
+# Plot all points
+plt.scatter(x_points, y_points, s=10, color='blue', alpha=0.5, label='Random Points')
+plt.xlim(-1, 1)
+plt.ylim(-1, 1)
+plt.gca().set_aspect('equal')
+plt.title("Random Points in Square with Unit Circle Overlay")
+plt.legend()
+plt.grid(True)
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<h4 id="3-distinguishing-inside-vs-outside-points"><strong>3. Distinguishing Inside vs Outside Points</strong></h4>
+<pre><code class="language-python"># Determine which points are inside the circle
+dist_squared = x_points**2 + y_points**2
+inside_mask = dist_squared &lt;= 1
+
+# Separate inside and outside points
+x_inside = x_points[inside_mask]
+y_inside = y_points[inside_mask]
+x_outside = x_points[~inside_mask]
+y_outside = y_points[~inside_mask]
+
+# Plot
+plt.figure(figsize=(6, 6))
+plt.plot(x_circle, y_circle, color='black', linewidth=1)
+plt.scatter(x_inside, y_inside, color='green', s=10, label='Inside Circle', alpha=0.6)
+plt.scatter(x_outside, y_outside, color='red', s=10, label='Outside Circle', alpha=0.6)
+plt.xlim(-1, 1)
+plt.ylim(-1, 1)
+plt.gca().set_aspect('equal')
+plt.title("Monte Carlo Visualization of $\pi$ Estimation")
+plt.legend()
+plt.grid(True)
+plt.show()
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image-2.png"/></h2>
+<h3 id="4-analysis">4. Analysis</h3>
+<p>The power of the Monte Carlo method lies not just in its simplicity, but in its convergence properties as the number of trials increases. In this section, we empirically analyze how the estimate of <span class="arithmatex">\(\pi\)</span> improves with additional sampling.</p>
+<h4 id="increasing-the-number-of-samples">Increasing the Number of Samples</h4>
+<p>To evaluate convergence, we perform the simulation for progressively larger sample sizes:</p>
+<div class="arithmatex">\[
+N \in \{10^2, 10^3, 10^4, 10^5, 10^6\}
+\]</div>
+<p>For each <span class="arithmatex">\(N\)</span>, we independently generate <span class="arithmatex">\(N\)</span> random points in the square <span class="arithmatex">\([-1, 1] \times [-1, 1]\)</span>, and estimate <span class="arithmatex">\(\pi\)</span> using the formula:</p>
+<div class="arithmatex">\[
+\pi_N = 4 \cdot \left( \frac{N_{\text{circle}}}{N} \right)
+\]</div>
+<p>where <span class="arithmatex">\(N_{\text{circle}}\)</span> is the number of points satisfying <span class="arithmatex">\(x_i^2 + y_i^2 \leq 1\)</span>.</p>
+<h4 id="estimation-error">Estimation Error</h4>
+<p>We define the absolute error of the estimate for a given <span class="arithmatex">\(N\)</span> as:</p>
+<div class="arithmatex">\[
+\text{Error}(N) = \left| \pi - \pi_N \right|
+\]</div>
+<p>where <span class="arithmatex">\(\pi \approx 3.14159265\ldots\)</span> is the true mathematical constant.</p>
+<h4 id="plotting-error-vs-sample-size">Plotting Error vs. Sample Size</h4>
+<p>A log-log or semi-log plot of <span class="arithmatex">\(\text{Error}(N)\)</span> versus <span class="arithmatex">\(N\)</span> provides a visual depiction of convergence. We typically expect:</p>
+<ul>
+<li>A <strong>decreasing error trend</strong> as <span class="arithmatex">\(N\)</span> increases.</li>
+<li>A convergence rate of approximately <span class="arithmatex">\(\mathcal{O}(1/\sqrt{N})\)</span> due to the probabilistic nature of the sampling.</li>
+</ul>
+<p>Such a plot reveals the inherent <strong>variance</strong> in the estimator and illustrates the <strong>Law of Large Numbers</strong> in practice.</p>
+<h4 id="convergence-behavior">Convergence Behavior</h4>
+<p>As <span class="arithmatex">\(N \to \infty\)</span>, the estimate <span class="arithmatex">\(\pi_N\)</span> converges to the true value of <span class="arithmatex">\(\pi\)</span> with probability 1:</p>
+<div class="arithmatex">\[
+\lim_{N \to \infty} \pi_N = \pi \quad \text{(almost surely)}
+\]</div>
+<p>This is a consequence of the <strong>Strong Law of Large Numbers</strong>, since each point’s contribution is a Bernoulli trial with success probability <span class="arithmatex">\(\pi / 4\)</span>.</p>
+<p>Additionally, the <strong>Central Limit Theorem</strong> implies that the distribution of <span class="arithmatex">\(\pi_N\)</span> becomes increasingly concentrated around <span class="arithmatex">\(\pi\)</span>, with standard deviation proportional to <span class="arithmatex">\(1/\sqrt{N}\)</span>.</p>
+<h4 id="runtime-considerations">Runtime Considerations</h4>
+<p>The computational cost of the method scales linearly with the number of points:</p>
+<div class="arithmatex">\[
+\text{Time Complexity} = \mathcal{O}(N)
+\]</div>
+<p>Therefore, while the algorithm is trivially parallelizable, improving accuracy requires exponentially more points due to the <span class="arithmatex">\(1/\sqrt{N}\)</span> convergence.</p>
+<h4 id="summary">Summary</h4>
+<ul>
+<li>Monte Carlo estimation of <span class="arithmatex">\(\pi\)</span> exhibits <strong>slow convergence</strong>, requiring large <span class="arithmatex">\(N\)</span> for high precision.</li>
+<li>The <strong>error decreases stochastically</strong>, and smooths out over repeated trials.</li>
+<li>Visualizing error vs. <span class="arithmatex">\(N\)</span> validates the <strong>statistical convergence theory</strong> and illustrates the trade-off between <strong>accuracy and computational cost</strong>.</li>
+</ul>
+<p>This empirical analysis underscores both the strengths and limitations of the Monte Carlo method as a numerical approximation tool.</p>
+<h2 id="part-2-estimating-using-buffons-needle"><strong>Part 2: Estimating π Using Buffon’s Needle</strong></h2>
+<h3 id="1-theoretical-foundation-buffons-needle">1. Theoretical Foundation (Buffon’s Needle)</h3>
+<p>Buffon’s Needle is a classical probability problem with deep historical and mathematical significance. It represents one of the earliest known Monte Carlo methods and offers an elegant probabilistic approach to estimating <span class="arithmatex">\(\pi\)</span>.</p>
+<h4 id="experimental-setup">Experimental Setup</h4>
+<p>Consider a plane marked with <strong>parallel lines</strong> spaced at a uniform distance <span class="arithmatex">\(D\)</span> apart. A <strong>needle</strong> of length <span class="arithmatex">\(L\)</span> is dropped at random onto the plane. The central question is: <em>What is the probability that the needle will cross one of the lines?</em></p>
+<p>Let:</p>
+<ul>
+<li><span class="arithmatex">\(L\)</span> be the length of the needle,</li>
+<li><span class="arithmatex">\(D\)</span> be the distance between adjacent parallel lines,</li>
+<li><span class="arithmatex">\(N\)</span> be the total number of needle drops,</li>
+<li><span class="arithmatex">\(C\)</span> be the number of drops where the needle crosses a line.</li>
+</ul>
+<p>To compute this probability geometrically, we examine the relative orientation and position of the needle.</p>
+<h4 id="probabilistic-model">Probabilistic Model</h4>
+<p>Let the center of the needle fall a distance <span class="arithmatex">\(y\)</span> from the nearest line (with <span class="arithmatex">\(0 \leq y \leq D/2\)</span> due to symmetry), and let the needle form an angle <span class="arithmatex">\(\theta\)</span> with respect to the parallel lines, where <span class="arithmatex">\(\theta \in [0, \pi/2]\)</span> due to symmetry.</p>
+<p>The needle crosses a line if the vertical projection of half its length is greater than <span class="arithmatex">\(y\)</span>:</p>
+<div class="arithmatex">\[
+\frac{L}{2} \sin(\theta) \geq y
+\]</div>
+<p>To compute the probability of this event, we integrate over the joint distribution of <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(\theta\)</span>.</p>
+<p>The crossing probability <span class="arithmatex">\(P\)</span> is given by:</p>
+<div class="arithmatex">\[
+P = \frac{2L}{\pi D}, \quad \text{for } L \leq D
+\]</div>
+<p>This is derived from integrating the joint uniform distribution of <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(\theta\)</span> over the region satisfying the crossing condition.</p>
+<h4 id="estimating">Estimating π</h4>
+<p>Rearranging the above expression to solve for <span class="arithmatex">\(\pi\)</span>, we obtain the Monte Carlo estimator:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2 \cdot L \cdot N}{D \cdot C}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(L\)</span> is the known needle length,</li>
+<li><span class="arithmatex">\(D\)</span> is the known distance between lines,</li>
+<li><span class="arithmatex">\(N\)</span> is the number of needle drops,</li>
+<li><span class="arithmatex">\(C\)</span> is the number of observed line crossings.</li>
+</ul>
+<p>This formulation allows us to estimate <span class="arithmatex">\(\pi\)</span> using physical or simulated random trials.</p>
+<h4 id="geometric-constraints-and-assumptions">Geometric Constraints and Assumptions</h4>
+<ol>
+<li>
+<p><strong>Needle Length Condition</strong>:<br/>
+   The derivation assumes that <span class="arithmatex">\(L \leq D\)</span>. When <span class="arithmatex">\(L &gt; D\)</span>, the calculation of the crossing probability becomes more complex and requires advanced integral calculus.</p>
+</li>
+<li>
+<p><strong>Uniform Randomness</strong>:  </p>
+</li>
+<li>The angle <span class="arithmatex">\(\theta\)</span> is uniformly distributed in <span class="arithmatex">\([0, \pi]\)</span>.</li>
+<li>
+<p>The center's distance to the nearest line <span class="arithmatex">\(y\)</span> is uniformly distributed in <span class="arithmatex">\([0, D/2]\)</span>.</p>
+</li>
+<li>
+<p><strong>Independence</strong>:<br/>
+   Each needle drop is assumed to be independent of the others.</p>
+</li>
+<li>
+<p><strong>Idealization</strong>:<br/>
+   The method assumes infinitely thin lines and infinitely narrow needles. In practice or simulation, these approximations must be handled carefully.</p>
+</li>
+</ol>
+<h4 id="summary_1">Summary</h4>
+<p>Buffon’s Needle presents a remarkable bridge between geometry and probability, offering a method to estimate <span class="arithmatex">\(\pi\)</span> from random experiments. The key estimator:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2 \cdot L \cdot N}{D \cdot C}
+\]</div>
+<p>is both historically important and pedagogically powerful, illustrating how randomness and geometry can yield deep mathematical constants.</p>
+<hr/>
+<h3 id="2-simulation_1">2. Simulation</h3>
+<p>The Buffon’s Needle simulation translates the theoretical formulation into a computational experiment. This involves simulating the random placement and orientation of needles on a plane with parallel lines, then using the observed outcomes to estimate <span class="arithmatex">\(\pi\)</span>.</p>
+<h4 id="random-needle-placement">Random Needle Placement</h4>
+<p>Each needle is dropped onto a plane with parallel lines spaced a fixed distance <span class="arithmatex">\(D\)</span> apart. The needle’s configuration is characterized by two independent random variables:</p>
+<ul>
+<li><strong>Center position</strong> <span class="arithmatex">\(y\)</span>: The perpendicular distance from the needle's midpoint to the nearest parallel line. Uniformly sampled from the interval:</li>
+</ul>
+<p>$$
+  y \sim \mathcal{U}(0, \frac{D}{2})
+  $$</p>
+<ul>
+<li><strong>Angle</strong> <span class="arithmatex">\(\theta\)</span>: The angle between the needle and the parallel lines. Uniformly sampled from:</li>
+</ul>
+<p>$$
+  \theta \sim \mathcal{U}(0, \frac{\pi}{2})
+  $$</p>
+<p>Due to symmetry, it is sufficient to restrict <span class="arithmatex">\(y\)</span> to <span class="arithmatex">\([0, D/2]\)</span> and <span class="arithmatex">\(\theta\)</span> to <span class="arithmatex">\([0, \pi/2]\)</span>.</p>
+<h4 id="crossing-condition">Crossing Condition</h4>
+<p>A needle crosses a line if its vertical projection from the center to an endpoint exceeds the distance <span class="arithmatex">\(y\)</span>:</p>
+<div class="arithmatex">\[
+\frac{L}{2} \cdot \sin(\theta) \geq y
+\]</div>
+<p>Equivalently, the condition for crossing is:</p>
+<div class="arithmatex">\[
+\text{Crosses if:} \quad y \leq \frac{L}{2} \cdot \sin(\theta)
+\]</div>
+<p>This condition must be evaluated for each simulated needle drop.</p>
+<h4 id="simulation-logic">Simulation Logic</h4>
+<p>To estimate <span class="arithmatex">\(\pi\)</span>, we perform the following procedure:</p>
+<ol>
+<li><strong>Initialize counters</strong>:</li>
+<li>Let <span class="arithmatex">\(N\)</span> be the total number of needle drops.</li>
+<li>
+<p>Let <span class="arithmatex">\(C\)</span> be the number of drops where the needle crosses a line.</p>
+</li>
+<li>
+<p><strong>Repeat <span class="arithmatex">\(N\)</span> times</strong>:</p>
+</li>
+<li>Sample <span class="arithmatex">\(y \sim \mathcal{U}(0, D/2)\)</span>.</li>
+<li>Sample <span class="arithmatex">\(\theta \sim \mathcal{U}(0, \pi/2)\)</span>.</li>
+<li>
+<p>If <span class="arithmatex">\(y \leq (L/2) \cdot \sin(\theta)\)</span>, increment the crossing counter <span class="arithmatex">\(C\)</span>.</p>
+</li>
+<li>
+<p><strong>Estimate <span class="arithmatex">\(\pi\)</span></strong> using:</p>
+</li>
+</ol>
+<p>$$
+   \pi \approx \frac{2 \cdot L \cdot N}{D \cdot C}
+   $$</p>
+<p>This Monte Carlo estimator becomes increasingly accurate as <span class="arithmatex">\(N\)</span> grows, assuming <span class="arithmatex">\(L \leq D\)</span>.</p>
+<h4 id="summary_2">Summary</h4>
+<p>The Buffon’s Needle simulation captures a geometric-probabilistic process through:</p>
+<ul>
+<li>Uniform sampling of orientation and position.</li>
+<li>Logical evaluation of crossing criteria.</li>
+<li>Aggregation of results to estimate <span class="arithmatex">\(\pi\)</span>.</li>
+</ul>
+<p>Despite its simplicity, this simulation highlights the subtle and elegant interplay between randomness and geometry.</p>
+<hr/>
+<h3 id="3-visualization_1">3. Visualization</h3>
+<p>Visualizing Buffon’s Needle offers intuitive insight into the probabilistic geometry underlying the estimation of <span class="arithmatex">\(\pi\)</span>. By plotting the needle drops over a plane with parallel lines, we can observe which needles intersect the lines and which do not—providing visual confirmation of the crossing condition used in simulation.</p>
+<h4 id="needles-and-parallel-lines">Needles and Parallel Lines</h4>
+<p>Each needle has:
+- A center point <span class="arithmatex">\((x, y)\)</span>.
+- An orientation given by an angle <span class="arithmatex">\(\theta \in [0, \pi/2]\)</span>.
+- A projected vertical span of length <span class="arithmatex">\(L \cdot \sin(\theta)\)</span>.</p>
+<p>The needle crosses a line if the vertical distance from its center to the nearest line is less than or equal to half this span:</p>
+<div class="arithmatex">\[
+y \leq \frac{L}{2} \cdot \sin(\theta)
+\]</div>
+<h4 id="python-code-needle-visualization-with-crossing-indicator">Python Code: Needle Visualization with Crossing Indicator</h4>
+<p>Below is Python code that generates a small number of needles, computes their endpoints, and plots them with distinct colors to indicate whether they cross a line:</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+L = 1.0    # Needle length
+D = 2.0    # Distance between parallel lines
+N_viz = 100  # Number of needles to visualize
+
+# Sample needle centers and angles
+theta_v = np.random.uniform(0, np.pi / 2, N_viz)
+y_center_v = np.random.uniform(0, D / 2, N_viz)
+x_center_v = np.random.uniform(0, 5, N_viz)  # Spread needles horizontally
+
+# Compute endpoints of each needle
+x1 = x_center_v - (L / 2) * np.cos(theta_v)
+x2 = x_center_v + (L / 2) * np.cos(theta_v)
+y1 = y_center_v - (L / 2) * np.sin(theta_v)
+y2 = y_center_v + (L / 2) * np.sin(theta_v)
+
+# Determine which needles cross a line
+crosses_v = y_center_v &lt;= (L / 2) * np.sin(theta_v)
+
+# Plot the needles
+plt.figure(figsize=(10, 6))
+for i in range(N_viz):
+    color = 'green' if crosses_v[i] else 'red'
+    plt.plot([x1[i], x2[i]], [y1[i], y2[i]], color=color, linewidth=1)
+
+# Plot horizontal lines spaced by D
+for y in np.arange(0, D * 3, D):
+    plt.axhline(y, color='black', linestyle='--', linewidth=0.5)
+
+plt.title("Buffon's Needle Visualization (Crossing: Green, Non-Crossing: Red)")
+plt.xlabel("x-position")
+plt.ylabel("y-position")
+plt.xlim(0, 5)
+plt.ylim(0, 3 * D)
+plt.gca().set_aspect('equal')
+plt.grid(True)
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<h4 id="interpretation">Interpretation</h4>
+<ul>
+<li><strong>Green needles</strong> represent successful crossings, which increment the crossing count $C$ in the $\pi$ estimation formula.</li>
+<li><strong>Red needles</strong> do not intersect any lines and thus are excluded from the numerator.</li>
+<li>The dashed black lines represent the <strong>parallel boundaries</strong> separated by distance $D$.</li>
+</ul>
+<h4 id="summary_3">Summary</h4>
+<p>This graphical representation of Buffon’s Needle simulation:</p>
+<ul>
+<li>Provides geometric intuition behind the crossing condition.</li>
+<li>Confirms the uniform random distribution of needle placement and orientation.</li>
+<li>Reinforces the relationship between experimental frequency and the probability-based formula for estimating $\pi$:</li>
+</ul>
+<div class="arithmatex">\[
+\pi \approx \frac{2 \cdot L \cdot N}{D \cdot C}
+\]</div>
+<p>Visualization thus plays a critical role in validating and communicating the Monte Carlo approximation process.</p>
+<hr/>
+<h3 id="4-analysis_1">4. Analysis</h3>
+<p>The Buffon’s Needle experiment provides a fascinating alternative method for estimating <span class="arithmatex">\(\pi\)</span>, grounded in geometric probability. In this section, we explore how the estimation behaves as the number of needle drops increases.</p>
+<h4 id="simulation-setup">Simulation Setup</h4>
+<p>To study convergence, we perform simulations for increasing values of <span class="arithmatex">\(N\)</span>, the number of needle drops:</p>
+<div class="arithmatex">\[
+N \in \{10^2, 10^3, 10^4, 10^5, 10^6\}
+\]</div>
+<p>For each simulation:
+- We record the estimated value <span class="arithmatex">\(\pi_N\)</span> using:</p>
+<p>$$
+  \pi_N = \frac{2 \cdot L \cdot N}{D \cdot C}
+  $$</p>
+<p>where <span class="arithmatex">\(C\)</span> is the number of needles that cross a line.</p>
+<ul>
+<li>We compute the absolute error:</li>
+</ul>
+<p>$$
+  \text{Error}(N) = \left| \pi - \pi_N \right|
+  $$</p>
+<h4 id="convergence-behavior_1">Convergence Behavior</h4>
+<p>The Buffon’s Needle method converges slowly due to the inherent randomness in the angle and position of each needle. The error decreases roughly at a rate of:</p>
+<div class="arithmatex">\[
+\text{Error}(N) = \mathcal{O}\left( \frac{1}{\sqrt{N}} \right)
+\]</div>
+<p>This behavior aligns with probabilistic convergence properties such as:</p>
+<ul>
+<li><strong>Law of Large Numbers</strong>: Ensures that <span class="arithmatex">\(\pi_N\)</span> converges to <span class="arithmatex">\(\pi\)</span> almost surely as <span class="arithmatex">\(N \to \infty\)</span>.</li>
+<li><strong>Central Limit Theorem</strong>: Implies that fluctuations in the estimator's value are normally distributed with variance decreasing as <span class="arithmatex">\(1/N\)</span>.</li>
+</ul>
+<h4 id="python-code-error-tracking-and-plotting">Python Code: Error Tracking and Plotting</h4>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+L = 1.0
+D = 2.0
+true_pi = np.pi
+sample_sizes = [10**2, 10**3, 10**4, 10**5, 10**6]
+
+pi_estimates = []
+errors = []
+
+for N in sample_sizes:
+    theta = np.random.uniform(0, np.pi / 2, N)
+    y = np.random.uniform(0, D / 2, N)
+    C = np.sum(y &lt;= (L / 2) * np.sin(theta))
+
+    if C &gt; 0:
+        pi_hat = (2 * L * N) / (D * C)
+    else:
+        pi_hat = np.nan
+
+    pi_estimates.append(pi_hat)
+    errors.append(abs(true_pi - pi_hat))
+
+# Plot error vs N
+plt.figure(figsize=(8, 5))
+plt.loglog(sample_sizes, errors, marker='o', label="Absolute Error")
+plt.axhline(0, color='gray', linestyle='--', linewidth=0.5)
+plt.xlabel("Number of Needle Drops (N)")
+plt.ylabel("Absolute Error in π Estimate")
+plt.title("Buffon's Needle: Convergence of π Estimation")
+plt.grid(True, which="both", ls="--", alpha=0.6)
+plt.legend()
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<h4 id="runtime-considerations_1">Runtime Considerations</h4>
+<p>The computational complexity of the simulation is:</p>
+<div class="arithmatex">\[
+\mathcal{O}(N)
+\]</div>
+<p>Since each trial involves basic arithmetic and trigonometric operations, the method is simple but computationally expensive for high accuracy.</p>
+<ul>
+<li><strong>Variance</strong> in the estimate is relatively high compared to the circle-based Monte Carlo method.</li>
+<li><strong>Parallelization</strong> is easy, as each needle drop is independent of the others.</li>
+</ul>
+<h4 id="summary_4">Summary</h4>
+<ul>
+<li>Buffon’s Needle illustrates a physically inspired stochastic approach to estimating $\pi$.</li>
+<li>While conceptually elegant, it converges slowly and requires a large number of samples for precise results.</li>
+<li>Visual and numerical analyses together validate the probabilistic model and reinforce the theoretical prediction:</li>
+</ul>
+<p>$$
+  \pi \approx \frac{2 \cdot L \cdot N}{D \cdot C}
+  $$</p>
+<p>This completes the exploration of $\pi$ estimation using Buffon’s Needle.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
