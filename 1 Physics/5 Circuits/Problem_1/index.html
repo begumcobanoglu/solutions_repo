@@ -78,6 +78,132 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-graph-representation-of-the-circuit">1. Graph Representation of the Circuit</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#11-nodes-and-edges">1.1 Nodes and Edges</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#12-adjacency-matrix">1.2 Adjacency Matrix</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#13-resistance-as-edge-weights">1.3 Resistance as Edge Weights</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#14-multiple-edges-and-parallel-resistors">1.4 Multiple Edges and Parallel Resistors</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#15-directed-vs-undirected-graphs">1.5 Directed vs Undirected Graphs</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#16-example-simple-triangle-circuit">1.6 Example: Simple Triangle Circuit</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#17-summary">1.7 Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-definition-of-the-problem">2. Definition of the Problem</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#21-problem-statement">2.1 Problem Statement</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#22-physical-interpretation">2.2 Physical Interpretation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#23-electrical-law-basis">2.3 Electrical Law Basis</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#24-path-considerations">2.4 Path Considerations</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#25-graph-based-reformulation">2.5 Graph-Based Reformulation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#26-applications">2.6 Applications</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#27-summary">2.7 Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-graph-traversal-and-pattern-recognition">3. Graph Traversal and Pattern Recognition</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#31-series-connections-linear-chains">3.1 Series Connections (Linear Chains)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#32-parallel-connections-multiple-paths">3.2 Parallel Connections (Multiple Paths)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#33-identifying-cycles-complex-topologies">3.3 Identifying Cycles (Complex Topologies)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#34-handling-complex-subgraphs">3.4 Handling Complex Subgraphs</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#35-summary">3.5 Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-graph-simplification-rules">4. Graph Simplification Rules</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#41-series-simplification">4.1 Series Simplification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#42-parallel-simplification">4.2 Parallel Simplification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#43-self-loops">4.3 Self-loops</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#44-cycles-and-complex-topologies">4.4 Cycles and Complex Topologies</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#45-node-merging">4.5 Node Merging</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#46-termination-condition">4.6 Termination Condition</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#47-summary">4.7 Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-path-and-connectivity-analysis">5. Path and Connectivity Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#51-path-enumeration-between-start-and-end">5.1 Path Enumeration Between START and END</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#52-maintaining-connectivity-during-simplification">5.2 Maintaining Connectivity During Simplification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#53-bridge-and-articulation-detection">5.3 Bridge and Articulation Detection</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#54-connectivity-constraints-in-simplification">5.4 Connectivity Constraints in Simplification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#55-dynamic-path-verification">5.5 Dynamic Path Verification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#56-connectivity-aware-reduction">5.6 Connectivity-Aware Reduction</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#57-summary">5.7 Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6-input-handling">✅ 6. Input Handling</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#7-data-structures">✅ 7. Data Structures</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_2"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#8-resistance-calculation-series-simplification-example">✅ 8. Resistance Calculation (Series Simplification Example)</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_3"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#9-test-cases">9. Test Cases</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#91-simple-series-configuration">9.1 Simple Series Configuration</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#92-simple-parallel-configuration">9.2 Simple Parallel Configuration</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#93-nested-configuration">9.3 Nested Configuration</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#94-complex-graph-with-cycles">9.4 Complex Graph with Cycles</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#95-stress-test-random-mesh-network">9.5 Stress Test: Random Mesh Network</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#10-validation">10. Validation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#101-known-result-verification">10.1 Known-Result Verification</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#102-preservation-of-startend-path">10.2 Preservation of START–END Path</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#103-intermediate-visualization">10.3 Intermediate Visualization</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#104-consistency-under-graph-isomorphism">10.4 Consistency under Graph Isomorphism</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#105-summary">10.5 Summary</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,202 +298,601 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<h1 id="theoretical-foundations-of-equivalent-resistance-using-graph-theory">Theoretical Foundations of Equivalent Resistance Using Graph Theory</h1>
-<h2 id="1-ohms-law-and-basic-circuit-principles">1. Ohm’s Law and Basic Circuit Principles</h2>
-<p>Ohm’s Law defines the linear relationship between voltage (<span class="arithmatex">\(V\)</span>), current (<span class="arithmatex">\(I\)</span>), and resistance (<span class="arithmatex">\(R\)</span>):</p>
-<div class="arithmatex">\[
-V = IR
-\]</div>
-<p>This foundational equation governs all passive resistive components in a circuit. It implies that for a constant resistance, the voltage is directly proportional to the current. </p>
-<p><strong>Key Relationships:</strong>
-- Voltage Drop: <span class="arithmatex">\(V = IR\)</span>
-- Current Flow: <span class="arithmatex">\(I = \frac{V}{R}\)</span>
-- Resistance Calculation: <span class="arithmatex">\(R = \frac{V}{I}\)</span></p>
-<h2 id="2-series-and-parallel-resistor-combinations">2. Series and Parallel Resistor Combinations</h2>
-<h3 id="series-combination">Series Combination</h3>
-<p>Resistors are in series if they are connected end-to-end, with the same current passing through each:</p>
-<div class="arithmatex">\[
-R_{\text{eq}} = R_1 + R_2 + \dots + R_n
-\]</div>
-<h3 id="parallel-combination">Parallel Combination</h3>
-<p>Resistors are in parallel if they are connected to the same two nodes, sharing the same voltage:</p>
-<div class="arithmatex">\[
-\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
-\]</div>
-<p>Equivalently, for two resistors:</p>
-<div class="arithmatex">\[
-R_{\text{eq}} = \frac{R_1 R_2}{R_1 + R_2}
-\]</div>
-<h2 id="3-kirchhoffs-circuit-laws">3. Kirchhoff’s Circuit Laws</h2>
-<h3 id="kirchhoffs-current-law-kcl">Kirchhoff’s Current Law (KCL)</h3>
-<p>At any junction (node), the total current entering equals the total current leaving:</p>
-<div class="arithmatex">\[
-\sum I_{\text{in}} = \sum I_{\text{out}}
-\]</div>
-<p>This law is a consequence of conservation of electric charge.</p>
-<h3 id="kirchhoffs-voltage-law-kvl">Kirchhoff’s Voltage Law (KVL)</h3>
-<p>The sum of all voltage drops in a closed loop is zero:</p>
-<div class="arithmatex">\[
-\sum V = 0
-\]</div>
-<p>This is derived from the conservation of energy principle in electrical circuits.</p>
-<h2 id="4-graph-theory-concepts-in-circuits">4. Graph Theory Concepts in Circuits</h2>
-<p>Circuits can be modeled as <strong>graphs</strong>, where:</p>
+<h2 id="1-graph-representation-of-the-circuit">1. Graph Representation of the Circuit</h2>
+<p>Modeling electrical circuits using graph theory provides a structured way to analyze even the most complex configurations. In this representation, we treat:</p>
 <ul>
-<li><strong>Nodes (vertices)</strong> represent junctions.</li>
-<li><strong>Edges</strong> represent resistors or other components.</li>
-<li><strong>Weights</strong> on edges represent resistance values.</li>
-</ul>
-<h3 id="key-definitions">Key Definitions</h3>
-<ul>
-<li><strong>Graph <span class="arithmatex">\(G = (V, E)\)</span></strong>: A set of vertices <span class="arithmatex">\(V\)</span> and edges <span class="arithmatex">\(E\)</span>.</li>
-<li><strong>Weighted Graph</strong>: Each edge <span class="arithmatex">\(e \in E\)</span> has an associated weight <span class="arithmatex">\(w(e)\)</span>, e.g., resistance <span class="arithmatex">\(R\)</span>.</li>
-<li><strong>Connected Component</strong>: A subgraph in which any two nodes are connected by a path.</li>
-<li><strong>Tree</strong>: An acyclic connected graph.</li>
-<li><strong>Cycle</strong>: A closed path where the start and end vertices are the same, and all other vertices are distinct.</li>
-</ul>
-<h3 id="circuit-graph-properties">Circuit Graph Properties</h3>
-<ul>
-<li>A <strong>tree</strong> in a circuit graph represents a minimal configuration connecting all nodes without forming loops.</li>
-<li>A <strong>cycle</strong> corresponds to a loop in the circuit, important in analyzing KVL.</li>
-<li><strong>Cutsets</strong> and <strong>loops</strong> play a vital role in solving via node and mesh analysis.</li>
+<li><strong>Nodes</strong> as electrical junctions.</li>
+<li><strong>Edges</strong> as resistors.</li>
+<li><strong>Weights</strong> on edges as resistance values in ohms <span class="arithmatex">\((\Omega)\)</span>.</li>
 </ul>
 <hr/>
-<blockquote>
-<p>These theoretical foundations form the basis for advanced analysis techniques in graph-based circuit analysis, enabling algorithmic solutions for complex resistor networks.</p>
-</blockquote>
-<h1 id="2-graph-representation-of-circuits">2. Graph Representation of Circuits</h1>
-<p>To apply graph theory to electrical circuits, we must model the circuit as a mathematical graph. This abstraction allows algorithmic approaches to analyze and simplify circuits for computing equivalent resistance.</p>
-<h2 id="circuit-as-a-graph-nodes-and-edges">✅ Circuit as a Graph: Nodes and Edges</h2>
-<p>A <strong>graph</strong> <span class="arithmatex">\(G = (V, E)\)</span> consists of:</p>
-<ul>
-<li><strong>Vertices (Nodes) <span class="arithmatex">\(V\)</span></strong>: Represent the junction points in a circuit, where two or more components are connected.</li>
-<li><strong>Edges <span class="arithmatex">\(E\)</span></strong>: Represent circuit elements (primarily resistors in this context) connecting two nodes.</li>
-</ul>
-<p>Each edge has an associated <strong>resistance value</strong>, modeled as a <strong>weight</strong> on the edge.</p>
-<h3 id="example">Example:</h3>
-<p>A resistor <span class="arithmatex">\(R\)</span> connecting nodes <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> is an edge:</p>
-<div class="arithmatex">\[
-e = (A, B), \quad w(e) = R
-\]</div>
-<h3 id="important-considerations">Important Considerations:</h3>
-<ul>
-<li>Nodes correspond to points of electrical potential.</li>
-<li>Edges are undirected if current can flow in either direction.</li>
-<li>In directed graphs (for active components or signal flow), edge direction may indicate polarity or control flow.</li>
-</ul>
-<h2 id="storing-resistance-values-edge-weights">✅ Storing Resistance Values: Edge Weights</h2>
-<p>Each resistor is stored as a <strong>weighted edge</strong> in the graph. The weight corresponds to the <strong>resistance</strong> <span class="arithmatex">\(R\)</span> in ohms <span class="arithmatex">\((\Omega)\)</span>.</p>
-<ul>
-<li>Edge between nodes <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span>: <span class="arithmatex">\(e_{uv}\)</span></li>
-<li>Resistance of edge <span class="arithmatex">\(e_{uv}\)</span>: <span class="arithmatex">\(w(e_{uv}) = R_{uv}\)</span></li>
-</ul>
-<p>This makes it possible to apply algorithms that consider weights, such as resistance summation rules or minimum spanning trees.</p>
-<h2 id="data-structures-for-graph-representation">✅ Data Structures for Graph Representation</h2>
-<p>Several data structures can be used to represent circuit graphs. The choice depends on the desired efficiency and algorithm:</p>
-<h3 id="1-adjacency-list-preferred-for-sparse-graphs">1. Adjacency List (Preferred for Sparse Graphs)</h3>
-<p>Stores a list of neighbors for each node, along with edge weights:</p>
-<p>```python
-graph = {
-    'A': [('B', 100), ('C', 50)],
-    'B': [('A', 100)],
-    'C': [('A', 50)]
-}</p>
-<h1 id="3-graph-simplification-techniques">3. Graph Simplification Techniques</h1>
-<p>To compute the <strong>equivalent resistance</strong> between two nodes in a circuit graph, we apply a sequence of <strong>graph simplification rules</strong>. These involve identifying standard topological patterns (series, parallel, nested structures) and reducing them recursively or iteratively until a single equivalent edge remains.</p>
+<h3 id="11-nodes-and-edges">1.1 Nodes and Edges</h3>
+<p>Let the circuit be represented by a graph <span class="arithmatex">\(G = (V, E)\)</span>, where:
+- <span class="arithmatex">\(V\)</span> is the set of nodes, <span class="arithmatex">\(V = \{v_1, v_2, \dots, v_n\}\)</span>.
+- <span class="arithmatex">\(E\)</span> is the set of edges, where each edge <span class="arithmatex">\(e_{ij} \in E\)</span> connects two nodes <span class="arithmatex">\(v_i\)</span> and <span class="arithmatex">\(v_j\)</span> and carries a resistance <span class="arithmatex">\(R_{ij} &gt; 0\)</span>.</p>
+<p>Each resistor is an edge:
+$$
+e_{ij} = (v_i, v_j, R_{ij})
+$$</p>
 <hr/>
-<h2 id="rules-for-detecting-and-collapsing-resistor-combinations">✅ Rules for Detecting and Collapsing Resistor Combinations</h2>
-<h3 id="1-series-combinations">1. Series Combinations</h3>
-<p>Resistors are in <strong>series</strong> if:</p>
-<ul>
-<li>They form a <strong>single path</strong> with no branches.</li>
-<li>The same current flows through all of them.</li>
-<li>Intermediate nodes have <strong>degree 2</strong> (i.e., connected to exactly two edges).</li>
-</ul>
-<h4 id="collapse-rule">Collapse Rule:</h4>
-<p>If <span class="arithmatex">\(R_1, R_2, \dots, R_n\)</span> are in series:</p>
+<h3 id="12-adjacency-matrix">1.2 Adjacency Matrix</h3>
+<p>Define the <strong>adjacency matrix</strong> <span class="arithmatex">\(A\)</span> of the graph such that:
+$$
+A_{ij} = 
+\begin{cases}
+\frac{1}{R_{ij}}, &amp; \text{if } e_{ij} \in E \
+0, &amp; \text{otherwise}
+\end{cases}
+$$</p>
+<p>This matrix encodes the <strong>conductance</strong> (inverse of resistance) between nodes.</p>
+<hr/>
+<h3 id="13-resistance-as-edge-weights">1.3 Resistance as Edge Weights</h3>
+<p>The resistance between two nodes <span class="arithmatex">\(v_i\)</span> and <span class="arithmatex">\(v_j\)</span> is represented by the weight of the edge <span class="arithmatex">\(e_{ij}\)</span>:
+$$
+w(e_{ij}) = R_{ij}
+$$</p>
+<p>Weights are strictly positive:
+$$
+\forall e_{ij} \in E, \quad R_{ij} \in \mathbb{R}^+, \quad R_{ij} &gt; 0
+$$</p>
+<hr/>
+<h3 id="14-multiple-edges-and-parallel-resistors">1.4 Multiple Edges and Parallel Resistors</h3>
+<p>If multiple resistors connect the same pair of nodes (i.e., <strong>parallel resistors</strong>), they are represented by <strong>multiple edges</strong> or combined into one with equivalent resistance:</p>
 <div class="arithmatex">\[
-R_{\text{eq}} = R_1 + R_2 + \dots + R_n
-\]</div>
-<h4 id="graphically">Graphically:</h4>
-<p>Collapse a <strong>path</strong> <span class="arithmatex">\(A \rightarrow B \rightarrow C\)</span> into <span class="arithmatex">\(A \rightarrow C\)</span>:</p>
-<div class="arithmatex">\[
-R_{AC} = R_{AB} + R_{BC}
+\frac{1}{R_{\text{eq}}} = \sum_{k=1}^{m} \frac{1}{R_k}, \quad \text{for } m \text{ resistors in parallel}
 \]</div>
 <hr/>
-<h3 id="2-parallel-combinations">2. Parallel Combinations</h3>
-<p>Resistors are in <strong>parallel</strong> if:</p>
-<ul>
-<li>They connect the <strong>same two nodes</strong>.</li>
-<li>The voltage across each resistor is the same.</li>
-<li>Multiple edges exist between the same pair of nodes.</li>
-</ul>
-<h4 id="collapse-rule_1">Collapse Rule:</h4>
-<p>For resistors <span class="arithmatex">\(R_1, R_2, \dots, R_n\)</span> in parallel between nodes <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span>:</p>
-<div class="arithmatex">\[
-\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
-\]</div>
-<h4 id="two-edge-example">Two-edge example:</h4>
-<p>If edges <span class="arithmatex">\((u, v)\)</span> have resistances <span class="arithmatex">\(R_1\)</span> and <span class="arithmatex">\(R_2\)</span>:</p>
-<div class="arithmatex">\[
-R_{\text{eq}} = \frac{R_1 R_2}{R_1 + R_2}
-\]</div>
-<h4 id="graphically_1">Graphically:</h4>
-<p>Multiple edges <span class="arithmatex">\(e_1, e_2\)</span> between nodes <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> → replace with one edge:</p>
-<div class="arithmatex">\[
-R_{AB} = \left( \frac{1}{R_{e_1}} + \frac{1}{R_{e_2}} \right)^{-1}
-\]</div>
+<h3 id="15-directed-vs-undirected-graphs">1.5 Directed vs Undirected Graphs</h3>
+<p>Circuits are modeled using <strong>undirected graphs</strong>:
+$$
+e_{ij} = e_{ji}
+$$</p>
+<p>Because resistance is symmetric: <span class="arithmatex">\(R_{ij} = R_{ji}\)</span>.</p>
 <hr/>
-<h2 id="handling-nested-combinations">✅ Handling Nested Combinations</h2>
-<p>Real circuits often contain <strong>combinations of series and parallel resistors</strong>, sometimes nested arbitrarily deep.</p>
-<h3 id="approach">Approach:</h3>
-<ol>
-<li>Identify <strong>innermost reducible subgraphs</strong> (lowest-depth combinations).</li>
-<li>Simplify them into single resistances.</li>
-<li>Repeat simplification until only a single edge remains between source and target.</li>
-</ol>
-<h3 id="example_1">Example:</h3>
-<p>If you have:</p>
+<h3 id="16-example-simple-triangle-circuit">1.6 Example: Simple Triangle Circuit</h3>
+<p>Given a triangle circuit with three nodes and three resistors:</p>
 <ul>
-<li><span class="arithmatex">\(R_1\)</span> in series with the parallel combination of <span class="arithmatex">\(R_2\)</span> and <span class="arithmatex">\(R_3\)</span>:</li>
+<li>Nodes: <span class="arithmatex">\(V = \{A, B, C\}\)</span></li>
+<li>Edges:</li>
+<li><span class="arithmatex">\(R_{AB} = 2\ \Omega\)</span></li>
+<li><span class="arithmatex">\(R_{BC} = 3\ \Omega\)</span></li>
+<li><span class="arithmatex">\(R_{CA} = 4\ \Omega\)</span></li>
 </ul>
-<div class="arithmatex">\[
-R_{\text{eq}} = R_1 + \left( \frac{1}{R_2} + \frac{1}{R_3} \right)^{-1}
-\]</div>
-<p>Use <strong>recursion</strong> to handle nested groups:
-- Simplify inner combinations first.
-- Return reduced value to outer layer.</p>
+<p>Graphically:
+- <span class="arithmatex">\(e_{AB} = (A, B, 2)\)</span>
+- <span class="arithmatex">\(e_{BC} = (B, C, 3)\)</span>
+- <span class="arithmatex">\(e_{CA} = (C, A, 4)\)</span></p>
+<p>Then:
+$$
+A = \begin{bmatrix}
+0 &amp; \frac{1}{2} &amp; \frac{1}{4} \
+\frac{1}{2} &amp; 0 &amp; \frac{1}{3} \
+\frac{1}{4} &amp; \frac{1}{3} &amp; 0
+\end{bmatrix}
+$$</p>
 <hr/>
-<h2 id="multiple-current-paths-cycles-and-meshes">✅ Multiple Current Paths (Cycles and Meshes)</h2>
-<p>Circuits with <strong>loops or cycles</strong> require deeper analysis:</p>
+<h3 id="17-summary">1.7 Summary</h3>
+<p>Graph-theoretic modeling allows:</p>
 <ul>
-<li>Such graphs cannot be reduced purely by local simplifications.</li>
-<li>Must apply <strong>graph traversal</strong> or <strong>matrix methods</strong> (e.g., Laplacian, nodal/mesh analysis).</li>
-</ul>
-<h3 id="cycle-detection">Cycle Detection:</h3>
-<ul>
-<li>Use <strong>DFS</strong> or <strong>BFS</strong> to detect cycles.</li>
-<li>Convert cycles into simpler structures using:</li>
-<li><strong>Delta-to-Wye (Δ-Y) transformations</strong></li>
-<li><strong>Mesh current analysis</strong></li>
+<li>Systematic abstraction of circuit elements.</li>
+<li>Encoding resistances as edge weights.</li>
+<li>Laying the foundation for automated simplification and analysis using algorithms.</li>
 </ul>
 <hr/>
-<h2 id="strategy-for-recursive-or-iterative-simplification">✅ Strategy for Recursive or Iterative Simplification</h2>
-<h3 id="recursive-strategy">Recursive Strategy</h3>
-<ol>
-<li>Traverse the graph recursively.</li>
-<li>Identify base cases: pure series or parallel connections.</li>
-<li>Apply simplification formulas.</li>
-<li>Collapse subgraphs and propagate results up the recursion tree.</li>
-</ol>
-<p>```python
-def simplify(graph):
-    if is_simple(graph):
-        return compute_equivalent(graph)
-    subgraph = find_reducible_subgraph(graph)
-    reduced = simplify(subgraph)
-    update_graph(graph, reduced)
-    return simplify(graph)</p>
+<h2 id="2-definition-of-the-problem">2. Definition of the Problem</h2>
+<p>The goal is to compute the <strong>equivalent resistance</strong> between two specific nodes in an electrical network: the <strong>START</strong> and <strong>END</strong> nodes. These nodes serve as the terminals across which a voltage is applied or current flows.</p>
+<hr/>
+<h3 id="21-problem-statement">2.1 Problem Statement</h3>
+<p>Given:
+- A connected, weighted, undirected graph <span class="arithmatex">\(G = (V, E)\)</span>.
+- Each edge <span class="arithmatex">\(e_{ij} \in E\)</span> has a weight <span class="arithmatex">\(R_{ij} &gt; 0\)</span> representing resistance in ohms.
+- Two distinguished nodes: <span class="arithmatex">\(\text{START} = v_s\)</span> and <span class="arithmatex">\(\text{END} = v_t\)</span>.</p>
+<p><strong>Objective</strong>: Determine the <strong>total equivalent resistance</strong> <span class="arithmatex">\(R_{\text{eq}}(v_s, v_t)\)</span> between node <span class="arithmatex">\(v_s\)</span> and node <span class="arithmatex">\(v_t\)</span>.</p>
+<hr/>
+<h3 id="22-physical-interpretation">2.2 Physical Interpretation</h3>
+<p>If a voltage source <span class="arithmatex">\(V\)</span> is applied between START and END, and the resulting current is <span class="arithmatex">\(I\)</span>, then the equivalent resistance is:
+$$
+R_{\text{eq}} = \frac{V}{I}
+$$</p>
+<p>In this context, <span class="arithmatex">\(R_{\text{eq}}\)</span> encapsulates the effect of all possible paths and resistor configurations between the two nodes.</p>
+<hr/>
+<h3 id="23-electrical-law-basis">2.3 Electrical Law Basis</h3>
+<p>The computation respects <strong>Ohm's Law</strong> and <strong>Kirchhoff's Laws</strong>:</p>
+<ul>
+<li>
+<p><strong>Ohm’s Law</strong>:
+  $$
+  V = IR
+  $$</p>
+</li>
+<li>
+<p><strong>Kirchhoff’s Current Law (KCL)</strong>:
+  $$
+  \sum I_{\text{in}} = \sum I_{\text{out}} \quad \text{(at each node)}
+  $$</p>
+</li>
+<li>
+<p><strong>Kirchhoff’s Voltage Law (KVL)</strong>:
+  $$
+  \sum_{\text{loop}} V = 0
+  $$</p>
+</li>
+</ul>
+<p>These laws constrain how voltages and currents behave across the network and define the effective resistance between terminals.</p>
+<hr/>
+<h3 id="24-path-considerations">2.4 Path Considerations</h3>
+<p>All possible current paths between START and END contribute to the total current. The resistance is affected by:</p>
+<ul>
+<li>
+<p><strong>Series connections</strong>: resistances add.
+  $$
+  R_{\text{eq}} = R_1 + R_2 + \cdots + R_n
+  $$</p>
+</li>
+<li>
+<p><strong>Parallel connections</strong>: conductances add.
+  $$
+  \frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \cdots + \frac{1}{R_n}
+  $$</p>
+</li>
+</ul>
+<p>The algorithm must detect and handle these patterns in arbitrary arrangements.</p>
+<hr/>
+<h3 id="25-graph-based-reformulation">2.5 Graph-Based Reformulation</h3>
+<p>In graph-theoretic terms:
+- START and END are fixed nodes <span class="arithmatex">\(v_s, v_t \in V\)</span>.
+- Determine an effective edge weight <span class="arithmatex">\(R_{\text{eq}}(v_s, v_t)\)</span> that represents the aggregate resistance of the entire graph between those two nodes.</p>
+<p>This involves simplifying the graph iteratively until only a single edge between <span class="arithmatex">\(v_s\)</span> and <span class="arithmatex">\(v_t\)</span> remains:
+$$
+G \rightarrow G' \quad \text{where} \quad G' = {v_s, v_t, R_{\text{eq}}}
+$$</p>
+<hr/>
+<h3 id="26-applications">2.6 Applications</h3>
+<ul>
+<li>Power distribution analysis</li>
+<li>Circuit optimization and simplification</li>
+<li>Preprocessing for SPICE-like simulators</li>
+<li>Educational tools for visualizing electrical behavior</li>
+</ul>
+<hr/>
+<h3 id="27-summary">2.7 Summary</h3>
+<p>To solve the problem:
+- Identify START (<span class="arithmatex">\(v_s\)</span>) and END (<span class="arithmatex">\(v_t\)</span>).
+- Represent the circuit as a graph <span class="arithmatex">\(G = (V, E)\)</span> with resistances as edge weights.
+- Use electrical and graph-theoretical laws to reduce the network.
+- Output the scalar value <span class="arithmatex">\(R_{\text{eq}}(v_s, v_t)\)</span> representing the total resistance between the two terminals.</p>
+<hr/>
+<h2 id="3-graph-traversal-and-pattern-recognition">3. Graph Traversal and Pattern Recognition</h2>
+<p>To compute equivalent resistance in a circuit graph, the system must identify structural patterns that correspond to <strong>series</strong>, <strong>parallel</strong>, and <strong>complex</strong> resistor arrangements. This section outlines how to detect these configurations using graph traversal and pattern recognition techniques.</p>
+<hr/>
+<h3 id="31-series-connections-linear-chains">3.1 Series Connections (Linear Chains)</h3>
+<p><strong>Definition</strong>: A series connection occurs when two or more resistors are connected end-to-end, with no branching paths between them.</p>
+<h4 id="graph-condition">Graph Condition:</h4>
+<p>If node <span class="arithmatex">\(v_i\)</span> has exactly two neighbors <span class="arithmatex">\(v_{i-1}\)</span> and <span class="arithmatex">\(v_{i+1}\)</span> and is not START or END, then <span class="arithmatex">\(v_i\)</span> is part of a <strong>linear chain</strong>:
+$$
+\deg(v_i) = 2, \quad v_i \notin {\text{START}, \text{END}}
+$$</p>
+<h4 id="series-reduction-formula">Series Reduction Formula:</h4>
+<p>If resistors <span class="arithmatex">\(R_1\)</span> and <span class="arithmatex">\(R_2\)</span> are in series:
+$$
+R_{\text{eq}} = R_1 + R_2
+$$</p>
+<h4 id="graph-simplification">Graph Simplification:</h4>
+<p>Replace two edges <span class="arithmatex">\((v_{i-1}, v_i, R_1)\)</span> and <span class="arithmatex">\((v_i, v_{i+1}, R_2)\)</span> with a single edge:
+$$
+(v_{i-1}, v_{i+1}, R_{\text{eq}})
+$$</p>
+<p>Remove <span class="arithmatex">\(v_i\)</span> from the graph:
+$$
+V \leftarrow V \setminus {v_i}
+$$</p>
+<hr/>
+<h3 id="32-parallel-connections-multiple-paths">3.2 Parallel Connections (Multiple Paths)</h3>
+<p><strong>Definition</strong>: Resistors are in parallel if they connect the same pair of nodes via multiple independent paths.</p>
+<h4 id="graph-condition_1">Graph Condition:</h4>
+<p>If multiple edges exist between the same pair of nodes <span class="arithmatex">\(v_i\)</span> and <span class="arithmatex">\(v_j\)</span>:
+$$
+\exists\, {e_1, e_2, \dots, e_n} \subset E \quad \text{such that} \quad \forall k,\, e_k = (v_i, v_j, R_k)
+$$</p>
+<h4 id="parallel-reduction-formula">Parallel Reduction Formula:</h4>
+<p>The equivalent resistance of <span class="arithmatex">\(n\)</span> parallel resistors is:
+$$
+\frac{1}{R_{\text{eq}}} = \sum_{k=1}^{n} \frac{1}{R_k}
+$$</p>
+<h4 id="graph-simplification_1">Graph Simplification:</h4>
+<p>Replace all <span class="arithmatex">\(n\)</span> edges with a single edge <span class="arithmatex">\((v_i, v_j, R_{\text{eq}})\)</span>.</p>
+<hr/>
+<h3 id="33-identifying-cycles-complex-topologies">3.3 Identifying Cycles (Complex Topologies)</h3>
+<p><strong>Definition</strong>: A <strong>cycle</strong> is a closed loop in the graph where the current can circulate in more than one direction.</p>
+<h4 id="graph-condition_2">Graph Condition:</h4>
+<p>A <strong>cycle</strong> exists if a <strong>Depth-First Search (DFS)</strong> or <strong>Breadth-First Search (BFS)</strong> encounters a visited node that is not its parent:
+$$
+\text{DFS}(v) \rightarrow \text{back edge} \Rightarrow \text{cycle}
+$$</p>
+<p>Cycles often correspond to:
+- Multiple series/parallel combinations
+- Bridges and mesh circuits</p>
+<h4 id="cycle-detection-algorithm">Cycle Detection Algorithm:</h4>
+<p>Use DFS to identify cycles:
+1. Mark all nodes as unvisited.
+2. Start DFS from START node.
+3. If DFS revisits a node that is not the immediate parent, a cycle exists.</p>
+<hr/>
+<h3 id="34-handling-complex-subgraphs">3.4 Handling Complex Subgraphs</h3>
+<p>Once cycles are found:
+- Try <strong>series and parallel simplification</strong> locally within the cycle.
+- Use <strong>graph contraction</strong> or <strong>Y-Δ (star-delta)</strong> transformations if needed.</p>
+<hr/>
+<h3 id="35-summary">3.5 Summary</h3>
+<p>Graph traversal techniques enable the recognition of key resistor arrangements:</p>
+<ul>
+<li><strong>Series</strong>: Linear chains (nodes with degree 2).</li>
+<li><strong>Parallel</strong>: Multiple edges between two nodes.</li>
+<li><strong>Cycles</strong>: Detected using DFS or BFS; may require advanced simplifications.</li>
+</ul>
+<p>These patterns are critical for recursively reducing the graph into a single equivalent resistance between START and END.</p>
+<hr/>
+<h2 id="4-graph-simplification-rules">4. Graph Simplification Rules</h2>
+<p>Once series, parallel, and cyclic patterns have been identified in the circuit graph, we apply <strong>graph simplification rules</strong> to reduce the network into a simpler equivalent form. This process is repeated iteratively until only a single equivalent resistor remains between the START and END nodes.</p>
+<hr/>
+<h3 id="41-series-simplification">4.1 Series Simplification</h3>
+<p><strong>Condition</strong>:
+Node <span class="arithmatex">\(v\)</span> connects exactly two neighbors <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(w\)</span>:
+$$
+\deg(v) = 2, \quad v \notin {\text{START}, \text{END}}
+$$</p>
+<p><strong>Edges</strong>:
+- <span class="arithmatex">\(e_{uv} = (u, v, R_1)\)</span>
+- <span class="arithmatex">\(e_{vw} = (v, w, R_2)\)</span></p>
+<p><strong>Action</strong>:
+Replace with one edge:
+$$
+e_{uw} = (u, w, R_1 + R_2)
+$$</p>
+<p><strong>Remove node</strong> <span class="arithmatex">\(v\)</span> and both edges <span class="arithmatex">\(e_{uv}\)</span>, <span class="arithmatex">\(e_{vw}\)</span> from the graph.</p>
+<hr/>
+<h3 id="42-parallel-simplification">4.2 Parallel Simplification</h3>
+<p><strong>Condition</strong>:
+Multiple edges between the same pair of nodes:
+$$
+e_1 = (u, v, R_1), \quad e_2 = (u, v, R_2), \quad \dots
+$$</p>
+<p><strong>Action</strong>:
+Combine into one edge:
+$$
+\frac{1}{R_{\text{eq}}} = \sum_{k=1}^{n} \frac{1}{R_k}
+$$</p>
+<p>Replace with:
+$$
+e_{\text{eq}} = (u, v, R_{\text{eq}})
+$$</p>
+<hr/>
+<h3 id="43-self-loops">4.3 Self-loops</h3>
+<p><strong>Condition</strong>:
+An edge connects a node to itself:
+$$
+e = (v, v, R)
+$$</p>
+<p><strong>Action</strong>:
+Remove. Self-loops do not contribute to paths between START and END.</p>
+<hr/>
+<h3 id="44-cycles-and-complex-topologies">4.4 Cycles and Complex Topologies</h3>
+<p><strong>Condition</strong>:
+A subgraph contains a closed loop or mesh.</p>
+<p><strong>Actions</strong>:
+- Attempt local <strong>series/parallel</strong> simplification inside the cycle.
+- If the cycle is not reducible via series/parallel, apply:
+  - <strong>Δ–Y (Delta–Wye) Transformations</strong>
+  - <strong>Y–Δ (Wye–Delta) Transformations</strong></p>
+<p>These allow conversion between triangle and star configurations:
+- Delta to Wye:
+  $$
+  R_a = \frac{R_{ab} R_{ac}}{R_{ab} + R_{bc} + R_{ca}}, \quad \text{(and similarly for } R_b, R_c\text{)}
+  $$
+- Wye to Delta:
+  $$
+  R_{ab} = \frac{R_a + R_b + R_a R_b / R_c}
+  $$</p>
+<hr/>
+<h3 id="45-node-merging">4.5 Node Merging</h3>
+<p>When two nodes are connected by a simplified edge and no other connections, <strong>merge</strong> them:
+- Replace both with a single new node.
+- Update all incident edges accordingly.</p>
+<p>This step simplifies the structure and prepares for the next reduction iteration.</p>
+<hr/>
+<h3 id="46-termination-condition">4.6 Termination Condition</h3>
+<p>Simplification is complete when the graph contains only two nodes:
+$$
+V = {\text{START}, \text{END}}
+$$</p>
+<p>And one edge:
+$$
+E = {(\text{START}, \text{END}, R_{\text{eq}})}
+$$</p>
+<hr/>
+<h3 id="47-summary">4.7 Summary</h3>
+<p>These simplification rules allow the reduction of arbitrarily complex resistor networks. By combining physical laws and graph operations, we can transform the circuit graph step-by-step until the equivalent resistance between START and END is explicitly computed.</p>
+<hr/>
+<h2 id="5-path-and-connectivity-analysis">5. Path and Connectivity Analysis</h2>
+<p>Before and during simplification, it's essential to analyze the <strong>connectivity</strong> of the circuit graph. Ensuring that all possible <strong>paths between START and END</strong> are accounted for is critical to preserving the electrical integrity of the network and guaranteeing correct computation of equivalent resistance.</p>
+<hr/>
+<h3 id="51-path-enumeration-between-start-and-end">5.1 Path Enumeration Between START and END</h3>
+<p>To fully capture the circuit behavior, we must identify all paths that allow current to flow from the START node <span class="arithmatex">\(v_s\)</span> to the END node <span class="arithmatex">\(v_t\)</span>.</p>
+<h4 id="algorithms-for-path-discovery">Algorithms for Path Discovery:</h4>
+<ul>
+<li><strong>Depth-First Search (DFS)</strong>:</li>
+<li>Recursively explores all branches.</li>
+<li>Effective for detecting cycles and nested paths.</li>
+<li><strong>Breadth-First Search (BFS)</strong>:</li>
+<li>Explores shortest paths first.</li>
+<li>Useful for level-based reduction.</li>
+</ul>
+<h4 id="multiple-paths">Multiple Paths:</h4>
+<p>If more than one path exists between <span class="arithmatex">\(v_s\)</span> and <span class="arithmatex">\(v_t\)</span>, those paths may represent <strong>parallel</strong> resistor configurations.</p>
+<hr/>
+<h3 id="52-maintaining-connectivity-during-simplification">5.2 Maintaining Connectivity During Simplification</h3>
+<p>When reducing the circuit, it's essential that the simplification:
+- <strong>Preserves the number of paths</strong> between <span class="arithmatex">\(v_s\)</span> and <span class="arithmatex">\(v_t\)</span>.
+- <strong>Does not disconnect</strong> any components of the circuit relevant to current flow.
+- <strong>Respects bridge and articulation points</strong>, which are critical for connectivity.</p>
+<h4 id="rule-of-preservation">Rule of Preservation:</h4>
+<p>Let <span class="arithmatex">\(G\)</span> be the original graph and <span class="arithmatex">\(G'\)</span> be the simplified graph. Then:
+$$
+\text{Paths}<em>{G}(v_s \to v_t) \cong \text{Paths}</em>{G'}(v_s \to v_t)
+$$</p>
+<p>Where <span class="arithmatex">\(\cong\)</span> indicates equivalence in path logic (though not necessarily in count).</p>
+<hr/>
+<h3 id="53-bridge-and-articulation-detection">5.3 Bridge and Articulation Detection</h3>
+<p>A <strong>bridge</strong> (or cut-edge) is an edge whose removal disconnects the graph:
+- Must not be removed prematurely.
+- Usually part of a <strong>series</strong> connection.</p>
+<p>An <strong>articulation point</strong> is a node whose removal increases the number of connected components:
+- Often a junction in <strong>nested or branching</strong> configurations.</p>
+<p>Use DFS to identify such components:
+- Maintain a discovery time and low-link value for each node.</p>
+<hr/>
+<h3 id="54-connectivity-constraints-in-simplification">5.4 Connectivity Constraints in Simplification</h3>
+<p>When applying series or parallel rules:
+- Ensure that merging or removing nodes/edges does not affect the existence of a valid <span class="arithmatex">\(v_s\)</span>–<span class="arithmatex">\(v_t\)</span> path.
+- Avoid collapsing nodes or edges that are <strong>critical</strong> to overall connectivity.</p>
+<hr/>
+<h3 id="55-dynamic-path-verification">5.5 Dynamic Path Verification</h3>
+<p>After each simplification step:
+- Optionally recompute the number of <span class="arithmatex">\(v_s\)</span>–<span class="arithmatex">\(v_t\)</span> paths to verify integrity.
+- Use:
+  - <strong>Path counting algorithms</strong> (e.g., DFS with memoization)
+  - <strong>Connectivity checks</strong> using <code>networkx.is_connected()</code> (if using Python)</p>
+<hr/>
+<h3 id="56-connectivity-aware-reduction">5.6 Connectivity-Aware Reduction</h3>
+<p>A safe approach is to:
+1. Detect and reduce <strong>safe series/parallel patterns</strong>.
+2. Re-check connectivity from START to END.
+3. Repeat until no further simplification is possible without altering critical paths.</p>
+<hr/>
+<h3 id="57-summary">5.7 Summary</h3>
+<p>Connectivity analysis ensures:
+- All contributing paths to current flow are respected.
+- Simplifications do not invalidate the topology.
+- The algorithm maintains logical and electrical correctness throughout reduction.</p>
+<p>Preserving correct path structure is just as important as computing resistance values.</p>
+<hr/>
+<h2 id="6-input-handling">✅ 6. Input Handling</h2>
+<pre><code class="language-python">import networkx as nx
+import matplotlib.pyplot as plt
+
+# Sample input: edge list (node1, node2, resistance)
+edge_list = [
+    ('A', 'B', 2.0),
+    ('B', 'C', 3.0),
+    ('A', 'C', 6.0)
+]
+start_node = 'A'
+end_node = 'C'
+
+# Build graph
+G = nx.Graph()
+for u, v, r in edge_list:
+    if r &lt; 0:
+        raise ValueError("Resistance must be non-negative.")
+    G.add_edge(u, v, resistance=r)
+
+# Validate connectivity
+if not nx.has_path(G, start_node, end_node):
+    raise ValueError("Graph is not connected between START and END nodes.")
+
+# Plot input graph
+pos = nx.spring_layout(G)
+labels = nx.get_edge_attributes(G, 'resistance')
+nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=800)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+plt.title("Input Circuit Graph")
+plt.show()
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image.png"/></h2>
+<h2 id="7-data-structures">✅ 7. Data Structures</h2>
+<pre><code class="language-python">import networkx as nx
+import matplotlib.pyplot as plt
+
+# Create a graph with adjacency list structure using networkx
+G = nx.Graph()
+
+# Add edges
+G.add_edge('1', '2', resistance=5)
+G.add_edge('2', '3', resistance=10)
+G.add_edge('3', '4', resistance=5)
+G.add_edge('2', '4', resistance=15)
+
+# Adjacency list view
+print("Adjacency List with Resistances:")
+for node in G.adjacency():
+    for neighbor, attrs in node[1].items():
+        print(f"{node[0]} --({attrs['resistance']}Ω)--&gt; {neighbor}")
+
+# Plot graph
+pos = nx.spring_layout(G)
+labels = nx.get_edge_attributes(G, 'resistance')
+nx.draw(G, pos, with_labels=True, node_color='lightgreen', node_size=700)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+plt.title("Graph Structure (Adjacency List)")
+plt.show()
+</code></pre>
+<h2 id="_2"><img alt="alt text" src="../image-1.png"/></h2>
+<h2 id="8-resistance-calculation-series-simplification-example">✅ 8. Resistance Calculation (Series Simplification Example)</h2>
+<pre><code class="language-python">import networkx as nx
+import matplotlib.pyplot as plt
+
+def simplify_series(G):
+    simplified = G.copy()
+    for node in list(G.nodes):
+        if node in (start_node, end_node): continue
+        if G.degree[node] == 2:
+            neighbors = list(G.neighbors(node))
+            if simplified.has_edge(neighbors[0], node) and simplified.has_edge(node, neighbors[1]):
+                r1 = G[node][neighbors[0]]['resistance']
+                r2 = G[node][neighbors[1]]['resistance']
+                new_r = r1 + r2
+                simplified.add_edge(neighbors[0], neighbors[1], resistance=new_r)
+                simplified.remove_node(node)
+    return simplified
+
+# Create initial series graph
+G = nx.Graph()
+start_node = 'A'
+end_node = 'D'
+G.add_edge('A', 'B', resistance=5)
+G.add_edge('B', 'C', resistance=10)
+G.add_edge('C', 'D', resistance=15)
+
+# Simplify series
+G_simplified = simplify_series(G)
+
+# Plot before
+plt.figure()
+pos = nx.spring_layout(G)
+labels = nx.get_edge_attributes(G, 'resistance')
+nx.draw(G, pos, with_labels=True, node_color='orange', node_size=800)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+plt.title("Before Simplification")
+plt.show()
+
+# Plot after
+plt.figure()
+pos = nx.spring_layout(G_simplified)
+labels = nx.get_edge_attributes(G_simplified, 'resistance')
+nx.draw(G_simplified, pos, with_labels=True, node_color='salmon', node_size=800)
+nx.draw_networkx_edge_labels(G_simplified, pos, edge_labels=labels)
+plt.title("After Series Simplification")
+plt.show()
+</code></pre>
+<h2 id="_3"><img alt="alt text" src="../image-2.png"/></h2>
+<h2 id="9-test-cases">9. Test Cases</h2>
+<p>Robust testing is essential to verify that the graph-based resistance computation is correct across different circuit configurations. This section outlines a structured approach for selecting and designing test cases.</p>
+<hr/>
+<h3 id="91-simple-series-configuration">9.1 Simple Series Configuration</h3>
+<p><strong>Circuit</strong>:
+- <span class="arithmatex">\(R_1 = 2\ \Omega\)</span>
+- <span class="arithmatex">\(R_2 = 3\ \Omega\)</span>
+- <span class="arithmatex">\(R_3 = 5\ \Omega\)</span> (in series)</p>
+<p><strong>Expected Result</strong>:
+$$
+R_{\text{eq}} = R_1 + R_2 + R_3 = 10\ \Omega
+$$</p>
+<p><strong>Graph</strong>:
+- Nodes: <span class="arithmatex">\(A \to B \to C \to D\)</span>
+- Edges: <span class="arithmatex">\((A, B, 2),\ (B, C, 3),\ (C, D, 5)\)</span></p>
+<hr/>
+<h3 id="92-simple-parallel-configuration">9.2 Simple Parallel Configuration</h3>
+<p><strong>Circuit</strong>:
+- <span class="arithmatex">\(R_1 = 4\ \Omega\)</span>
+- <span class="arithmatex">\(R_2 = 6\ \Omega\)</span> (in parallel)</p>
+<p><strong>Expected Result</strong>:
+$$
+\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} = \frac{1}{4} + \frac{1}{6} = \frac{5}{12} \Rightarrow R_{\text{eq}} = 2.4\ \Omega
+$$</p>
+<p><strong>Graph</strong>:
+- Nodes: <span class="arithmatex">\(A \leftrightarrow B\)</span> with two parallel edges</p>
+<hr/>
+<h3 id="93-nested-configuration">9.3 Nested Configuration</h3>
+<p><strong>Circuit</strong>:
+- Series of two branches:
+  - Branch 1: <span class="arithmatex">\(R = 3\ \Omega\)</span>
+  - Branch 2: parallel: <span class="arithmatex">\(R_1 = 2\ \Omega\)</span>, <span class="arithmatex">\(R_2 = 6\ \Omega\)</span></p>
+<p><strong>Expected Result</strong>:
+$$
+\frac{1}{R_{\text{branch2}}} = \frac{1}{2} + \frac{1}{6} = \frac{2}{3}, \quad R_{\text{branch2}} = 1.5\ \Omega \
+R_{\text{eq}} = 3 + 1.5 = 4.5\ \Omega
+$$</p>
+<hr/>
+<h3 id="94-complex-graph-with-cycles">9.4 Complex Graph with Cycles</h3>
+<p><strong>Circuit</strong>:
+A triangle of resistors:
+- <span class="arithmatex">\(R_{AB} = 2\ \Omega\)</span>
+- <span class="arithmatex">\(R_{BC} = 3\ \Omega\)</span>
+- <span class="arithmatex">\(R_{CA} = 4\ \Omega\)</span></p>
+<p><strong>Expected Result</strong>:
+Use either mesh analysis or Δ–Y transformation to compute:
+$$
+R_{\text{eq}}(A, B) = \text{Non-trivial result (approx. 2.545)}
+$$</p>
+<p><strong>Purpose</strong>:
+Test cycle detection and advanced reduction logic.</p>
+<hr/>
+<h3 id="95-stress-test-random-mesh-network">9.5 Stress Test: Random Mesh Network</h3>
+<ul>
+<li>Generate a random graph with:</li>
+<li>6–10 nodes</li>
+<li>Random resistance values between 1–10 <span class="arithmatex">\(\Omega\)</span></li>
+<li>Ensure START and END are connected</li>
+<li>Use brute-force or Kirchhoff-based numerical solver for comparison</li>
+</ul>
+<hr/>
+<h2 id="10-validation">10. Validation</h2>
+<p>Validation confirms that the algorithm yields correct and consistent results. It ensures not only correct numerical outputs but also structural integrity throughout graph simplification.</p>
+<hr/>
+<h3 id="101-known-result-verification">10.1 Known-Result Verification</h3>
+<ul>
+<li>Each test case has a mathematically known expected result.</li>
+<li>Compare:
+  $$
+  R_{\text{computed}} \approx R_{\text{expected}}
+  $$</li>
+<li>Use relative or absolute error threshold:
+  $$
+  \left| \frac{R_{\text{computed}} - R_{\text{expected}}}{R_{\text{expected}}} \right| &lt; \epsilon
+  $$</li>
+</ul>
+<p>Typical <span class="arithmatex">\(\epsilon\)</span> threshold: <span class="arithmatex">\(10^{-5}\)</span></p>
+<hr/>
+<h3 id="102-preservation-of-startend-path">10.2 Preservation of START–END Path</h3>
+<p>After each simplification step:
+- Confirm START and END are still connected:
+  $$
+  \text{has_path}(G', \text{START}, \text{END}) = \text{True}
+  $$
+- No isolated subgraphs should remain between START and END.</p>
+<hr/>
+<h3 id="103-intermediate-visualization">10.3 Intermediate Visualization</h3>
+<ul>
+<li>Plot intermediate graphs (before/after simplification)</li>
+<li>Annotate edge resistances and simplified patterns</li>
+<li>Visually inspect that:</li>
+<li>Only safe transformations occurred</li>
+<li>No accidental merges or removals affecting key connectivity</li>
+</ul>
+<hr/>
+<h3 id="104-consistency-under-graph-isomorphism">10.4 Consistency under Graph Isomorphism</h3>
+<p>Reordering nodes or edges in the input graph should not change the result:
+- Test equivalent graphs with shuffled labels or edge order
+- Validate:
+  $$
+  R_{\text{eq}}^{(G_1)} = R_{\text{eq}}^{(G_2)}
+  $$</p>
+<hr/>
+<h3 id="105-summary">10.5 Summary</h3>
+<p>Testing and validation are critical to:
+- Catch edge cases in simplification logic
+- Ensure numerical and structural correctness
+- Build confidence that the algorithm generalizes across a wide variety of circuit topologies</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
