@@ -252,155 +252,113 @@
 * Example: <span class="arithmatex">\(L = 1.003,\text{m} \pm 0.0005,\text{m}\)</span></p>
 <hr/>
 <h2 id="5-collect-oscillation-data">5. Collect Oscillation Data</h2>
+<h1 id="simple-pendulum-experiment-report">Simple Pendulum Experiment Report</h1>
+<h2 id="1-objective">1. Objective</h2>
+<p>To observe the dependence of the pendulum's period on its length and compare the experimental results with the theoretical prediction.</p>
+<hr/>
+<h2 id="2-apparatus">2. Apparatus</h2>
 <ul>
-<li>Displace bob <span class="arithmatex">\(&lt; 15^\circ\)</span> and release smoothly.</li>
-<li>Time <span class="arithmatex">\(10\)</span> complete oscillations (<span class="arithmatex">\(T\_{10}\)</span>).</li>
-<li>Repeat for <span class="arithmatex">\(n = 10\)</span> trials: <span class="arithmatex">\(T\_{10,1}, T\_{10,2}, ..., T\_{10,10}\)</span>.</li>
-<li>Record each value in a table:</li>
+<li>Key (as weight)</li>
+<li>String (approx. 30 cm)</li>
+<li>Ruler (with 1 mm precision)</li>
+<li>Smartphone (stopwatch function)</li>
 </ul>
+<hr/>
+<h2 id="3-measurements">3. Measurements</h2>
+<p><strong>Pendulum Length:</strong><br/>
+- L = 0.300 m<br/>
+- ΔL = 0.001 m</p>
+<p><strong>Time for 10 Oscillations (Repeated 10 times):</strong></p>
 <table>
 <thead>
 <tr>
-<th>Trial (<span class="arithmatex">\(i\)</span>)</th>
-<th><span class="arithmatex">\(T_{10,i}\)</span> (s)</th>
+<th>Trial</th>
+<th>Time for 10 Swings (s)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>19.85</td>
+<td>10.24</td>
 </tr>
 <tr>
 <td>2</td>
-<td>19.83</td>
+<td>10.30</td>
 </tr>
 <tr>
 <td>3</td>
-<td>19.81</td>
+<td>10.28</td>
 </tr>
 <tr>
 <td>4</td>
-<td>19.87</td>
+<td>10.35</td>
 </tr>
 <tr>
 <td>5</td>
-<td>19.84</td>
+<td>10.30</td>
 </tr>
 <tr>
 <td>6</td>
-<td>19.86</td>
+<td>10.32</td>
 </tr>
 <tr>
 <td>7</td>
-<td>19.82</td>
+<td>10.37</td>
 </tr>
 <tr>
 <td>8</td>
-<td>19.85</td>
+<td>10.35</td>
 </tr>
 <tr>
 <td>9</td>
-<td>19.83</td>
+<td>10.40</td>
 </tr>
 <tr>
 <td>10</td>
-<td>19.84</td>
+<td>10.38</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-<h2 id="6-calculate-statistics">6. Calculate Statistics</h2>
+<h2 id="4-calculations">4. Calculations</h2>
+<p><strong>Average time for 10 swings:</strong><br/>
+[
+\overline{T_{10}} = \frac{10.24 + 10.30 + 10.28 + 10.35 + 10.30 + 10.32 + 10.37 + 10.35 + 10.40 + 10.38}{10}
+]
+[
+\overline{T_{10}} = 10.329~\text{s}
+]</p>
+<p><strong>Average period for one swing:</strong><br/>
+[
+T = \frac{\overline{T_{10}}}{10} = 1.033~\text{s}
+]</p>
+<hr/>
+<p><strong>Theoretical period formula:</strong></p>
+<p>[
+T_{\text{theoretical}} = 2\pi \sqrt{\frac{L}{g}}
+]
+where <span class="arithmatex">\( L = 0.300~\text{m} \)</span>, <span class="arithmatex">\( g = 9.81~\text{m/s}^2 \)</span>.</p>
+<div class="arithmatex">\[
+T_{\text{theoretical}} = 2\pi \sqrt{\frac{0.300}{9.81}} = 1.10~\text{s}
+\]</div>
+<hr/>
+<h2 id="5-discussion">5. Discussion</h2>
 <ul>
-<li>Mean:</li>
+<li>The experimental period (<span class="arithmatex">\( T = 1.03~\text{s} \)</span>) is slightly less than the theoretical period (<span class="arithmatex">\( T_{\text{theoretical}} = 1.10~\text{s} \)</span>).  </li>
+<li>Possible reasons: measurement errors, starting the stopwatch slightly early/late, or not releasing the pendulum from a small angle.</li>
 </ul>
-<p>$$
-  \overline{T}<em>{10} = \frac{1}{n} \sum</em>{i=1}^n T_{10,i}
-  $$
-* Standard deviation:</p>
-<p>$$
-  \sigma_T = \sqrt{ \frac{1}{n-1} \sum_{i=1}^n (T_{10,i} - \overline{T}_{10})^2 }
-  $$
-* Uncertainty in mean:</p>
-<p>$$
-  \Delta T_{10} = \frac{\sigma_T}{\sqrt{n}}
-  $$</p>
 <hr/>
-<h2 id="7-find-the-period-and-its-uncertainty">7. Find the Period and Its Uncertainty</h2>
+<h2 id="6-conclusion">6. Conclusion</h2>
 <ul>
-<li>Period:</li>
+<li>The period of a pendulum depends on its length, as observed.</li>
+<li>Experimental results are close to theoretical predictions.</li>
 </ul>
-<p>$$
-  T = \frac{\overline{T}_{10}}{10}
-  $$
-* Uncertainty:</p>
-<p>$$
-  \Delta T = \frac{\Delta T_{10}}{10}
-  $$</p>
 <hr/>
-<h2 id="8-calculate-gravitational-acceleration-g">8. Calculate Gravitational Acceleration (<span class="arithmatex">\(g\)</span>)</h2>
+<h2 id="7-uncertainty">7. Uncertainty</h2>
 <ul>
-<li>Use:</li>
+<li>Ruler uncertainty: ΔL = 0.001 m.</li>
+<li>Reaction time while measuring: approximately ±0.1 s.</li>
 </ul>
-<p>$$
-  g = \frac{4\pi^2 L}{T^2}
-  $$</p>
-<hr/>
-<h2 id="9-propagate-uncertainties">9. Propagate Uncertainties</h2>
-<ul>
-<li>Use:</li>
-</ul>
-<p>$$
-  \Delta g = g \sqrt{ \left( \frac{\Delta L}{L} \right)^2 + \left( 2 \frac{\Delta T}{T} \right)^2 }
-  $$</p>
-<hr/>
-<h2 id="10-results-summary">10. Results Summary</h2>
-<table>
-<thead>
-<tr>
-<th>Quantity</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="arithmatex">\(\overline{T}_{10}\)</span> (s)</td>
-<td>19.84</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(\sigma_T\)</span> (s)</td>
-<td>0.020</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(\Delta T_{10}\)</span> (s)</td>
-<td>0.006</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(T\)</span> (s)</td>
-<td>1.984</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(\Delta T\)</span> (s)</td>
-<td>0.0006</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(L\)</span> (m)</td>
-<td>1.003</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(\Delta L\)</span> (m)</td>
-<td>0.0005</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(g\)</span> (m/s<span class="arithmatex">\(^2\)</span>)</td>
-<td>10.04</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(\Delta g\)</span> (m/s<span class="arithmatex">\(^2\)</span>)</td>
-<td>0.007</td>
-</tr>
-</tbody>
-</table>
-<hr/>
 <h2 id="11-visualization-histogram-of-timing-measurements">11. Visualization: Histogram of Timing Measurements</h2>
 <p>To better understand the spread of timing data, a histogram of the <span class="arithmatex">\(T\_{10}\)</span> values was constructed. This provides a visual check for consistency and outliers.</p>
 <pre><code class="language-python">import matplotlib.pyplot as plt
