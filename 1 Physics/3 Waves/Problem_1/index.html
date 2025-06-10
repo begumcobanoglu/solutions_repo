@@ -405,14 +405,10 @@ def display_gif(gif_path):
         gif_data = f.read()
     b64_gif = base64.b64encode(gif_data).decode('utf-8')
     return HTML(f'&lt;img src="data:image/gif;base64,{b64_gif}"&gt;')
-````
-
----
-
-### 5.2 One Source — 2D and 3D Animation
-
-```python
-# Source configuration
+</code></pre>
+<hr/>
+<h3 id="52-one-source-2d-and-3d-animation">5.2 One Source — 2D and 3D Animation</h3>
+<pre><code class="language-python"># Source configuration
 sources = [(0, 0)]
 N = 1
 
@@ -431,7 +427,6 @@ gif_path = f'interference_{N}_source_2D.gif'
 ani.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 </code></pre>
-<p><img alt="alt text" src="../image-1.png"/></p>
 <pre><code class="language-python"># 3D Animation
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -448,7 +443,7 @@ gif_path = f'interference_{N}_source_3D.gif'
 ani3d.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 </code></pre>
-<hr/>
+<h2 id="_1"><img alt="alt text" src="image-8.png"/></h2>
 <h3 id="53-two-sources-2d-and-3d-animation">5.3 Two Sources — 2D and 3D Animation</h3>
 <pre><code class="language-python">sources = [(-3, 0), (3, 0)]
 N = 2
@@ -485,7 +480,7 @@ gif_path = f'interference_{N}_sources_3D.gif'
 ani3d.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 </code></pre>
-<h2 id="_1"><img alt="alt text" src="../image-3.png"/></h2>
+<h2 id="_2"><img alt="alt text" src="../image-3.png"/></h2>
 <h3 id="54-three-sources-triangle-2d-and-3d-animation">5.4 Three Sources (Triangle) — 2D and 3D Animation</h3>
 <pre><code class="language-python">N = 3
 R_polygon = 5
@@ -523,7 +518,7 @@ gif_path = f'interference_{N}_sources_3D.gif'
 ani3d.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 </code></pre>
-<h2 id="_2"><img alt="alt text" src="../image-5.png"/></h2>
+<h2 id="_3"><img alt="alt text" src="../image-5.png"/></h2>
 <h3 id="55-five-sources-pentagon-2d-and-3d-animation">5.5 Five Sources (Pentagon) — 2D and 3D Animation</h3>
 <pre><code class="language-python">N = 5
 R_polygon = 5
@@ -561,7 +556,7 @@ gif_path = f'interference_{N}_sources_3D.gif'
 ani3d.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 </code></pre>
-<h2 id="_3"><img alt="alt text" src="../image-7.png"/></h2>
+<h2 id="_4"><img alt="alt text" src="../image-7.png"/></h2>
 <h2 id="6-analysis-and-explanation">6. Analysis and Explanation</h2>
 <p>The interference patterns formed by multiple wave sources are deeply influenced by the <strong>geometric symmetry</strong> of their arrangement and the fundamental <strong>principles of wave behavior</strong>. In this section, we analyze the resulting patterns and interpret their physical significance.</p>
 <hr/>
