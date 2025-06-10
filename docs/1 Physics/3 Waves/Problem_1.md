@@ -268,7 +268,7 @@ def display_gif(gif_path):
         gif_data = f.read()
     b64_gif = base64.b64encode(gif_data).decode('utf-8')
     return HTML(f'<img src="data:image/gif;base64,{b64_gif}">')
-````
+```
 
 ---
 
@@ -294,7 +294,7 @@ gif_path = f'interference_{N}_source_2D.gif'
 ani.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 ```
-![alt text](image-1.png)
+
 ```python
 # 3D Animation
 fig = plt.figure()
@@ -312,7 +312,7 @@ gif_path = f'interference_{N}_source_3D.gif'
 ani3d.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 ```
-
+![alt text](image-8.png)
 ---
 
 ### 5.3 Two Sources — 2D and 3D Animation
