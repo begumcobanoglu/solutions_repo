@@ -61,97 +61,92 @@ Precise measurement of the gravitational acceleration, $g$, begins with careful 
 
 ## 5. Collect Oscillation Data
 
-* Displace bob $< 15^\circ$ and release smoothly.
-* Time $10$ complete oscillations ($T\_{10}$).
-* Repeat for $n = 10$ trials: $T\_{10,1}, T\_{10,2}, ..., T\_{10,10}$.
-* Record each value in a table:
+# Simple Pendulum Experiment Report
 
-| Trial ($i$) | $T_{10,i}$ (s) |
-|-------------|----------------|
-| 1           | 19.85          |
-| 2           | 19.83          |
-| 3           | 19.81          |
-| 4           | 19.87          |
-| 5           | 19.84          |
-| 6           | 19.86          |
-| 7           | 19.82          |
-| 8           | 19.85          |
-| 9           | 19.83          |
-| 10          | 19.84          |
-
+## 1. Objective
+To observe the dependence of the pendulum's period on its length and compare the experimental results with the theoretical prediction.
 
 ---
 
-## 6. Calculate Statistics
-
-* Mean:
-
-  $$
-  \overline{T}_{10} = \frac{1}{n} \sum_{i=1}^n T_{10,i}
-  $$
-* Standard deviation:
-
-  $$
-  \sigma_T = \sqrt{ \frac{1}{n-1} \sum_{i=1}^n (T_{10,i} - \overline{T}_{10})^2 }
-  $$
-* Uncertainty in mean:
-
-  $$
-  \Delta T_{10} = \frac{\sigma_T}{\sqrt{n}}
-  $$
+## 2. Apparatus
+- Key (as weight)
+- String (approx. 30 cm)
+- Ruler (with 1 mm precision)
+- Smartphone (stopwatch function)
 
 ---
 
-## 7. Find the Period and Its Uncertainty
+## 3. Measurements
 
-* Period:
+**Pendulum Length:**  
+- L = 0.300 m  
+- ΔL = 0.001 m
 
-  $$
-  T = \frac{\overline{T}_{10}}{10}
-  $$
-* Uncertainty:
+**Time for 10 Oscillations (Repeated 10 times):**
 
-  $$
-  \Delta T = \frac{\Delta T_{10}}{10}
-  $$
-
----
-
-## 8. Calculate Gravitational Acceleration ($g$)
-
-* Use:
-
-  $$
-  g = \frac{4\pi^2 L}{T^2}
-  $$
+| Trial | Time for 10 Swings (s) |
+|-------|------------------------|
+| 1     | 10.24                  |
+| 2     | 10.30                  |
+| 3     | 10.28                  |
+| 4     | 10.35                  |
+| 5     | 10.30                  |
+| 6     | 10.32                  |
+| 7     | 10.37                  |
+| 8     | 10.35                  |
+| 9     | 10.40                  |
+| 10    | 10.38                  |
 
 ---
 
-## 9. Propagate Uncertainties
+## 4. Calculations
 
-* Use:
+**Average time for 10 swings:**  
+\[
+\overline{T_{10}} = \frac{10.24 + 10.30 + 10.28 + 10.35 + 10.30 + 10.32 + 10.37 + 10.35 + 10.40 + 10.38}{10}
+\]
+\[
+\overline{T_{10}} = 10.329~\text{s}
+\]
 
-  $$
-  \Delta g = g \sqrt{ \left( \frac{\Delta L}{L} \right)^2 + \left( 2 \frac{\Delta T}{T} \right)^2 }
-  $$
+**Average period for one swing:**  
+\[
+T = \frac{\overline{T_{10}}}{10} = 1.033~\text{s}
+\]
+
+---
+
+**Theoretical period formula:**
+
+\[
+T_{\text{theoretical}} = 2\pi \sqrt{\frac{L}{g}}
+\]
+where \( L = 0.300~\text{m} \), \( g = 9.81~\text{m/s}^2 \).
+
+\[
+T_{\text{theoretical}} = 2\pi \sqrt{\frac{0.300}{9.81}} = 1.10~\text{s}
+\]
 
 ---
 
-## 10. Results Summary
+## 5. Discussion
 
-| Quantity                | Value    |
-|-------------------------|----------|
-| $\overline{T}_{10}$ (s) | 19.84    |
-| $\sigma_T$ (s)          | 0.020    |
-| $\Delta T_{10}$ (s)     | 0.006    |
-| $T$ (s)                 | 1.984    |
-| $\Delta T$ (s)          | 0.0006   |
-| $L$ (m)                 | 1.003    |
-| $\Delta L$ (m)          | 0.0005   |
-| $g$ (m/s$^2$)           | 10.04    |
-| $\Delta g$ (m/s$^2$)    | 0.007    |
+- The experimental period (\( T = 1.03~\text{s} \)) is slightly less than the theoretical period (\( T_{\text{theoretical}} = 1.10~\text{s} \)).  
+- Possible reasons: measurement errors, starting the stopwatch slightly early/late, or not releasing the pendulum from a small angle.
 
 ---
+
+## 6. Conclusion
+
+- The period of a pendulum depends on its length, as observed.
+- Experimental results are close to theoretical predictions.
+
+---
+
+## 7. Uncertainty
+
+- Ruler uncertainty: ΔL = 0.001 m.
+- Reaction time while measuring: approximately ±0.1 s.
 
 
 ## 11. Visualization: Histogram of Timing Measurements
