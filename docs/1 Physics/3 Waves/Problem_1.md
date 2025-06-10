@@ -354,7 +354,7 @@ gif_path = f'interference_{N}_sources_3D.gif'
 ani3d.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 ```
-![alt text](image-3.png)
+![alt text](<indir (1).gif>)
 ---
 
 ### 5.4 Three Sources (Triangle) — 2D and 3D Animation
