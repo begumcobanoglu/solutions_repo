@@ -294,7 +294,7 @@ gif_path = f'interference_{N}_source_2D.gif'
 ani.save(gif_path, writer='pillow', fps=10)
 display_gif(gif_path)
 ```
-![alt text](image-12.png)
+![alt text](image.gif)
 ```python
 # 3D Animation
 fig = plt.figure()
