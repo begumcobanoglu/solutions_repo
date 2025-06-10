@@ -361,19 +361,64 @@ T_{\text{theoretical}} = 2\pi \sqrt{\frac{0.300}{9.81}} = 1.10~\text{s}
 </ul>
 <h2 id="11-visualization-histogram-of-timing-measurements">11. Visualization: Histogram of Timing Measurements</h2>
 <p>To better understand the spread of timing data, a histogram of the <span class="arithmatex">\(T\_{10}\)</span> values was constructed. This provides a visual check for consistency and outliers.</p>
-<pre><code class="language-python">import matplotlib.pyplot as plt
-# Replace with your measured values
-T_10 = [19.85, 19.83, 19.81, 19.87, 19.84, 19.86, 19.82, 19.85, 19.83, 19.84]
-plt.figure(figsize=(6, 4))
-plt.hist(T_10, bins=5, edgecolor='black', alpha=0.7)
-plt.title('Histogram of Timing Measurements ($T_{10}$)')
-plt.xlabel('Time for 10 Oscillations (s)')
-plt.ylabel('Frequency')
-plt.grid(axis='y', alpha=0.3)
-plt.tight_layout()
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation, PillowWriter
+
+# Pendulum parameters
+L = 0.3      # Length (meters)
+g = 9.81     # Gravity (m/s^2)
+theta0 = np.radians(20)   # Initial angle (in radians)
+
+# Calculate theoretical period
+T = 2 * np.pi * np.sqrt(L / g)
+
+# Time array
+t = np.linspace(0, 2 * T, 200)
+
+# Simple pendulum angle as a function of time
+theta = theta0 * np.cos(np.sqrt(g / L) * t)
+
+# X, Y coordinates
+x = L * np.sin(theta)
+y = -L * np.cos(theta)
+
+# Create a 3D plot
+fig = plt.figure(figsize=(6,6))
+ax = fig.add_subplot(111, projection='3d')
+ax.set_xlim(-L, L)
+ax.set_ylim(-L, L)
+ax.set_zlim(-L, 0.1)
+ax.set_box_aspect([1,1,1])
+ax.set_title('3D Simple Pendulum Animation')
+
+pendulum_line, = ax.plot([], [], [], 'o-', lw=3, color='navy')
+
+def update(i):
+    ax.cla()
+    # Sarkaç çizgisi
+    ax.plot([0, x[i]], [0, 0], [0, y[i]], 'o-', lw=3, color='navy')
+    ax.set_xlim(-L, L)
+    ax.set_ylim(-L, L)
+    ax.set_zlim(-L, 0.1)
+    ax.set_box_aspect([1,1,1])
+    ax.set_title('3D Simple Pendulum Animation')
+    # Pivot
+    ax.scatter(0, 0, 0, color='black', s=50)
+    # Sarkaç kütlesi (küre olarak)
+    ax.scatter(x[i], 0, y[i], color='red', s=200)
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+
+ani = FuncAnimation(fig, update, frames=len(t), interval=30)
+
+# Save as gif (this will create pendulum.gif in your folder)
+ani.save('pendulum.gif', writer=PillowWriter(fps=20))
+
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../WhatsApp%20G%C3%B6rsel%202025-06-10%20saat%2000.03.26_7c68e1db.jpg"/></p>
+<p><img alt="alt text" src="../image.png"/></p>
 <hr/>
 <h2 id="12-compare-and-analyze">12. Compare and Analyze</h2>
 <ul>
