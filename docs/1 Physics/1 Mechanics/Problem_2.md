@@ -313,98 +313,282 @@ sol = solve_ivp(pendulum, t_span, y0, args=(gamma, omega0, A, omega_drive), t_ev
 ## 2. Time Series Plot (Angular Displacement and Velocity)
 
 ```python
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from mpl_toolkits.mplot3d import Axes3D
 
-plt.figure()
-plt.plot(sol.t, sol.y[0], label='θ(t)')
-plt.plot(sol.t, sol.y[1], label='ω(t)', alpha=0.7)
-plt.xlabel('Time')
-plt.ylabel('Amplitude')
-plt.title('Time Series of θ and ω')
-plt.legend()
-plt.grid(True)
+# Pendulum parameters
+g = 9.81       # Acceleration due to gravity (m/s²)
+L = 1.0        # Length of the pendulum (m)
+theta0 = np.pi / 4  # Initial angle (radians)
+omega0 = 0          # Initial angular velocity (rad/s)
+
+# Define the pendulum differential equations
+def pendulum(t, y):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = - (g / L) * np.sin(theta)
+    return [dtheta_dt, domega_dt]
+
+# Time span and evaluation points
+t_span = (0, 10)  # Time interval from 0 to 10 seconds
+t_eval = np.linspace(t_span[0], t_span[1], 300)
+
+# Solve the ODE system
+sol = solve_ivp(pendulum, t_span, [theta0, omega0], t_eval=t_eval)
+
+# Create a 3D plot: Time vs θ(t) vs ω(t)
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the trajectory
+ax.plot(sol.t, sol.y[0], sol.y[1], label='Pendulum Motion')
+
+# Set axis labels and title
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('θ(t) (radians)')
+ax.set_zlabel('ω(t) (rad/s)')
+ax.set_title('3D View: Time Evolution of θ and ω')
+ax.legend()
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-9.png)
+![alt text](image-15.png)
 
 ## 3. Phase Space Diagram (θ vs. ω)
 
 ```python
-plt.figure()
-plt.plot(sol.y[0], sol.y[1], lw=0.5)
-plt.xlabel('θ')
-plt.ylabel('ω')
-plt.title('Phase Space Diagram')
-plt.grid(True)
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from mpl_toolkits.mplot3d import Axes3D
+
+# Pendulum parameters
+g = 9.81       # Gravity (m/s²)
+L = 1.0        # Pendulum length (m)
+theta0 = np.pi / 4  # Initial angle (radians)
+omega0 = 0          # Initial angular velocity (rad/s)
+
+# Pendulum differential equation
+def pendulum(t, y):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = - (g / L) * np.sin(theta)
+    return [dtheta_dt, domega_dt]
+
+# Time span and evaluation points
+t_span = (0, 10)
+t_eval = np.linspace(t_span[0], t_span[1], 300)
+
+# Solve the differential equations
+sol = solve_ivp(pendulum, t_span, [theta0, omega0], t_eval=t_eval)
+
+# Create a 3D phase space plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot θ vs ω vs time
+ax.plot(sol.y[0], sol.y[1], sol.t, lw=0.8)
+
+# Axis labels and title
+ax.set_xlabel('θ (radians)')
+ax.set_ylabel('ω (rad/s)')
+ax.set_zlabel('Time (s)')
+ax.set_title('3D View: Phase Space Evolution Over Time')
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-11.png)
+![alt text](image-16.png)
 
 
 ## 4. Poincaré Section (Stroboscopic Map)
 
 ```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from mpl_toolkits.mplot3d import Axes3D
+
+# Parameters for the driven pendulum
+g = 9.81       # Gravity (m/s²)
+L = 1.0        # Length of the pendulum (m)
+theta0 = np.pi / 4  # Initial angle (radians)
+omega0 = 0          # Initial angular velocity (rad/s)
+omega_drive = 2.0   # Driving frequency (rad/s)
+
+# Pendulum equations (undriven example here; you can modify to add driving force)
+def pendulum(t, y):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = - (g / L) * np.sin(theta)
+    return [dtheta_dt, domega_dt]
+
+# Time span and evaluation points
+t_span = (0, 10)
+t_eval = np.linspace(t_span[0], t_span[1], 3000)
+
+# Solve the ODE system
+sol = solve_ivp(pendulum, t_span, [theta0, omega0], t_eval=t_eval)
+
+# Calculate driving period and Poincaré sampling times
 T_drive = 2 * np.pi / omega_drive
 times = np.arange(0, t_span[1], T_drive)
 indices = [np.abs(sol.t - t).argmin() for t in times]
+
+# Extract θ and ω at Poincaré times
 theta_poincare = sol.y[0][indices]
 omega_poincare = sol.y[1][indices]
+time_poincare = sol.t[indices]
 
-plt.figure()
-plt.plot(theta_poincare, omega_poincare, 'o', markersize=2)
-plt.xlabel('θ (mod 2π)')
-plt.ylabel('ω')
-plt.title('Poincaré Section')
-plt.grid(True)
+# Wrap θ modulo 2π
+theta_mod = np.mod(theta_poincare, 2 * np.pi)
+
+# Create 3D Poincaré section plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Scatter plot in 3D
+ax.scatter(theta_mod, omega_poincare, time_poincare, s=10)
+
+# Labels and title
+ax.set_xlabel('θ (mod 2π)')
+ax.set_ylabel('ω (rad/s)')
+ax.set_zlabel('Time (s)')
+ax.set_title('3D View: Poincaré Section of a Driven Pendulum')
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-12.png)
+![alt text](image-17.png)
 
 ## 5. Bifurcation Diagram (Varying A)
 
 ```python
-As = np.linspace(1.0, 1.5, 100)
-theta_samples = []
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from mpl_toolkits.mplot3d import Axes3D
 
+# Define the driven damped pendulum system
+def driven_pendulum(t, y, gamma, omega0, A, omega_drive):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = -gamma * omega - omega0**2 * np.sin(theta) + A * np.cos(omega_drive * t)
+    return [dtheta_dt, domega_dt]
+
+# Parameters
+gamma = 0.5             # Damping coefficient
+omega0 = 1.5            # Natural frequency
+omega_drive = 2.0       # Driving frequency
+t_span = (0, 100)       # Total simulation time
+t_eval = np.linspace(t_span[0], t_span[1], 5000)  # Time points for evaluation
+y0 = [0.01, 0.0]        # Initial conditions: [theta, omega]
+
+# Range of driving amplitudes
+As = np.linspace(1.0, 1.5, 100)
+
+# Lists to store data for plotting
+theta_samples = []
+time_samples = []
+
+# Calculate the driving period
+T_drive = 2 * np.pi / omega_drive
+
+# Solve the system for each driving amplitude
 for A_val in As:
-    sol = solve_ivp(pendulum, t_span, y0, args=(gamma, omega0, A_val, omega_drive), t_eval=t_eval)
+    sol = solve_ivp(driven_pendulum, t_span, y0, args=(gamma, omega0, A_val, omega_drive), t_eval=t_eval)
+    
+    # Sample θ from the last few cycles (Poincaré section)
     times = np.arange(90, 100, T_drive)
     indices = [np.abs(sol.t - t).argmin() for t in times]
-    theta_samples.extend([(A_val, sol.y[0][i] % (2 * np.pi)) for i in indices])
+    
+    for i in indices:
+        theta_mod = sol.y[0][i] % (2 * np.pi)  # Wrap angle to [0, 2π]
+        theta_samples.append((A_val, theta_mod))
+        time_samples.append(sol.t[i])
 
+# Extract data for plotting
 bif_As, bif_thetas = zip(*theta_samples)
+bif_times = time_samples
 
-plt.figure()
-plt.plot(bif_As, bif_thetas, 'k.', markersize=0.5)
-plt.xlabel('Driving Amplitude A')
-plt.ylabel('θ (mod 2π)')
-plt.title('Bifurcation Diagram')
-plt.grid(True)
+# Create 3D bifurcation diagram
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(bif_As, bif_thetas, bif_times, c='black', s=1)
+
+# Axis labels and title
+ax.set_xlabel('Driving Amplitude A')
+ax.set_ylabel('θ (mod 2π)')
+ax.set_zlabel('Time (s)')
+ax.set_title('3D View: Bifurcation Diagram of Driven Pendulum')
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-13.png)
+![alt text](image-18.png)
 
 ## 6. Animation of the Pendulum
 
 ```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.animation as animation
 
-fig, ax = plt.subplots()
-ax.set_xlim(-1.2, 1.2)
-ax.set_ylim(-1.2, 1.2)
-line, = ax.plot([], [], 'o-', lw=2)
+# Define the driven damped pendulum system
+def driven_pendulum(t, y, gamma, omega0, A, omega_drive):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = -gamma * omega - omega0**2 * np.sin(theta) + A * np.cos(omega_drive * t)
+    return [dtheta_dt, domega_dt]
 
-def update(i):
-    x = np.sin(sol.y[0][i])
-    y = -np.cos(sol.y[0][i])
+# Parameters
+gamma = 0.5
+omega0 = 1.5
+omega_drive = 2.0
+A = 1.2
+t_span = (0, 20)
+t_eval = np.linspace(t_span[0], t_span[1], 1000)
+y0 = [np.pi / 6, 0.0]  # Initial conditions: [theta, omega]
+
+# Solve the system
+sol = solve_ivp(driven_pendulum, t_span, y0, args=(gamma, omega0, A, omega_drive), t_eval=t_eval)
+
+# Set up the 3D animation
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Set axis limits
+ax.set_xlim([-1.2, 1.2])
+ax.set_ylim([-1.2, 1.2])
+ax.set_zlim([-1.2, 1.2])
+
+# Create a line object to represent the pendulum
+line, = ax.plot([], [], [], 'o-', lw=2)
+
+# Animation update function
+def update_3d(i):
+    theta = sol.y[0][i]
+    x = np.sin(theta)
+    y = 0  # pendulum swings in x-z plane
+    z = -np.cos(theta)
     line.set_data([0, x], [0, y])
+    line.set_3d_properties([0, z])
     return line,
 
-ani = animation.FuncAnimation(fig, update, frames=range(0, len(sol.t), 10), interval=30)
-plt.title('Forced Damped Pendulum Animation')
+# Create the animation
+ani = animation.FuncAnimation(fig, update_3d, frames=range(0, len(sol.t), 10), interval=30)
+
+# Set the plot title and show the animation
+ax.set_title('3D View: Forced Damped Pendulum Animation')
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-14.png)
+![alt text](image-19.png)
 ## Colab
 https://colab.research.google.com/drive/1Hi5p_ObrtnwKTW3J3qKFETa2FQWf3d4b#scrollTo=xz71QtazDiuq
 
