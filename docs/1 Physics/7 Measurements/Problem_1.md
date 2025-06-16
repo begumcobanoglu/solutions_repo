@@ -102,17 +102,20 @@ To observe the dependence of the pendulum's period on its length and compare the
 ## 4. Calculations
 
 **Average time for 10 swings:**  
-\[
+
+$$
 \overline{T_{10}} = \frac{10.24 + 10.30 + 10.28 + 10.35 + 10.30 + 10.32 + 10.37 + 10.35 + 10.40 + 10.38}{10}
-\]
-\[
+$$
+
+$$
 \overline{T_{10}} = 10.329~\text{s}
-\]
+$$
 
 **Average period for one swing:**  
-\[
+
+$$
 T = \frac{\overline{T_{10}}}{10} = 1.033~\text{s}
-\]
+$$
 
 ---
 

@@ -278,27 +278,41 @@ def orbital_period(r, M):
 Here, we simulate a range of orbital radii around Earth and calculate the corresponding orbital periods.
 
 ```python
-# Central mass: Earth
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Universal gravitational constant and Earth's mass
+G = 6.67430e-11  # m^3 kg^-1 s^-2
 M_earth = 5.972e24  # kg
 
-# Orbital radii (from 7000 km to 50,000 km)
+# Orbital period calculation function
+def orbital_period(r, M):
+    return 2 * np.pi * np.sqrt(r**3 / (G * M))
+
+# Orbital radii (from 7,000 km to 50,000 km)
 radii = np.linspace(7e6, 5e7, 100)
 T = orbital_period(radii, M_earth)
 
-# Calculate T² and r³
+# Compute T^2 and r^3
 T_squared = T**2
 r_cubed = radii**3
 
-# Plot T² vs r³
-plt.figure()
-plt.plot(r_cubed, T_squared, 'o', markersize=4)
-plt.xlabel('$r^3$ (m³)')
-plt.ylabel('$T^2$ (s²)')
-plt.title('Kepler’s Law Simulation: $T^2$ vs $r^3$ (Fixed Earth Mass)')
-plt.grid(True)
+# Create a 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(radii, r_cubed, T_squared, marker='o', linestyle='', markersize=4)
+
+# Axis labels and title
+ax.set_xlabel('Orbital Radius (m)')
+ax.set_ylabel('$r^3$ (m³)')
+ax.set_zlabel('$T^2$ (s²)')
+ax.set_title("3D View: Kepler’s Law - $T^2$ vs $r^3$ vs Radius")
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image.png)
+![alt text](image-10.png)
 
 ---
 
@@ -307,24 +321,46 @@ plt.show()
 Now we compare how different central masses affect the slope of the $T^2$ vs $r^3$ relation.
 
 ```python
-masses = [5.972e24, 1.989e30]  # Earth, Sun
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Universal gravitational constant
+G = 6.67430e-11  # m^3 kg^-1 s^-2
+
+# Orbital period calculation function
+def orbital_period(r, M):
+    return 2 * np.pi * np.sqrt(r**3 / (G * M))
+
+# Orbital radii (from 7,000 km to 50,000 km)
+radii = np.linspace(7e6, 5e7, 100)
+
+# Central masses: Earth and Sun
+masses = [5.972e24, 1.989e30]  # kg
 labels = ['Earth Mass', 'Sun Mass']
 
-plt.figure()
+# Create 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot T^2 vs r^3 for each central mass
 for M, label in zip(masses, labels):
     T = orbital_period(radii, M)
     T_squared = T**2
     r_cubed = radii**3
-    plt.plot(r_cubed, T_squared, label=label)
+    ax.plot(radii, r_cubed, T_squared, marker='o', linestyle='', markersize=4, label=label)
 
-plt.xlabel('$r^3$ (m³)')
-plt.ylabel('$T^2$ (s²)')
-plt.title('Effect of Central Mass on $T^2$ vs $r^3$')
-plt.legend()
-plt.grid(True)
+# Axis labels and title
+ax.set_xlabel('Orbital Radius (m)')
+ax.set_ylabel('$r^3$ (m³)')
+ax.set_zlabel('$T^2$ (s²)')
+ax.set_title("3D View: Kepler’s Law for Different Central Masses")
+ax.legend()
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-1.png)
+![alt text](image-11.png)
 
 ---
 
@@ -333,31 +369,51 @@ plt.show()
 We verify that the relationship between $T^2$ and $r^3$ is linear by fitting a straight line to the data.
 
 ```python
-# Use Earth mass for this check
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Constants
+G = 6.67430e-11  # gravitational constant in m^3 kg^-1 s^-2
+M_earth = 5.972e24  # mass of Earth in kg
+
+# Orbital period function
+def orbital_period(r, M):
+    return 2 * np.pi * np.sqrt(r**3 / (G * M))
+
+# Orbital radii (from 7,000 km to 50,000 km)
+radii = np.linspace(7e6, 5e7, 100)
+
+# Calculate T, T^2, and r^3 for Earth
 T = orbital_period(radii, M_earth)
 T_squared = T**2
 r_cubed = radii**3
 
-# Linear regression
+# Perform linear regression on the simulated data
 slope, intercept = np.polyfit(r_cubed, T_squared, 1)
+T_squared_fit = slope * r_cubed + intercept  # Fitted values
 
-# Print slope and theoretical value
-theory_slope = 4 * np.pi**2 / (G * M_earth)
-print(f"Simulated Slope: {slope:.3e} s²/m³")
-print(f"Theoretical Slope: {theory_slope:.3e} s²/m³")
+# Create a 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
 
-# Plot with fitted line
-plt.figure()
-plt.plot(r_cubed, T_squared, 'o', label='Simulated Data')
-plt.plot(r_cubed, slope * r_cubed + intercept, 'r--', label='Linear Fit')
-plt.xlabel('$r^3$ (m³)')
-plt.ylabel('$T^2$ (s²)')
-plt.title('Linearity Verification: $T^2$ vs $r^3$ with Fit')
-plt.legend()
-plt.grid(True)
+# Plot simulated data
+ax.plot(radii, r_cubed, T_squared, 'o', markersize=4, label='Simulated Data')
+
+# Plot linear regression fit
+ax.plot(radii, r_cubed, T_squared_fit, 'r--', label='Linear Fit')
+
+# Axis labels and title
+ax.set_xlabel('Orbital Radius (m)')
+ax.set_ylabel('$r^3$ (m³)')
+ax.set_zlabel('$T^2$ (s²)')
+ax.set_title("3D View: Linearity Check of Kepler’s Law")
+ax.legend()
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-2.png)
+![alt text](image-12.png)
 ---
 
 ### 5.4 Simulated Orbit Animation: Earth Orbiting the Sun
