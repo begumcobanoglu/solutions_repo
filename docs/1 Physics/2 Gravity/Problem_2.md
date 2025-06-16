@@ -374,20 +374,43 @@ This section explores the significance of each cosmic velocity threshold in real
 Satellites in low Earth orbit (LEO) rely on **first cosmic velocity** to maintain stable orbits. Here's a plot of $v_1$ for several celestial bodies to understand launch difficulty.
 
 ```python
+import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
+# Data: first cosmic velocities in km/s
 planets = ['Moon', 'Earth', 'Mars', 'Jupiter']
 v1 = [1.68, 7.91, 3.55, 42.11]  # km/s
 
-plt.figure()
-plt.bar(planets, v1)
-plt.title("First Cosmic Velocity for Stable Orbits")
-plt.ylabel("Velocity (km/s)")
-plt.xlabel("Celestial Body")
-plt.grid(axis='y')
+# X positions for the bars
+x_pos = np.arange(len(planets))
+
+# Create a 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Bar dimensions
+dx = dy = 0.6
+dz = v1  # Heights of the bars
+
+# Plot the bars
+ax.bar3d(x_pos, np.zeros_like(x_pos), np.zeros_like(x_pos), dx, dy, dz, shade=True)
+
+# Axis labels and title
+ax.set_xlabel('Celestial Body')
+ax.set_ylabel('Y (Placeholder)')
+ax.set_zlabel('Velocity (km/s)')
+ax.set_title('3D View: First Cosmic Velocity for Stable Orbits')
+
+# Set tick labels
+ax.set_xticks(x_pos)
+ax.set_xticklabels(planets)
+ax.set_yticks([])  # Y-axis not used meaningfully
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-3.png)
+![alt text](image-13.png)
 ### Interpretation:
 - **Lower $v_1$ (e.g., Moon, Mars)**: Easier to launch and orbit, but less gravity to hold atmospheres.
 - **Higher $v_1$ (e.g., Jupiter)**: Extremely high propulsion needs.
@@ -399,17 +422,43 @@ plt.show()
 To send spacecraft beyond Earth, they must reach **escape velocity**.
 
 ```python
-v2 = [2.38, 11.19, 5.03, 59.54]  # km/s
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-plt.figure()
-plt.bar(planets, v2, color='orange')
-plt.title("Second Cosmic Velocity – Escape from Gravity")
-plt.ylabel("Velocity (km/s)")
-plt.xlabel("Celestial Body")
-plt.grid(axis='y')
+# Planet names and escape velocities in km/s
+planets = ['Moon', 'Earth', 'Mars', 'Jupiter']
+v2 = [2.38, 11.19, 5.03, 59.54]  # Second cosmic velocities (escape velocities)
+
+# X positions for the bars
+x_pos = np.arange(len(planets))
+
+# Create a 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Bar dimensions
+dx = dy = 0.6
+dz = v2  # Bar heights represent escape velocities
+
+# Plot 3D bars in orange color
+ax.bar3d(x_pos, np.zeros_like(x_pos), np.zeros_like(x_pos), dx, dy, dz, color='orange', shade=True)
+
+# Axis labels and title
+ax.set_xlabel('Celestial Body')
+ax.set_ylabel('Y (Placeholder)')
+ax.set_zlabel('Velocity (km/s)')
+ax.set_title('3D View: Second Cosmic Velocity – Escape from Gravity')
+
+# Customize ticks
+ax.set_xticks(x_pos)
+ax.set_xticklabels(planets)
+ax.set_yticks([])  # Hide Y-axis (not used)
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-4.png)
+![alt text](image-15.png)
 ### Implications:
 - **Earth to Mars** missions must exceed 11.2 km/s.
 - Planning launches from **smaller bodies** can reduce energy cost (e.g., launch return missions from Mars or Moon).
