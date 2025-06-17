@@ -519,8 +519,9 @@ Preserving correct path structure is just as important as computing resistance v
 ```python
 import networkx as nx
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-# Sample input: edge list (node1, node2, resistance)
+# Sample input: list of edges (node1, node2, resistance)
 edge_list = [
     ('A', 'B', 2.0),
     ('B', 'C', 3.0),
@@ -529,26 +530,51 @@ edge_list = [
 start_node = 'A'
 end_node = 'C'
 
-# Build graph
+# Create the graph and add edges with resistance values
 G = nx.Graph()
 for u, v, r in edge_list:
     if r < 0:
         raise ValueError("Resistance must be non-negative.")
     G.add_edge(u, v, resistance=r)
 
-# Validate connectivity
+# Check if there is a path between start and end nodes
 if not nx.has_path(G, start_node, end_node):
     raise ValueError("Graph is not connected between START and END nodes.")
 
-# Plot input graph
-pos = nx.spring_layout(G)
-labels = nx.get_edge_attributes(G, 'resistance')
-nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=800)
-nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-plt.title("Input Circuit Graph")
+# Generate 3D positions for each node using spring layout (z = 0)
+pos_2d = nx.spring_layout(G, seed=42)
+pos_3d = {node: (x, y, 0) for node, (x, y) in pos_2d.items()}
+
+# Set up the 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot each node
+for node, (x, y, z) in pos_3d.items():
+    ax.scatter(x, y, z, color='skyblue', s=100)
+    ax.text(x, y, z + 0.02, node, fontsize=10, ha='center')
+
+# Plot each edge and display resistance labels
+for u, v, data in G.edges(data=True):
+    x_vals = [pos_3d[u][0], pos_3d[v][0]]
+    y_vals = [pos_3d[u][1], pos_3d[v][1]]
+    z_vals = [pos_3d[u][2], pos_3d[v][2]]
+    ax.plot(x_vals, y_vals, z_vals, color='black')
+
+    # Midpoint for resistance label
+    mid_x = (x_vals[0] + x_vals[1]) / 2
+    mid_y = (y_vals[0] + y_vals[1]) / 2
+    mid_z = (z_vals[0] + z_vals[1]) / 2
+    ax.text(mid_x, mid_y, mid_z + 0.02, f"{data['resistance']} Ω", fontsize=9, color='red', ha='center')
+
+# Set plot title and hide axes
+ax.set_title("3D View: Circuit Graph with Resistances")
+ax.set_axis_off()
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image.png)
+![alt text](image-3.png)
 ---
 
 ## ✅ 7. Data Structures
@@ -556,31 +582,49 @@ plt.show()
 ```python
 import networkx as nx
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-# Create a graph with adjacency list structure using networkx
+# Create the graph and add edges with resistance attributes
 G = nx.Graph()
-
-# Add edges
 G.add_edge('1', '2', resistance=5)
 G.add_edge('2', '3', resistance=10)
 G.add_edge('3', '4', resistance=5)
 G.add_edge('2', '4', resistance=15)
 
-# Adjacency list view
-print("Adjacency List with Resistances:")
-for node in G.adjacency():
-    for neighbor, attrs in node[1].items():
-        print(f"{node[0]} --({attrs['resistance']}Ω)--> {neighbor}")
+# Generate 2D spring layout and project into 3D (z = 0)
+pos_2d = nx.spring_layout(G, seed=42)
+pos_3d = {node: (x, y, 0) for node, (x, y) in pos_2d.items()}
 
-# Plot graph
-pos = nx.spring_layout(G)
-labels = nx.get_edge_attributes(G, 'resistance')
-nx.draw(G, pos, with_labels=True, node_color='lightgreen', node_size=700)
-nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-plt.title("Graph Structure (Adjacency List)")
+# Set up a 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the graph nodes
+for node, (x, y, z) in pos_3d.items():
+    ax.scatter(x, y, z, color='lightgreen', s=100)
+    ax.text(x, y, z + 0.02, node, fontsize=10, ha='center')
+
+# Plot the edges and resistance labels
+for u, v, data in G.edges(data=True):
+    x_vals = [pos_3d[u][0], pos_3d[v][0]]
+    y_vals = [pos_3d[u][1], pos_3d[v][1]]
+    z_vals = [pos_3d[u][2], pos_3d[v][2]]
+    ax.plot(x_vals, y_vals, z_vals, color='black')
+
+    # Add resistance label at the midpoint of each edge
+    mid_x = (x_vals[0] + x_vals[1]) / 2
+    mid_y = (y_vals[0] + y_vals[1]) / 2
+    mid_z = (z_vals[0] + z_vals[1]) / 2
+    ax.text(mid_x, mid_y, mid_z + 0.02, f"{data['resistance']}Ω", fontsize=9, color='red', ha='center')
+
+# Set plot title and hide axes
+ax.set_title("3D View: Graph Structure (Adjacency List with Resistances)")
+ax.set_axis_off()
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-1.png)
+![alt text](image-4.png)
 ---
 
 ## ✅ 8. Resistance Calculation (Series Simplification Example)
@@ -588,11 +632,15 @@ plt.show()
 ```python
 import networkx as nx
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
 
-def simplify_series(G):
+# Function to simplify series connections in a graph
+def simplify_series(G, start_node, end_node):
     simplified = G.copy()
     for node in list(G.nodes):
-        if node in (start_node, end_node): continue
+        if node in (start_node, end_node):
+            continue
         if G.degree[node] == 2:
             neighbors = list(G.neighbors(node))
             if simplified.has_edge(neighbors[0], node) and simplified.has_edge(node, neighbors[1]):
@@ -603,7 +651,7 @@ def simplify_series(G):
                 simplified.remove_node(node)
     return simplified
 
-# Create initial series graph
+# Define the original graph with resistors
 G = nx.Graph()
 start_node = 'A'
 end_node = 'D'
@@ -611,28 +659,53 @@ G.add_edge('A', 'B', resistance=5)
 G.add_edge('B', 'C', resistance=10)
 G.add_edge('C', 'D', resistance=15)
 
-# Simplify series
-G_simplified = simplify_series(G)
+# Simplify the graph
+G_simplified = simplify_series(G, start_node, end_node)
 
-# Plot before
-plt.figure()
-pos = nx.spring_layout(G)
-labels = nx.get_edge_attributes(G, 'resistance')
-nx.draw(G, pos, with_labels=True, node_color='orange', node_size=800)
-nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-plt.title("Before Simplification")
-plt.show()
+# Get 2D positions for layout and project into 3D layers
+pos_before_2d = nx.spring_layout(G, seed=42)
+pos_after_2d = nx.spring_layout(G_simplified, seed=42)
+pos_before_3d = {node: (x, y, 0.2) for node, (x, y) in pos_before_2d.items()}  # Top layer
+pos_after_3d = {node: (x, y, -0.2) for node, (x, y) in pos_after_2d.items()}   # Bottom layer
 
-# Plot after
-plt.figure()
-pos = nx.spring_layout(G_simplified)
-labels = nx.get_edge_attributes(G_simplified, 'resistance')
-nx.draw(G_simplified, pos, with_labels=True, node_color='salmon', node_size=800)
-nx.draw_networkx_edge_labels(G_simplified, pos, edge_labels=labels)
-plt.title("After Series Simplification")
+# Create the 3D figure
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the original circuit (before simplification)
+for node, (x, y, z) in pos_before_3d.items():
+    ax.scatter(x, y, z, color='orange', s=100)
+    ax.text(x, y, z + 0.02, node, fontsize=9, ha='center')
+
+for u, v, data in G.edges(data=True):
+    x_vals = [pos_before_3d[u][0], pos_before_3d[v][0]]
+    y_vals = [pos_before_3d[u][1], pos_before_3d[v][1]]
+    z_vals = [pos_before_3d[u][2], pos_before_3d[v][2]]
+    ax.plot(x_vals, y_vals, z_vals, color='gray')
+    mid_x, mid_y, mid_z = np.mean(x_vals), np.mean(y_vals), np.mean(z_vals)
+    ax.text(mid_x, mid_y, mid_z + 0.02, f"{data['resistance']}Ω", fontsize=8, color='red', ha='center')
+
+# Plot the simplified circuit (after simplification)
+for node, (x, y, z) in pos_after_3d.items():
+    ax.scatter(x, y, z, color='salmon', s=100)
+    ax.text(x, y, z - 0.04, node, fontsize=9, ha='center')
+
+for u, v, data in G_simplified.edges(data=True):
+    x_vals = [pos_after_3d[u][0], pos_after_3d[v][0]]
+    y_vals = [pos_after_3d[u][1], pos_after_3d[v][1]]
+    z_vals = [pos_after_3d[u][2], pos_after_3d[v][2]]
+    ax.plot(x_vals, y_vals, z_vals, color='black')
+    mid_x, mid_y, mid_z = np.mean(x_vals), np.mean(y_vals), np.mean(z_vals)
+    ax.text(mid_x, mid_y, mid_z - 0.04, f"{data['resistance']}Ω", fontsize=8, color='red', ha='center')
+
+# Set title and remove axes
+ax.set_title("3D View: Series Simplification of Circuit")
+ax.set_axis_off()
+
+plt.tight_layout()
 plt.show()
 ```
-![alt text](image-2.png)
+![alt text](image-5.png)
 ---
 
 ## 9. Test Cases
