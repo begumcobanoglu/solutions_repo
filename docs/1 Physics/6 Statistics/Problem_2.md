@@ -221,17 +221,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# Generate random points within the square [-1, 1] x [-1, 1]
-N = 500
+# Parameters
+N = 500  # Total number of random points
+
+# Generate random points inside the square [-1, 1] x [-1, 1]
 x_points = np.random.uniform(-1, 1, N)
 y_points = np.random.uniform(-1, 1, N)
-z_points = np.zeros(N)  # All points lie in the XY plane (z = 0)
+z_points = np.zeros(N)  # Flat in XY plane
 
-# Determine which points are inside the unit circle
+# Determine which points fall inside the unit circle
 dist_squared = x_points**2 + y_points**2
 inside_mask = dist_squared <= 1
 
-# Separate inside and outside points
+# Separate points into inside and outside the circle
 x_inside = x_points[inside_mask]
 y_inside = y_points[inside_mask]
 z_inside = np.zeros_like(x_inside)
@@ -240,23 +242,27 @@ x_outside = x_points[~inside_mask]
 y_outside = y_points[~inside_mask]
 z_outside = np.zeros_like(x_outside)
 
-# Create the unit circle using parametric equations
+# Create the unit circle for reference
 theta = np.linspace(0, 2 * np.pi, 500)
 x_circle = np.cos(theta)
 y_circle = np.sin(theta)
 z_circle = np.zeros_like(theta)
 
-# Create 3D plot
+# Estimate the value of pi
+N_inside = np.sum(inside_mask)
+pi_estimate = 4 * N_inside / N
+
+# Create a 3D plot
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # Plot the unit circle in the XY plane
 ax.plot(x_circle, y_circle, z_circle, color='black', linewidth=1, label='Unit Circle')
 
-# Plot the points inside the circle (green)
+# Plot points inside the circle
 ax.scatter(x_inside, y_inside, z_inside, color='green', s=10, alpha=0.6, label='Inside Circle')
 
-# Plot the points outside the circle (red)
+# Plot points outside the circle
 ax.scatter(x_outside, y_outside, z_outside, color='red', s=10, alpha=0.6, label='Outside Circle')
 
 # Set axis limits and labels
@@ -266,13 +272,16 @@ ax.set_zlim([-0.2, 0.2])
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
-ax.set_title('3D View: Monte Carlo Visualization of π Estimation')
-ax.legend()
 
+# Title including estimated π and point statistics
+ax.set_title(f"3D View: Monte Carlo π Estimation\nEstimated π ≈ {pi_estimate:.5f} | "
+             f"Inside: {N_inside} / Total: {N} points")
+
+ax.legend()
 plt.tight_layout()
 plt.show()
 ```
-![alt text](image-8.png)
+![alt text](image-11.png)
 ---
 
 ### 4. Analysis
@@ -526,16 +535,16 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # Parameters
-L = 1.0     # Needle length
-D = 2.0     # Distance between parallel lines
-N_viz = 100  # Number of needles to visualize
+L = 1.0      # Needle length
+D = 2.0      # Distance between parallel lines
+N_viz = 1000  # Total number of needles
 
 # Randomly sample needle angles and center positions
 theta_v = np.random.uniform(0, np.pi / 2, N_viz)
 y_center_v = np.random.uniform(0, D / 2, N_viz)
-x_center_v = np.random.uniform(0, 5, N_viz)  # Spread needles horizontally
+x_center_v = np.random.uniform(0, 5, N_viz)  # Spread needles along the x-axis
 
-# Calculate endpoints of each needle
+# Calculate the endpoints of each needle
 x1 = x_center_v - (L / 2) * np.cos(theta_v)
 x2 = x_center_v + (L / 2) * np.cos(theta_v)
 y1 = y_center_v - (L / 2) * np.sin(theta_v)
@@ -544,20 +553,24 @@ y2 = y_center_v + (L / 2) * np.sin(theta_v)
 # Determine which needles cross a line
 crosses_v = y_center_v <= (L / 2) * np.sin(theta_v)
 
-# Z coordinates for flat 2D layout in 3D space
+# Estimate the value of π
+num_crossing = np.sum(crosses_v)
+pi_estimate = (2 * L * N_viz) / (D * num_crossing) if num_crossing > 0 else np.nan
+
+# Z-coordinates for 3D view (all needles lie in the XY plane)
 z1 = np.zeros_like(x1)
 z2 = np.zeros_like(x2)
 
-# Create a 3D plot
+# Create the 3D plot
 fig = plt.figure(figsize=(10, 6))
 ax = fig.add_subplot(111, projection='3d')
 
-# Plot each needle as a line in 3D
+# Plot each needle in 3D
 for i in range(N_viz):
     color = 'green' if crosses_v[i] else 'red'
     ax.plot([x1[i], x2[i]], [y1[i], y2[i]], [z1[i], z2[i]], color=color, linewidth=1)
 
-# Draw horizontal parallel lines in the XY plane (spaced by D)
+# Draw horizontal dashed lines spaced by D
 x_line = np.linspace(0, 5, 100)
 z_line = np.zeros_like(x_line)
 for y in np.arange(0, D * 3, D):
@@ -571,12 +584,15 @@ ax.set_zlim(-0.1, 0.1)
 ax.set_xlabel('X Position')
 ax.set_ylabel('Y Position')
 ax.set_zlabel('Z')
-ax.set_title("3D View: Buffon's Needle (Green: Crossing, Red: Non-Crossing)")
+
+# Set plot title including π estimate and count details
+ax.set_title(f"3D View: Buffon's Needle\nEstimated π ≈ {pi_estimate:.5f} | "
+             f"Crossings: {num_crossing} / {N_viz} needles")
 
 plt.tight_layout()
 plt.show()
 ```
-![alt text](image-9.png)
+![alt text](image-10.png)
 #### Interpretation
 
 * **Green needles** represent successful crossings, which increment the crossing count \$C\$ in the \$\pi\$ estimation formula.
